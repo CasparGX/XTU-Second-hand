@@ -1,0 +1,18 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp"
+    tools:context="com.sky31.buy.second_hand.ui.fragment.ClassifyFragment">
+
+    <GridView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/gv_classify"
+        android:numColumns="3"
+        android:horizontalSpacing="1px"
+        android:verticalSpacing="1px">
+
+    </GridView>
+
+</FrameLayout>

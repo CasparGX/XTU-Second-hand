@@ -1,0 +1,37 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "com.sky31.buy.second_hand"
+        minSdkVersion 14
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile('com.android.support:appcompat-v7:22.0.0') {
+        exclude module: 'support-v4'
+    }
+    compile files('libs/android-async-http-1.4.8.jar')
+    compile files('libs/android-support-v4.jar')
+    compile files('libs/universal-image-loader-1.9.4-with-sources.jar')
+    compile project(':library')
+    compile project(':ptr-lib')
+}
+
+configurations {
+    all*.exclude group: 'com.android.support', module: 'support-v4'
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/F:/Java/AndroidStudioProjects/Second-hand/samples/build/intermediates/exploded-aar/me.imid.swipebacklayout.lib/library/1.0.0/res/values/values.xml -->
+    <eat-comment/>
+    <attr format="reference" name="SwipeBackLayoutStyle"/>
+    <!-- From: file:/F:/Java/AndroidStudioProjects/Second-hand/samples/src/main/res/values/color.xml -->
+    <eat-comment/>
+    <color name="androidColorA">#33B5E5</color>
+    <color name="androidColorB">#AA66CC</color>
+    <color name="androidColorC">#99CC00</color>
+    <color name="androidColorD">#FFBB33</color>
+    <color name="androidColorE">#FF4444</color>
+    <declare-styleable name="SwipeBackLayout"><attr format="dimension" name="edge_size"/><attr name="edge_flag"><enum name="left" value="0"/><enum name="right" value="1"/><enum name="bottom" value="2"/><enum name="all" value="3"/></attr><attr format="reference" name="shadow_left"/><attr format="reference" name="shadow_right"/><attr format="reference" name="shadow_bottom"/></declare-styleable>
+    <!-- From: file:/F:/Java/AndroidStudioProjects/Second-hand/samples/src/main/res/values/dimens.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="common_margin">16dip</dimen>
+    <!-- From: file:/F:/Java/AndroidStudioProjects/Second-hand/samples/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="action_github">Github</string>
+    <string name="app_name">SwipeBackDemo</string>
+    <string name="finish_activity">Finish Activity</string>
+    <string name="key_tracking_mode">key_tracking_mode</string>
+    <string name="start_activity">Start new activity!</string>
+    <string name="tracking_mode_all">All</string>
+    <string name="tracking_mode_bottom">Bottom</string>
+    <string name="tracking_mode_left">Left</string>
+    <string name="tracking_mode_right">Right</string>
+    <!-- From: file:/F:/Java/AndroidStudioProjects/Second-hand/samples/src/main/res/values/styles.xml -->
+    <eat-comment/>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+    <!-- From: file:/F:/Java/AndroidStudioProjects/Second-hand/samples/build/intermediates/exploded-aar/me.imid.swipebacklayout.lib/library/1.0.0/res/values/values.xml -->
+    <eat-comment/>
+    <style name="SwipeBackLayout">
+        <item name="edge_size">50dip</item>
+        <item name="shadow_left">@drawable/shadow_left</item>
+        <item name="shadow_right">@drawable/shadow_right</item>
+        <item name="shadow_bottom">@drawable/shadow_bottom</item>
+    </style>
+</resources>
