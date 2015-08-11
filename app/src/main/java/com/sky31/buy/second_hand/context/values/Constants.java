@@ -9,6 +9,9 @@ public class Constants {
     public final class Apis {
         public static final String
                 API_GOODS_LIST_GET = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/query?";
+        public static final String
+                API_GOODS_CLASSIFY_GET = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/getClassify";
+
         public static final String API_URL = "http://buy.sky31.com/fleaapi";
 
 

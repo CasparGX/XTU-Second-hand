@@ -30,6 +30,10 @@ public class ClassifyFragmentGridViewAdapter extends BaseAdapter {
         this.data = data;
     }
 
+    public void setGoodsDataEmpty() {
+        this.data.clear();
+    }
+
     @Override
     public int getCount() {
         return data.size();
