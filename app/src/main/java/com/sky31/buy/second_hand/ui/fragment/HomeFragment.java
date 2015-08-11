@@ -248,7 +248,6 @@ public class HomeFragment extends Fragment {
             mCache.put(Constants.Keys.KEY_CACHE_HOME_CHECK,"hasCache");
 
             limitID++;
-            ptrFrame.refreshComplete();
             Log.i(TAG, mGoodsData.get(0).imgUrl + "");
         }
 
@@ -258,7 +257,6 @@ public class HomeFragment extends Fragment {
             //if return JSONObject, it's have no data
             Toast.makeText(getActivity(), "已加载全部",
                     Toast.LENGTH_SHORT).show();
-            ptrFrame.refreshComplete();
             Log.i(TAG, "---------------------- return JSONObject, it's have no data ------------------");
             Log.i(TAG, response + "");
         }
@@ -270,6 +268,7 @@ public class HomeFragment extends Fragment {
         }
 
         public void onFinish() {
+            ptrFrame.refreshComplete();
             Log.i(TAG, "onFinish");
         }
     };
