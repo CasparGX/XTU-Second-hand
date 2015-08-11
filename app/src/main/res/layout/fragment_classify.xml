@@ -5,14 +5,28 @@
     android:padding="8dp"
     tools:context="com.sky31.buy.second_hand.ui.fragment.ClassifyFragment">
 
-    <GridView
+    <in.srain.cube.views.ptr.PtrFrameLayout
+        android:id="@+id/ptr_classify_grid"
+        xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/gv_classify"
-        android:numColumns="3"
-        android:horizontalSpacing="1px"
-        android:verticalSpacing="1px">
 
-    </GridView>
+        cube_ptr:ptr_resistance="1.7"
+        cube_ptr:ptr_ratio_of_header_height_to_refresh="1.2"
+        cube_ptr:ptr_duration_to_close="300"
+        cube_ptr:ptr_duration_to_close_header="2000"
+        cube_ptr:ptr_keep_header_when_refresh="true"
+        cube_ptr:ptr_pull_to_fresh="false">
+
+        <GridView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/gv_classify"
+            android:numColumns="3"
+            android:horizontalSpacing="1px"
+            android:verticalSpacing="1px">
+
+        </GridView>
+    </in.srain.cube.views.ptr.PtrFrameLayout>
 
 </FrameLayout>
