@@ -7,15 +7,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
+import com.sky31.buy.second_hand.model.ClassifyInfo;
 import com.sky31.buy.second_hand.model.GoodsData;
 import com.sky31.buy.second_hand.ui.adapter.ClassifyFragmentGridViewAdapter;
+import com.sky31.buy.second_hand.ui.adapter.HomeFragmentListViewAdapter;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
 import org.apache.http.Header;
@@ -24,6 +26,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -37,8 +40,8 @@ public class ClassifyFragment extends Fragment {
 
     private String TAG = ClassifyFragment.class.getName();
 
-    private HashMap<String, String> classifyTest = new HashMap<String, String>();
-    private ArrayList<JSONObject> classifyData = new ArrayList<>();
+    //private HashMap<String, String> classifyTest = new HashMap<String, String>();
+    private ArrayList<ClassifyInfo> mClassifyInfo = new ArrayList<>();
 
     private GridView mGvClassify;
     private ClassifyFragmentGridViewAdapter adapter;
@@ -46,27 +49,26 @@ public class ClassifyFragment extends Fragment {
     private PtrFrameLayout ptrFrame;
     private boolean isRefresh;
 
+    private ListView mListView;
+    private HomeFragmentListViewAdapter mListViewAdapter;
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        classifyTest.put( "0" , "全部商品");
-        classifyTest.put( "1" , "图书教材");
-        classifyTest.put( "2" , "数码产品");
-        classifyTest.put( "3" , "代步工具");
-        classifyTest.put( "4" , "运动器材");
-        classifyTest.put( "5" , "衣物衣帽");
-        classifyTest.put("6" , "家用电器");
-        classifyTest.put("7" , "租赁");
-        classifyTest.put("8" , "其他");
-        classifyTest.put("9" , "爱淘节");
-        classifyTest.put("10", "爱心义卖");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_classify, container, false);
-        mGvClassify = (GridView) view.findViewById(R.id.gv_classify);
-        adapter = new ClassifyFragmentGridViewAdapter(inflater, classifyTest);
+        View lvHeader = inflater.inflate(R.layout.include_lv_classify_header, container, false);
+        mListView = (ListView) view.findViewById(R.id.lv_classify);
+        mListView.addHeaderView(lvHeader);
+        mListViewAdapter = new HomeFragmentListViewAdapter(new ArrayList<GoodsData>());
+        mListView.setAdapter(mListViewAdapter);
+
+        mGvClassify = (GridView) lvHeader.findViewById(R.id.gv_classify);
+        adapter = new ClassifyFragmentGridViewAdapter(inflater, mClassifyInfo);
         mGvClassify.setAdapter(adapter);
 
         //下拉刷新
@@ -96,7 +98,6 @@ public class ClassifyFragment extends Fragment {
 
             @Override
             public void onRefreshBegin(final PtrFrameLayout frame) {
-                adapter.setGoodsDataEmpty();
                 getClassify();
                 Log.i(TAG, "-------- onRefreshBegin : 刷新 - 请求网络数据 ---------");
             }
@@ -112,6 +113,7 @@ public class ClassifyFragment extends Fragment {
         Log.i(TAG, "------------URL:" + Constants.Apis.API_GOODS_LIST_GET + "------------------");
         HttpUtil.get(Constants.Apis.API_GOODS_CLASSIFY_GET, null, mJsonHttpResponseHandler);
     }
+
     JsonHttpResponseHandler mJsonHttpResponseHandler = new JsonHttpResponseHandler() {
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
@@ -124,16 +126,11 @@ public class ClassifyFragment extends Fragment {
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
             super.onSuccess(statusCode, headers, response);
-            Log.i(TAG, "------------------------------ getGoodsData Handler onSuccess ----------------------");
-            for (Iterator iter = response.keys(); iter.hasNext();) { //先遍历整个 people 对象
-                String key = (String)iter.next();
-                try {
-                    System.out.println(key + "#" + response.getString(key));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
+            Log.i(TAG, "------------------------------ getClassify Handler onSuccess ----------------------");
+            mClassifyInfo.clear();
+            System.out.println(response);
+            JsonToClassifyInfo(response);
+            adapter.notifyDataSetChanged();
         }
 
         @Override
@@ -147,5 +144,29 @@ public class ClassifyFragment extends Fragment {
             Log.i(TAG, "onFinish");
         }
     };
+
+    public void JsonToClassifyInfo(JSONObject mJsonObject) {
+        String key;
+        int i = 0;
+        for (Iterator iter = mJsonObject.keys(); iter.hasNext();) { //先遍历整个 people 对象
+            key = (String)iter.next();
+            try {
+                ClassifyInfo mObjClassifyInfo = new ClassifyInfo();
+                System.out.println(key + "#" + mJsonObject.getString(key));
+                mObjClassifyInfo.setTitle(mJsonObject.getString(key));
+                mObjClassifyInfo.setId(key);
+                mObjClassifyInfo.setIcon(null);
+                this.mClassifyInfo.add(mObjClassifyInfo);
+
+                System.out.println(this.mClassifyInfo.get(i).getId() + " # " + this.mClassifyInfo.get(i).getTitle() + " # " + i + " # " + this.mClassifyInfo.size());
+                i++;
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
 
 }

@@ -74,7 +74,7 @@ public class HomeFragmentListViewAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.item_home_goods,viewGroup,false);
 
             icon = (ImageView) view.findViewById(R.id.icon);
-            final LayoutParams iconParams = icon.getLayoutParams();
+            /*final LayoutParams iconParams = icon.getLayoutParams();
             ViewTreeObserver vto2 = icon.getViewTreeObserver();
             vto2.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
                 @Override
@@ -83,7 +83,7 @@ public class HomeFragmentListViewAdapter extends BaseAdapter {
                     iconParams.height = icon.getWidth();
                 }
             });
-            icon.setLayoutParams(iconParams);
+            icon.setLayoutParams(iconParams);*/
 
         }
         title = (TextView) view.findViewById(R.id.title);

@@ -18,15 +18,26 @@
         cube_ptr:ptr_keep_header_when_refresh="true"
         cube_ptr:ptr_pull_to_fresh="false">
 
-        <GridView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/gv_classify"
-            android:numColumns="3"
-            android:horizontalSpacing="1px"
-            android:verticalSpacing="1px">
+            android:orientation="vertical">
 
-        </GridView>
+            <ListView
+                android:id="@+id/lv_classify"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@drawable/home_goods_listview_shadow"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="15dp"
+                android:scrollbarStyle="outsideOverlay"
+                android:clipToPadding="false">
+
+            </ListView>
+
+        </LinearLayout>
+
     </in.srain.cube.views.ptr.PtrFrameLayout>
 
 </FrameLayout>
