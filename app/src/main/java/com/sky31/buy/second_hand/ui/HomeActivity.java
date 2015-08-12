@@ -1,6 +1,5 @@
 package com.sky31.buy.second_hand.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,19 +15,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.sky31.buy.second_hand.R;
-import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.ui.adapter.HomeViewPagerAdapter;
 import com.sky31.buy.second_hand.ui.fragment.ClassifyFragment;
 import com.sky31.buy.second_hand.ui.fragment.HomeFragment;
 import com.sky31.buy.second_hand.ui.fragment.MeFragment;
 import com.sky31.buy.second_hand.ui.fragment.SearchFragment;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
-
-import me.imid.swipebacklayout.lib.SwipeBackLayout;
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 
@@ -53,7 +47,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     private ImageView ivFooterBg;
 
     private ImageView mTabLine;
-    private int mScreen1_4;
+    private int mScreen1_3;
 
     private int mCurrentPageIndex;
 
@@ -68,7 +62,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         Display display = getWindow().getWindowManager().getDefaultDisplay();
         DisplayMetrics outMetris = new DisplayMetrics();
         display.getMetrics(outMetris);
-        mScreen1_4 = outMetris.widthPixels / 4;
+        mScreen1_3 = outMetris.widthPixels / 3;
 
         initTabLine();
         initView();
@@ -88,7 +82,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
             }
         });
 
-        lp.width = mScreen1_4;
+        lp.width = mScreen1_3;
 
         ivFooterBg.setLayoutParams(lp);
         Log.i("HomeActivity", tvShouye.getHeight() + "");
@@ -97,7 +91,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     private void initTabLine() {
         mTabLine = (ImageView) findViewById(R.id.iv_tabline);
         ViewGroup.LayoutParams lp = mTabLine.getLayoutParams();
-        lp.width = mScreen1_4;
+        lp.width = mScreen1_3;
         mTabLine.setLayoutParams(lp);
     }
 
@@ -105,16 +99,16 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
 
         tvShouye = (TextView) findViewById(R.id.tv_shouye);
         tvFenlei = (TextView) findViewById(R.id.tv_fenlei);
-        tvSousuo = (TextView) findViewById(R.id.tv_sousuo);
+        //tvSousuo = (TextView) findViewById(R.id.tv_sousuo);
         tvWo = (TextView) findViewById(R.id.tv_wo);
         tvShouye.setOnClickListener(this);
         tvFenlei.setOnClickListener(this);
-        tvSousuo.setOnClickListener(this);
+        //tvSousuo.setOnClickListener(this);
         tvWo.setOnClickListener(this);
         mListTv = new ArrayList<TextView>();
         mListTv.add(tvShouye);
         mListTv.add(tvFenlei);
-        mListTv.add(tvSousuo);
+        //mListTv.add(tvSousuo);
         mListTv.add(tvWo);
         mListTv.get(0).setTextColor(0xffff3621);
 
@@ -143,35 +137,35 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
                 RelativeLayout.LayoutParams lp2 = (RelativeLayout.LayoutParams) ivFooterBg.getLayoutParams();
 
                 if(mCurrentPageIndex == 0 && position ==0 ){ //0->1
-                    lp.leftMargin = (int) (positionOffset * mScreen1_4
-                            + mCurrentPageIndex * mScreen1_4);
-                    lp2.leftMargin = (int) (positionOffset * mScreen1_4
-                            + mCurrentPageIndex * mScreen1_4);
+                    lp.leftMargin = (int) (positionOffset * mScreen1_3
+                            + mCurrentPageIndex * mScreen1_3);
+                    lp2.leftMargin = (int) (positionOffset * mScreen1_3
+                            + mCurrentPageIndex * mScreen1_3);
                 } else if(mCurrentPageIndex == 1 && position == 0) {    //1->0
-                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_4
-                            + (positionOffset-1) * mScreen1_4);
-                    lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_4
-                            + (positionOffset-1) * mScreen1_4);
+                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
+                            + (positionOffset-1) * mScreen1_3);
+                    lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
+                            + (positionOffset-1) * mScreen1_3);
                 } else if (mCurrentPageIndex == 1 && position == 1) { //1->2
-                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_4
-                            + positionOffset * mScreen1_4);
-                    lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_4
-                            + positionOffset * mScreen1_4);
+                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
+                            + positionOffset * mScreen1_3);
+                    lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
+                            + positionOffset * mScreen1_3);
                 } else if (mCurrentPageIndex == 2 && position == 1) { //2->1
-                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_4
-                            + (positionOffset - 1) * mScreen1_4);
-                    lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_4
-                            + (positionOffset - 1) * mScreen1_4);
+                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
+                            + (positionOffset - 1) * mScreen1_3);
+                    lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
+                            + (positionOffset - 1) * mScreen1_3);
                 } else if (mCurrentPageIndex == 2 && position == 2) { //2->3
-                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_4
-                            + positionOffset * mScreen1_4);
-                    lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_4
-                            + positionOffset * mScreen1_4);
+                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
+                            + positionOffset * mScreen1_3);
+                    lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
+                            + positionOffset * mScreen1_3);
                 } else if (mCurrentPageIndex == 3 && position == 2) { //3->2
-                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_4
-                            + (positionOffset - 1) * mScreen1_4);
-                    lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_4
-                            + (positionOffset - 1) * mScreen1_4);
+                    lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
+                            + (positionOffset - 1) * mScreen1_3);
+                    lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
+                            + (positionOffset - 1) * mScreen1_3);
                 }
                 Log.i("HomeActivity",ivFooterBg.getWidth()
                         + " : "
@@ -214,9 +208,9 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
             case R.id.tv_fenlei :
                 mViewPager.setCurrentItem(1,true);
                 break;
-            case R.id.tv_sousuo :
+            /*case R.id.tv_sousuo :
                 mViewPager.setCurrentItem(2,true);
-                break;
+                break;*/
             case R.id.tv_wo :
                 mViewPager.setCurrentItem(3,true);
                 break;

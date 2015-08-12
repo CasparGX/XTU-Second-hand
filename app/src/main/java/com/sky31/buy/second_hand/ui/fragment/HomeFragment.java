@@ -95,7 +95,7 @@ public class HomeFragment extends Fragment {
         ptrFrame = (PtrFrameLayout) view.findViewById(R.id.store_house_ptr_frame);
 
         header.setLayoutParams(new PtrFrameLayout.LayoutParams(-1, -2));
-        header.setPadding(0, PtrLocalDisplay.dp2px(15), 0, PtrLocalDisplay.dp2px(10));
+        header.setPadding(0, PtrLocalDisplay.dp2px(30), 0, PtrLocalDisplay.dp2px(10));
         header.setPtrFrameLayout(ptrFrame);
         ptrFrame.setPinContent(true);
         ptrFrame.setLoadingMinTime(1000);
@@ -117,8 +117,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onRefreshBegin(final PtrFrameLayout frame) {
                     limitID = 0;
-                    adapter.setGoodsDataEmpty();
-                getGoodsData();
+                    getGoodsData();
                     Log.i(TAG, "-------- onRefreshBegin : 刷新 - 请求网络数据 ---------");
             }
         });
@@ -238,6 +237,7 @@ public class HomeFragment extends Fragment {
             Log.i(TAG, "------------------------------ getGoodsData Handler onSuccess ----------------------");
             Log.i(TAG, response + "");
             //处理数据,刷新显示
+            adapter.setGoodsDataEmpty();
             mGoodsArray = response;
             mGoodsData = GoodsData.JSONArrayToGoodsData(mGoodsArray);
             adapter.addAll(mGoodsData);
