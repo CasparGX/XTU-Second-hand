@@ -60,7 +60,7 @@ public class HomeFragmentListViewAdapter extends BaseAdapter {
         this.mGoodsData = mGoodsData;
     }
 
-    public HomeFragmentListViewAdapter(LayoutInflater inflater, BuyApp app) {
+    public HomeFragmentListViewAdapter(LayoutInflater inflater) {
         this.inflater = inflater;
         this.imageLoader = BuyApp.getInstance().getImageLoader();
         this.displayImageOptions = BuyApp.getInstance().getDisplayImageOptions();

@@ -7,11 +7,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.ClassifyInfo;
@@ -26,8 +30,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
 
 import in.srain.cube.views.ptr.PtrDefaultHandler;
@@ -36,21 +38,35 @@ import in.srain.cube.views.ptr.PtrHandler;
 import in.srain.cube.views.ptr.header.MaterialHeader;
 import in.srain.cube.views.ptr.util.PtrLocalDisplay;
 
-public class ClassifyFragment extends Fragment {
+public class ClassifyFragment extends Fragment{
 
     private String TAG = ClassifyFragment.class.getName();
 
-    //private HashMap<String, String> classifyTest = new HashMap<String, String>();
+
+    /*分类信息*/
     private ArrayList<ClassifyInfo> mClassifyInfo = new ArrayList<>();
 
+    /*分类信息布局*/
     private GridView mGvClassify;
     private ClassifyFragmentGridViewAdapter adapter;
 
+    /*下拉刷新布局*/
     private PtrFrameLayout ptrFrame;
-    private boolean isRefresh;
 
+    /*商品列表*/
     private ListView mListView;
     private HomeFragmentListViewAdapter mListViewAdapter;
+
+    /*搜索*/
+    private EditText mEtSearch;
+    private Button mBtnSearch;
+
+    /*获取商品信息*/
+    private ArrayList<GoodsData> mGoodsData = new ArrayList<>();
+    private JSONArray mGoodsArray = new JSONArray();
+    private RequestParams params = new RequestParams();
+    private int limitID;
+    private String queryUrl;
 
 
     @Override
@@ -61,18 +77,41 @@ public class ClassifyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_classify, container, false);
-        View lvHeader = inflater.inflate(R.layout.include_lv_classify_header, container, false);
+        /*商品列表布局*/
         mListView = (ListView) view.findViewById(R.id.lv_classify);
+        View lvHeader = inflater.inflate(R.layout.include_lv_classify_header, null);
         mListView.addHeaderView(lvHeader);
-        mListViewAdapter = new HomeFragmentListViewAdapter(new ArrayList<GoodsData>());
+        mListViewAdapter = new HomeFragmentListViewAdapter(inflater);
+        mListViewAdapter.setmGoodsData(mGoodsData);
         mListView.setAdapter(mListViewAdapter);
 
+        /*搜索框*/
+        mEtSearch = (EditText) lvHeader.findViewById(R.id.et_search);
+        mBtnSearch = (Button) lvHeader.findViewById(R.id.btn_search);
+
+        /*分类布局*/
         mGvClassify = (GridView) lvHeader.findViewById(R.id.gv_classify);
         adapter = new ClassifyFragmentGridViewAdapter(inflater, mClassifyInfo);
+
+        /*分类GridView点击事件*/
+        mGvClassify.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //获取点击id，传递参数
+                //每次点击将limitID置0
+                if (params.has("limitID")) {
+                    params.remove("limitID");
+                }
+                limitID = 0;
+                //params.add("limitID", String.valueOf(limitID));
+                getGoodsData(null, i);
+            }
+        });
         mGvClassify.setAdapter(adapter);
 
+
+
         //下拉刷新
-        isRefresh = false;
         final MaterialHeader header = new MaterialHeader(getActivity());
         ptrFrame = (PtrFrameLayout) view.findViewById(R.id.ptr_classify_grid);
 
@@ -95,26 +134,82 @@ public class ClassifyFragment extends Fragment {
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
                 return PtrDefaultHandler.checkContentCanBePulledDown(frame, mGvClassify, header);
             }
-
             @Override
             public void onRefreshBegin(final PtrFrameLayout frame) {
                 getClassify();
                 Log.i(TAG, "-------- onRefreshBegin : 刷新 - 请求网络数据 ---------");
             }
-
-
         });
 
 
         return view;
     }
 
-    private void getClassify() {
-        Log.i(TAG, "------------URL:" + Constants.Apis.API_GOODS_LIST_GET + "------------------");
-        HttpUtil.get(Constants.Apis.API_GOODS_CLASSIFY_GET, null, mJsonHttpResponseHandler);
+    /*根据参数合成查询URL*/
+    public void getGoodsData(String title, int id) {
+        if (title != null){
+        params.add("title", title);
+        }
+        if (id != -1) {
+            if (params.has("type")) {
+                params.remove("type");
+            }
+            params.add("type", mClassifyInfo.get(id).getId());
+        }
+        params.add("limitID", String.valueOf(limitID));
+        System.out.println(params.toString() + " id = " + id);
+        HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET, params, mListJsonHttpResponseHandler);
+        Log.i(TAG, "------------getGoodsData URL:" + Constants.Apis.API_GOODS_LIST_GET + "------------------");
     }
 
-    JsonHttpResponseHandler mJsonHttpResponseHandler = new JsonHttpResponseHandler() {
+    /*获取商品列表的Handler*/
+    JsonHttpResponseHandler mListJsonHttpResponseHandler = new JsonHttpResponseHandler() {
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+            super.onSuccess(statusCode, headers, response);
+            Log.i(TAG, "------------------------------ getGoodsData Handler onSuccess ----------------------");
+            Log.i(TAG, response + "");
+            //处理数据,刷新显示
+            mGoodsData.clear();
+            mGoodsArray = response;
+            mGoodsData.addAll(GoodsData.JSONArrayToGoodsData(mGoodsArray));
+            mListViewAdapter.notifyDataSetChanged();
+
+            limitID++;
+            Log.i(TAG, mGoodsData.get(0).imgUrl + "");
+        }
+
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            super.onSuccess(statusCode, headers, response);
+            //if return JSONObject, it's have no data
+            Toast.makeText(getActivity(), "已加载全部",
+                    Toast.LENGTH_SHORT).show();
+            Log.i(TAG, "---------------------- return JSONObject, it's have no data ------------------");
+            Log.i(TAG, response + "");
+        }
+
+        @Override
+        public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+            super.onFailure(statusCode, headers, responseString, throwable);
+            Log.e(TAG, " onFailure" + responseString.toString());
+        }
+
+        public void onFinish() {
+            Log.i(TAG, "onFinish");
+        }
+    };
+
+
+
+    /*获取分类信息*/
+    private void getClassify() {
+        Log.i(TAG, "------------getClassify URL:" + Constants.Apis.API_GOODS_LIST_GET + "------------------");
+        HttpUtil.get(Constants.Apis.API_GOODS_CLASSIFY_GET, null, mClassifyJsonHttpResponseHandler);
+    }
+
+    /*获取分类信息的Handler*/
+    JsonHttpResponseHandler mClassifyJsonHttpResponseHandler = new JsonHttpResponseHandler() {
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
             super.onSuccess(statusCode, headers, response);
@@ -145,6 +240,10 @@ public class ClassifyFragment extends Fragment {
         }
     };
 
+    /**
+     * 将获取的JSONObject转为自定义的ClassifyInfo对象
+     * @param mJsonObject
+     */
     public void JsonToClassifyInfo(JSONObject mJsonObject) {
         String key;
         int i = 0;
@@ -165,8 +264,6 @@ public class ClassifyFragment extends Fragment {
                 e.printStackTrace();
             }
         }
-
-
     }
 
 }

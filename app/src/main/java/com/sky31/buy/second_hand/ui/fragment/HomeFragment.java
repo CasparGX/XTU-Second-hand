@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment {
         Log.i(TAG, "------------onCreateView");
 
         mListView = (ListView) view.findViewById(R.id.lv_goods);
-        adapter = new HomeFragmentListViewAdapter(inflater, app);
+        adapter = new HomeFragmentListViewAdapter(inflater);
         mListView.setAdapter(adapter);
 
         //缓存
