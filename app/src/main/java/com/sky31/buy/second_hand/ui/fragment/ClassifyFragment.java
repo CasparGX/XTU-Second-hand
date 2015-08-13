@@ -132,7 +132,7 @@ public class ClassifyFragment extends Fragment{
         ptrFrame.setPtrHandler(new PtrHandler() {
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                return PtrDefaultHandler.checkContentCanBePulledDown(frame, mEtSearch, header);
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, mListView, header);
             }
             @Override
             public void onRefreshBegin(final PtrFrameLayout frame) {
