@@ -2,6 +2,8 @@ package com.sky31.buy.second_hand.context;
 
 import android.app.Application;
 import android.graphics.Bitmap;
+import android.util.DisplayMetrics;
+import android.view.Display;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
@@ -33,6 +35,7 @@ public class BuyApp extends Application {
     private static final String API_URL      = Constants.Apis.API_URL;
     private static final String KEY_PICNAME  = Constants.Keys.KEY_PICNAME;
     private static final String KEY_PICSRC   = Constants.Keys.KEY_PICSRC;
+
 
     //GoodsData
     private ArrayList<GoodsData> mGoodsData = new ArrayList<>();

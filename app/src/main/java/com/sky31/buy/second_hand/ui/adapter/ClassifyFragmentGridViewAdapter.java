@@ -4,11 +4,15 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.model.ClassifyInfo;
+import com.sky31.buy.second_hand.ui.HomeActivity;
 
 import java.util.ArrayList;
 
@@ -23,6 +27,7 @@ public class ClassifyFragmentGridViewAdapter extends BaseAdapter {
     private ArrayList<ClassifyInfo> data;
 
     private TextView tvTitle;
+    private ImageView ivClassify;
 
     public ClassifyFragmentGridViewAdapter(LayoutInflater inflater, ArrayList<ClassifyInfo> data) {
         this.inflater = inflater;
@@ -49,6 +54,10 @@ public class ClassifyFragmentGridViewAdapter extends BaseAdapter {
         if (view == null) {
             view = inflater.inflate(R.layout.item_classify_gridview,viewGroup ,false);
             tvTitle = (TextView) view.findViewById(R.id.tv_title);
+            ivClassify = (ImageView) view.findViewById(R.id.iv_classify);
+            final LinearLayout.LayoutParams iconParams = (LinearLayout.LayoutParams) ivClassify.getLayoutParams();
+            iconParams.height = HomeActivity.screenWidth / 5;
+            ivClassify.setLayoutParams(iconParams);
         }
         tvTitle.setText(data.get(i).getTitle());
         Log.i("ClassifyFragmentGridViewAdapter",data.get(i).getTitle() + " # " + i + " # " + getItem(i).getId() + " # " + getCount());

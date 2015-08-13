@@ -43,25 +43,25 @@ public class ClassifyFragment extends Fragment{
     private String TAG = ClassifyFragment.class.getName();
 
 
-    /*·ÖÀàĞÅÏ¢*/
+    /*åˆ†ç±»ä¿¡æ¯*/
     private ArrayList<ClassifyInfo> mClassifyInfo = new ArrayList<>();
 
-    /*·ÖÀàĞÅÏ¢²¼¾Ö*/
+    /*åˆ†ç±»ä¿¡æ¯å¸ƒå±€*/
     private GridView mGvClassify;
     private ClassifyFragmentGridViewAdapter adapter;
 
-    /*ÏÂÀ­Ë¢ĞÂ²¼¾Ö*/
+    /*ä¸‹æ‹‰åˆ·æ–°å¸ƒå±€*/
     private PtrFrameLayout ptrFrame;
 
-    /*ÉÌÆ·ÁĞ±í*/
+    /*å•†å“åˆ—è¡¨*/
     private ListView mListView;
     private HomeFragmentListViewAdapter mListViewAdapter;
 
-    /*ËÑË÷*/
+    /*æœç´¢*/
     private EditText mEtSearch;
     private Button mBtnSearch;
 
-    /*»ñÈ¡ÉÌÆ·ĞÅÏ¢*/
+    /*è·å–å•†å“ä¿¡æ¯*/
     private ArrayList<GoodsData> mGoodsData = new ArrayList<>();
     private JSONArray mGoodsArray = new JSONArray();
     private RequestParams params = new RequestParams();
@@ -77,7 +77,7 @@ public class ClassifyFragment extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_classify, container, false);
-        /*ÉÌÆ·ÁĞ±í²¼¾Ö*/
+        /*å•†å“åˆ—è¡¨å¸ƒå±€*/
         mListView = (ListView) view.findViewById(R.id.lv_classify);
         View lvHeader = inflater.inflate(R.layout.include_lv_classify_header, null);
         mListView.addHeaderView(lvHeader);
@@ -85,20 +85,20 @@ public class ClassifyFragment extends Fragment{
         mListViewAdapter.setmGoodsData(mGoodsData);
         mListView.setAdapter(mListViewAdapter);
 
-        /*ËÑË÷¿ò*/
+        /*æœç´¢æ¡†*/
         mEtSearch = (EditText) lvHeader.findViewById(R.id.et_search);
         mBtnSearch = (Button) lvHeader.findViewById(R.id.btn_search);
 
-        /*·ÖÀà²¼¾Ö*/
+        /*åˆ†ç±»å¸ƒå±€*/
         mGvClassify = (GridView) lvHeader.findViewById(R.id.gv_classify);
         adapter = new ClassifyFragmentGridViewAdapter(inflater, mClassifyInfo);
 
-        /*·ÖÀàGridViewµã»÷ÊÂ¼ş*/
+        /*åˆ†ç±»GridViewç‚¹å‡»äº‹ä»¶*/
         mGvClassify.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //»ñÈ¡µã»÷id£¬´«µİ²ÎÊı
-                //Ã¿´Îµã»÷½«limitIDÖÃ0
+                //è·å–ç‚¹å‡»idï¼Œä¼ é€’å‚æ•°
+                //æ¯æ¬¡ç‚¹å‡»å°†limitIDç½®0
                 if (params.has("limitID")) {
                     params.remove("limitID");
                 }
@@ -111,7 +111,7 @@ public class ClassifyFragment extends Fragment{
 
 
 
-        //ÏÂÀ­Ë¢ĞÂ
+        //ä¸‹æ‹‰åˆ·æ–°
         final MaterialHeader header = new MaterialHeader(getActivity());
         ptrFrame = (PtrFrameLayout) view.findViewById(R.id.ptr_classify_grid);
 
@@ -137,7 +137,7 @@ public class ClassifyFragment extends Fragment{
             @Override
             public void onRefreshBegin(final PtrFrameLayout frame) {
                 getClassify();
-                Log.i(TAG, "-------- onRefreshBegin : Ë¢ĞÂ - ÇëÇóÍøÂçÊı¾İ ---------");
+                Log.i(TAG, "-------- onRefreshBegin : åˆ·æ–° - è¯·æ±‚ç½‘ç»œæ•°æ® ---------");
             }
         });
 
@@ -145,10 +145,10 @@ public class ClassifyFragment extends Fragment{
         return view;
     }
 
-    /*¸ù¾İ²ÎÊıºÏ³É²éÑ¯URL*/
+    /*æ ¹æ®å‚æ•°åˆæˆæŸ¥è¯¢URL*/
     public void getGoodsData(String title, int id) {
         if (title != null){
-        params.add("title", title);
+            params.add("title", title);
         }
         if (id != -1) {
             if (params.has("type")) {
@@ -162,14 +162,14 @@ public class ClassifyFragment extends Fragment{
         Log.i(TAG, "------------getGoodsData URL:" + Constants.Apis.API_GOODS_LIST_GET + "------------------");
     }
 
-    /*»ñÈ¡ÉÌÆ·ÁĞ±íµÄHandler*/
+    /*è·å–å•†å“åˆ—è¡¨çš„Handler*/
     JsonHttpResponseHandler mListJsonHttpResponseHandler = new JsonHttpResponseHandler() {
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
             super.onSuccess(statusCode, headers, response);
             Log.i(TAG, "------------------------------ getGoodsData Handler onSuccess ----------------------");
             Log.i(TAG, response + "");
-            //´¦ÀíÊı¾İ,Ë¢ĞÂÏÔÊ¾
+            //å¤„ç†æ•°æ®,åˆ·æ–°æ˜¾ç¤º
             mGoodsData.clear();
             mGoodsArray = response;
             mGoodsData.addAll(GoodsData.JSONArrayToGoodsData(mGoodsArray));
@@ -183,7 +183,7 @@ public class ClassifyFragment extends Fragment{
         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
             super.onSuccess(statusCode, headers, response);
             //if return JSONObject, it's have no data
-            Toast.makeText(getActivity(), "ÒÑ¼ÓÔØÈ«²¿",
+            Toast.makeText(getActivity(), "å·²åŠ è½½å…¨éƒ¨",
                     Toast.LENGTH_SHORT).show();
             Log.i(TAG, "---------------------- return JSONObject, it's have no data ------------------");
             Log.i(TAG, response + "");
@@ -202,18 +202,18 @@ public class ClassifyFragment extends Fragment{
 
 
 
-    /*»ñÈ¡·ÖÀàĞÅÏ¢*/
+    /*è·å–åˆ†ç±»ä¿¡æ¯*/
     private void getClassify() {
         Log.i(TAG, "------------getClassify URL:" + Constants.Apis.API_GOODS_LIST_GET + "------------------");
         HttpUtil.get(Constants.Apis.API_GOODS_CLASSIFY_GET, null, mClassifyJsonHttpResponseHandler);
     }
 
-    /*»ñÈ¡·ÖÀàĞÅÏ¢µÄHandler*/
+    /*è·å–åˆ†ç±»ä¿¡æ¯çš„Handler*/
     JsonHttpResponseHandler mClassifyJsonHttpResponseHandler = new JsonHttpResponseHandler() {
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
             super.onSuccess(statusCode, headers, response);
-            Toast.makeText(getActivity(), "¼ÓÔØ·ÖÀàĞÅÏ¢³ö´í",
+            Toast.makeText(getActivity(), "åŠ è½½åˆ†ç±»ä¿¡æ¯å‡ºé”™",
                     Toast.LENGTH_SHORT).show();
             Log.i(TAG, "---------------getClassify Error: response JSONArray, need JSONObject----------------");
         }
@@ -241,13 +241,13 @@ public class ClassifyFragment extends Fragment{
     };
 
     /**
-     * ½«»ñÈ¡µÄJSONObject×ªÎª×Ô¶¨ÒåµÄClassifyInfo¶ÔÏó
+     * å°†è·å–çš„JSONObjectè½¬ä¸ºè‡ªå®šä¹‰çš„ClassifyInfoå¯¹è±¡
      * @param mJsonObject
      */
     public void JsonToClassifyInfo(JSONObject mJsonObject) {
         String key;
         int i = 0;
-        for (Iterator iter = mJsonObject.keys(); iter.hasNext();) { //ÏÈ±éÀúÕû¸ö people ¶ÔÏó
+        for (Iterator iter = mJsonObject.keys(); iter.hasNext();) { //å…ˆéå†æ•´ä¸ª people å¯¹è±¡
             key = (String)iter.next();
             try {
                 ClassifyInfo mObjClassifyInfo = new ClassifyInfo();

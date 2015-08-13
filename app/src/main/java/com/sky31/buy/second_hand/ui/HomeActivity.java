@@ -32,6 +32,11 @@ import me.imid.swipebacklayout.lib.SwipeBackLayout;
  */
 public class HomeActivity extends FragmentActivity implements View.OnClickListener {
 
+
+    /*屏幕宽度和高度*/
+    public static int screenWidth;
+    public static int screenHeight;
+
     private SwipeBackLayout mSwipeBackLayout;
 
     private ViewPager mViewPager;
@@ -62,7 +67,9 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         Display display = getWindow().getWindowManager().getDefaultDisplay();
         DisplayMetrics outMetris = new DisplayMetrics();
         display.getMetrics(outMetris);
-        mScreen1_3 = outMetris.widthPixels / 3;
+        screenWidth = outMetris.widthPixels;
+        screenHeight = outMetris.heightPixels;
+        mScreen1_3 = screenWidth / 3;
 
         initTabLine();
         initView();
