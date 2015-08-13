@@ -28,12 +28,11 @@
                 android:id="@+id/lv_goods"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:divider="@drawable/home_goods_listview_shadow"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
                 android:paddingTop="15dp"
                 android:scrollbarStyle="outsideOverlay"
-                android:clipToPadding="false">
+                android:clipToPadding="false"
+                android:dividerHeight="1px"
+                android:divider="#ccc">
 
             </ListView>
         </LinearLayout>

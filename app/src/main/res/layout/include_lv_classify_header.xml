@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/include_lv_classify_header">
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,13 +21,13 @@
             android:id="@+id/btn_search" />
     </LinearLayout>
 
-    <GridView
+    <com.sky31.buy.second_hand.ui.view.GridView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/gv_classify"
         android:numColumns="3"
         android:horizontalSpacing="1px"
         android:verticalSpacing="1px">
 
-    </GridView>
+    </com.sky31.buy.second_hand.ui.view.GridView>
 </LinearLayout>
