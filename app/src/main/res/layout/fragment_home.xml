@@ -24,17 +24,7 @@
             android:layout_height="match_parent"
             android:clickable="true">
 
-            <ListView
-                android:id="@+id/lv_goods"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="15dp"
-                android:scrollbarStyle="outsideOverlay"
-                android:clipToPadding="false"
-                android:dividerHeight="1px"
-                android:divider="#ccc">
-
-            </ListView>
+            <include layout="@layout/include_goods_listview"/>
         </LinearLayout>
 
     </in.srain.cube.views.ptr.PtrFrameLayout>

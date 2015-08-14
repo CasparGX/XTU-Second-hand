@@ -78,7 +78,7 @@ public class ClassifyFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_classify, container, false);
         /*商品列表布局*/
-        mListView = (ListView) view.findViewById(R.id.lv_classify);
+        mListView = (ListView) view.findViewById(R.id.lv_goods);
         View lvHeader = inflater.inflate(R.layout.include_lv_classify_header, null);
         mListView.addHeaderView(lvHeader);
         mListViewAdapter = new HomeFragmentListViewAdapter(inflater);

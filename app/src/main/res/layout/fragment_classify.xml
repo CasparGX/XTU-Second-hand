@@ -23,17 +23,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ListView
-                android:id="@+id/lv_classify"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="#ccc"
-                android:dividerHeight="1px"
-                android:paddingTop="15dp"
-                android:scrollbarStyle="outsideOverlay"
-                android:clipToPadding="false">
-
-            </ListView>
+            <include layout="@layout/include_goods_listview"/>
 
         </LinearLayout>
 

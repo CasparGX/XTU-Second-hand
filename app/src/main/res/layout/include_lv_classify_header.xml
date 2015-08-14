@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/gv_classify"
         android:numColumns="4"
-        android:horizontalSpacing="1px"
-        android:verticalSpacing="1px"
+        android:horizontalSpacing="1dp"
+        android:verticalSpacing="1dp"
         android:paddingTop="5dp"
         android:paddingBottom="5dp">
 
