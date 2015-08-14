@@ -9,7 +9,6 @@
         android:layout_height="match_parent"
         android:divider="#ccc"
         android:dividerHeight="1dp"
-        android:paddingTop="15dp"
         android:scrollbarStyle="outsideOverlay"
         android:clipToPadding="false">
 
