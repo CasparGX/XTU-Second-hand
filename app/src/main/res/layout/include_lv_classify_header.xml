@@ -27,7 +27,9 @@
         android:id="@+id/gv_classify"
         android:numColumns="4"
         android:horizontalSpacing="1px"
-        android:verticalSpacing="1px">
+        android:verticalSpacing="1px"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp">
 
     </com.sky31.buy.second_hand.ui.view.GridView>
 </LinearLayout>
