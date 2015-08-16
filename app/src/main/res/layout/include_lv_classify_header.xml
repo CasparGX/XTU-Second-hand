@@ -2,23 +2,35 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/include_lv_classify_header">
+    android:id="@+id/include_lv_classify_header"
+    android:background="#fff">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="36dip"
             android:layout_weight="1"
-            android:text="搜啊搜啊"
-            android:id="@+id/et_search" />
+            android:hint="输入想要搜索的商品名"
+            android:textColorHint="#AAAAAA"
+            android:id="@+id/et_search"
+            android:singleLine="true"
+            android:gravity="right"
+            android:textSize="15dip"
+            android:layout_gravity="center"
+            />
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="center"
             android:text="搜索"
-            android:id="@+id/btn_search" />
+            android:id="@+id/btn_search"
+            android:background="#B2EBF2"
+            android:textColor="#323232"
+            />
     </LinearLayout>
 
     <com.sky31.buy.second_hand.ui.view.GridView
@@ -26,10 +38,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/gv_classify"
         android:numColumns="4"
-        android:horizontalSpacing="1dp"
-        android:verticalSpacing="1dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp">
+        android:horizontalSpacing="1px"
+        android:verticalSpacing="1px"
+        android:paddingTop="1px"
+        android:paddingBottom="0px"
+        android:background="#ccc">
 
     </com.sky31.buy.second_hand.ui.view.GridView>
 </LinearLayout>
