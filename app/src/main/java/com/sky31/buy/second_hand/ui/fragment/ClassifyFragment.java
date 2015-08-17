@@ -1,12 +1,14 @@
 package com.sky31.buy.second_hand.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +22,7 @@ import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.ClassifyInfo;
 import com.sky31.buy.second_hand.model.GoodsData;
+import com.sky31.buy.second_hand.ui.GoodsShowActivity;
 import com.sky31.buy.second_hand.ui.adapter.ClassifyFragmentGridViewAdapter;
 import com.sky31.buy.second_hand.ui.adapter.HomeFragmentListViewAdapter;
 import com.sky31.buy.second_hand.util.HttpUtil;
@@ -80,7 +83,7 @@ public class ClassifyFragment extends Fragment{
         /*商品列表布局*/
         mListView = (ListView) view.findViewById(R.id.lv_goods);
         View lvHeader = inflater.inflate(R.layout.include_lv_classify_header, null);
-        mListView.addHeaderView(lvHeader);
+        mListView.addHeaderView(lvHeader, null, false);
         mListViewAdapter = new HomeFragmentListViewAdapter(inflater);
         mListViewAdapter.setmGoodsData(mGoodsData);
         mListView.setAdapter(mListViewAdapter);
@@ -134,6 +137,7 @@ public class ClassifyFragment extends Fragment{
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
                 return PtrDefaultHandler.checkContentCanBePulledDown(frame, mListView, header);
             }
+
             @Override
             public void onRefreshBegin(final PtrFrameLayout frame) {
                 getClassify();
@@ -141,6 +145,58 @@ public class ClassifyFragment extends Fragment{
             }
         });
 
+        //监听listview的滚动事件
+        mListView.setOnScrollListener(
+                new AbsListView.OnScrollListener() {
+                    private boolean isBottom = false;   //标记是否到达底部
+
+                    @Override
+                    public void onScrollStateChanged(AbsListView absListView, int i) {
+                        if (isBottom && i == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+
+                            if (params.has(Constants.Keys.KEY_LIMITID)) {
+                                //params.remove(Constants.Keys.KEY_LIMITID);
+                                params.put(Constants.Keys.KEY_LIMITID, limitID);
+                                HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET
+                                        , params
+                                        , mListJsonHttpResponseHandler);
+                            } else {
+
+                            }
+                            isBottom = false;
+                        }
+                    }
+
+                    @Override
+                    public void onScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                        if (firstVisibleItem + visibleItemCount == totalItemCount) {
+                            isBottom = true;
+                        } else {
+                            isBottom = false;
+                        }
+                    }
+                }
+        );
+
+
+        //监听listview的点击事件
+        mListView.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        Log.i(TAG, "---------------------ListView: OnItemClick--------------------");
+
+                        Intent intentGoodsShow = new Intent();
+                        intentGoodsShow.setClass(getActivity(), GoodsShowActivity.class);
+                        //Bundle bundleGoodShow = new Bundle();
+                        intentGoodsShow.putExtra("goodsInfo", mListViewAdapter.getItem(i));
+                        startActivity(intentGoodsShow);
+                        getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+
+
+                    }
+                }
+        );
 
         return view;
     }

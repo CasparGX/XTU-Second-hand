@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#ffffff</color><!--白色-->
-    <color name="themeColor">#F44336</color>
+    <color name="themeColor">#F44336</color><!--主题颜色-->
+    <color name="homePageSelect">#F44336</color><!--Tab页标题选中颜色-->
+    <color name="homePageDefault">#a9ee3f1a</color><!--Tab页标题一般颜色-->
 
 </resources>
