@@ -1,5 +1,6 @@
 package com.sky31.buy.second_hand.ui.adapter;
 
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -94,14 +95,17 @@ public class HomeFragmentListViewAdapter extends BaseAdapter {
 
         imageLoader.displayImage(data.imgUrl
                 + Constants.Values.VALUE_MIN_SIZE_PRE
-                +data.imgUrlArray.get(0)
+                + data.imgUrlArray.get(0)
                 , icon
                 , this.displayImageOptions);
 
         dec.setText(data.dec);
         title.setText(data.title);
+//        title.setText(Build.VERSION.RELEASE);
         price.setText(data.price+"");
+//        price.setText(Build.VERSION.SDK);
         seller.setText(data.seller);
+//        seller.setText(Build.MODEL);
 
 
         return view;
