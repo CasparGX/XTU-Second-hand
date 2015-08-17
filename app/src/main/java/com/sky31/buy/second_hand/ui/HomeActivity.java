@@ -170,7 +170,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
                             + (positionOffset - 1) * mScreen1_3);
                     lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
                             + (positionOffset - 1) * mScreen1_3);
-                } else if (mCurrentPageIndex == 2 && position == 2) { //2->3
+                } /*else if (mCurrentPageIndex == 2 && position == 2) { //2->3
                     lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
                             + positionOffset * mScreen1_3);
                     lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
@@ -180,14 +180,14 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
                             + (positionOffset - 1) * mScreen1_3);
                     lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
                             + (positionOffset - 1) * mScreen1_3);
-                }
-                Log.i("HomeActivity",ivFooterBg.getWidth()
+                }*/
+                /*Log.i("HomeActivity",ivFooterBg.getWidth()
                         + " : "
                         + ivFooterBg.getHeight()
                         + " : "
                         + ivFooterBg.getTop()
                         + " : "
-                        +ivFooterBg.getLeft());
+                        +ivFooterBg.getLeft());*/
                 mTabLine.setLayoutParams(lp);
                 ivFooterBg.setLayoutParams(lp2);
             }
@@ -196,7 +196,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
             public void onPageSelected(int position) {
                 mCurrentPageIndex = position;
                 setListTvColorToSame();
-                mListTv.get(position).setTextColor(0xffff3621);
+                mListTv.get(position).setTextColor(getResources().getColor(R.color.homePageSelect));
 
             }
 
@@ -209,7 +209,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
 
     public void setListTvColorToSame() {
         for (int i = 0; i < mListTv.size(); i++) {
-            mListTv.get(i).setTextColor(0xa9ee3f1a);
+            mListTv.get(i).setTextColor(getResources().getColor(R.color.homePageDefault));
         }
     }
 
