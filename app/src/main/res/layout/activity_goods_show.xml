@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fefefe"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="false">
 
     <include layout="@layout/include_header_home" />
 

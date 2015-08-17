@@ -1,7 +1,10 @@
 package com.sky31.buy.second_hand.context;
 
+import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.widget.ImageView;
@@ -15,6 +18,7 @@ import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.GoodsData;
@@ -159,6 +163,17 @@ public class BuyApp extends Application {
             }
         }
         return mGoodsData;
+    }
+
+    public static void setStatusBarColor(Activity activity) {
+        // 创建状态栏的管理实例
+        SystemBarTintManager tintManager = new SystemBarTintManager(activity);
+        // 激活状态栏设置
+        tintManager.setStatusBarTintEnabled(true);
+        // 激活导航栏设置
+        tintManager.setNavigationBarTintEnabled(true);
+        // 设置一个颜色给系统栏
+        tintManager.setTintColor(Color.parseColor("#ff0000"));
     }
 
 

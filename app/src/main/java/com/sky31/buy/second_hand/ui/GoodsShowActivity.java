@@ -61,6 +61,9 @@ public class GoodsShowActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_show);
 
+        //设置状态栏颜色
+        BuyApp.setStatusBarColor(this);
+
         /*mSwipeBackLayout = getSwipeBackLayout();
         //设置可以滑动的区域，推荐用屏幕像素的一半来指定
         mSwipeBackLayout.setEdgeSize(200);

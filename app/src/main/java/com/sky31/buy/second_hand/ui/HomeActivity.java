@@ -1,5 +1,6 @@
 package com.sky31.buy.second_hand.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -14,7 +15,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.sky31.buy.second_hand.R;
+import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.ui.adapter.HomeViewPagerAdapter;
 import com.sky31.buy.second_hand.ui.fragment.ClassifyFragment;
 import com.sky31.buy.second_hand.ui.fragment.HomeFragment;
@@ -33,7 +36,7 @@ import me.imid.swipebacklayout.lib.SwipeBackLayout;
 public class HomeActivity extends FragmentActivity implements View.OnClickListener {
 
 
-    /*��Ļ���Ⱥ͸߶�*/
+    /*屏幕宽度和高度*/
     public static int screenWidth;
     public static int screenHeight;
 
@@ -57,10 +60,15 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     private int mCurrentPageIndex;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        //设置状态栏颜色
+        BuyApp.setStatusBarColor(this);
+
 
 
         //get screen's width 1/4
