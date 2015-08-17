@@ -1,6 +1,5 @@
 package com.sky31.buy.second_hand.ui;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -66,8 +65,12 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+
+        // 创建状态栏的管理实例
+        SystemBarTintManager tintManager = new SystemBarTintManager(this);
         //设置状态栏颜色
-        BuyApp.setStatusBarColor(this);
+        BuyApp.setStatusBarColor(tintManager);
 
 
 

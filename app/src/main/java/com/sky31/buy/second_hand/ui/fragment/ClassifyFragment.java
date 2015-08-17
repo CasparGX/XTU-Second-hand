@@ -183,8 +183,17 @@ public class ClassifyFragment extends Fragment{
         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
             super.onSuccess(statusCode, headers, response);
             //if return JSONObject, it's have no data
-            Toast.makeText(getActivity(), "已加载全部",
-                    Toast.LENGTH_SHORT).show();
+
+            if (limitID == 0) {
+                mGoodsData.clear();
+                mListViewAdapter.notifyDataSetChanged();
+                Toast.makeText(getActivity(), "暂时没有此类商品上架",
+                        Toast.LENGTH_SHORT).show();
+            }
+            else {
+                Toast.makeText(getActivity(), "已加载全部",
+                        Toast.LENGTH_SHORT).show();
+            }
             Log.i(TAG, "---------------------- return JSONObject, it's have no data ------------------");
             Log.i(TAG, response + "");
         }

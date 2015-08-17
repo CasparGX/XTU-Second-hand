@@ -1,5 +1,6 @@
 package com.sky31.buy.second_hand.context;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
@@ -7,6 +8,8 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
@@ -165,14 +168,13 @@ public class BuyApp extends Application {
         return mGoodsData;
     }
 
-    public static void setStatusBarColor(Activity activity) {
-        // 创建状态栏的管理实例
-        SystemBarTintManager tintManager = new SystemBarTintManager(activity);
+    public static void setStatusBarColor(SystemBarTintManager tintManager) {
         // 激活状态栏设置
         tintManager.setStatusBarTintEnabled(true);
         // 激活导航栏设置
         tintManager.setNavigationBarTintEnabled(true);
         // 设置一个颜色给系统栏
+        //tintManager.setTintColor(activity.getResources().getColor(R.color.themeColor));
         tintManager.setTintColor(Color.parseColor("#ff0000"));
     }
 

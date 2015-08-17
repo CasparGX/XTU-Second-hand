@@ -28,7 +28,7 @@
             android:label="@string/app_name"
             >
             <intent-filter>
-                <action android:name="com.example.listtest.GoodsShowActivity"/>
+                <action android:name="com.sky31.buy.second_hand.ui.GoodsShowActivity"/>
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>

@@ -10,7 +10,6 @@
         android:id="@+id/icon"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:padding="1dp"
         android:background="#ccc"
         android:layout_marginRight="10dp"
         android:focusable="false"
@@ -19,7 +18,7 @@
     <LinearLayout
         android:layout_weight="1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:orientation="vertical">
 
 
@@ -27,9 +26,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:textSize="15sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:textColor="#ffffa32e"
+            android:textColor="#ff6666"
             android:id="@+id/title"
             android:text="我是标题啊"
             android:focusable="false"
@@ -51,34 +50,48 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_gravity="bottom">
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="13sp"
-                android:text="发布者"
-                android:id="@+id/seller"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="价格"
+                android:id="@+id/price"
+                android:textColor="#66cccc"
+                android:focusable="false"
+                android:clickable="false" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:text="元"
+                android:id="@+id/yuan"
+                android:textColor="#66cccc"
                 android:focusable="false"
                 android:clickable="false" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_gravity="bottom">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:textSize="13sp"
-                    android:text="价格"
                     android:gravity="right"
                     android:layout_gravity="right"
-                    android:id="@+id/price"
-                    android:textColor="#ffffa32e"
+                    android:textSize="13sp"
+                    android:text="发布者"
+                    android:id="@+id/seller"
                     android:focusable="false"
-                    android:clickable="false" />
+                    android:clickable="false"
+                    android:textColor="#99c"/>
 
             </LinearLayout>
         </LinearLayout>
