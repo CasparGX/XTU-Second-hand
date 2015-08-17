@@ -12,6 +12,8 @@ dependencies {
     compile ('com.android.support:support-v4:21.0.3') {
         //exclude module: 'print'
     }
+    //修改i状态栏
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
 }
 
 android {

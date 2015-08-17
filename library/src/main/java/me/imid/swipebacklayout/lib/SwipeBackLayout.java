@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewCompat;
@@ -12,6 +13,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+
+
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -465,6 +469,14 @@ public class SwipeBackLayout extends FrameLayout {
         addView(decorChild);
         setContentView(decorChild);
         decor.addView(this);
+        // 创建状态栏的管理实例
+        SystemBarTintManager tintManager = new SystemBarTintManager(activity);
+        // 激活状态栏设置
+        tintManager.setStatusBarTintEnabled(true);
+        // 激活导航栏设置
+        tintManager.setNavigationBarTintEnabled(true);
+        // 设置一个颜色给系统栏
+        tintManager.setTintColor(Color.parseColor("#F44336"));
     }
 
     @Override
