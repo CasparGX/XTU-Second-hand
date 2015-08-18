@@ -12,7 +12,7 @@
     <!-- 主体背景颜色值 -->
     <item android:left="1dp">
         <shape>
-            <solid android:color="#66eeff" />
+            <solid android:color="#65c4ff" />
             <corners android:bottomRightRadius="15dp"
                 android:topRightRadius="15dp"/>
         </shape>

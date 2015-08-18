@@ -1,6 +1,7 @@
 package com.sky31.buy.second_hand.ui.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -353,8 +355,13 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
     //搜索按钮点击事件
     private void onBtnSearchClick() {
         String keyword = String.valueOf(mEtSearch.getText());
-        if (keyword != null ) {
+        if (!keyword.equals("")) {
             getGoodsData(keyword, -1);
+            mEtSearch.clearFocus();
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(mEtSearch.getWindowToken(), 0);
+            Toast.makeText(getActivity(), "正在搜索 : "+keyword,
+                    Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getActivity(), "请输入搜索内容",
                     Toast.LENGTH_SHORT).show();

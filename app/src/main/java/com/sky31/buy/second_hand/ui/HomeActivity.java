@@ -127,7 +127,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         mListTv.get(0).setTextColor(0xffff3621);
 
         mViewPager = (ViewPager) findViewById(R.id.vp_home);
-        mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setOffscreenPageLimit(mListTv.size());
         mDatas = new ArrayList<Fragment>();
 
         ArrayList<String> params = new ArrayList<>();
@@ -135,11 +135,11 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         //params.add("0");
         HomeFragment mHomeFragment = HomeFragment.newInstance(params);
         ClassifyFragment mClassifyFragment = new ClassifyFragment();
-        SearchFragment mSearchFragment = new SearchFragment();
+        //SearchFragment mSearchFragment = new SearchFragment();
         MeFragment mMeFragment = new MeFragment();
         mDatas.add(mHomeFragment);
         mDatas.add(mClassifyFragment);
-        mDatas.add(mSearchFragment);
+        //mDatas.add(mSearchFragment);
         mDatas.add(mMeFragment);
         mAdpater = new HomeViewPagerAdapter(getSupportFragmentManager(), mDatas);
         mViewPager.setAdapter(mAdpater);
