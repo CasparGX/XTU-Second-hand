@@ -2,6 +2,7 @@
 <resources>
     <color name="white">#ffffff</color><!--白色-->
     <color name="themeColor">#F44336</color><!--主题颜色-->
+    <color name="themeBgColor">#f7f7f7</color><!--主题颜色-->
     <color name="homePageSelect">#F44336</color><!--Tab页标题选中颜色-->
     <color name="homePageDefault">#a9ee3f1a</color><!--Tab页标题一般颜色-->
 
