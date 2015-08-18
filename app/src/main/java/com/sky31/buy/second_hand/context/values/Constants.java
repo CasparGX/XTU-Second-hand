@@ -1,7 +1,5 @@
 package com.sky31.buy.second_hand.context.values;
 
-import java.security.PublicKey;
-
 /**
  * Created by Caspar on 2015/7/29.
  */
@@ -26,7 +24,8 @@ public class Constants {
 
         public static final String KEY_CACHE_HOME_CHECK = "checkCacheHome";
         public static final String KEY_CACHE_HOME_FIRST_CONTENT = "CacheHomeFirstContent";
-        public static final String KEY_CACHE_SEARCH_CHECK = "checkCacheSearch";
+        public static final String KEY_CACHE_CLASSIFY_CHECK = "checkCacheClassify";
+        public static final String KEY_CACHE_CLASSIFY_CONTENT = "CacheClassifyContent";
 
     }
 

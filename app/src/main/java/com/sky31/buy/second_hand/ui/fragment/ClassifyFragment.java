@@ -28,6 +28,7 @@ import com.sky31.buy.second_hand.model.GoodsData;
 import com.sky31.buy.second_hand.ui.GoodsShowActivity;
 import com.sky31.buy.second_hand.ui.adapter.ClassifyFragmentGridViewAdapter;
 import com.sky31.buy.second_hand.ui.adapter.HomeFragmentListViewAdapter;
+import com.sky31.buy.second_hand.util.ACacheUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
 import org.apache.http.Header;
@@ -73,6 +74,11 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
     private RequestParams params = new RequestParams();
     private int limitID;
     private String queryUrl;
+
+    //Cache
+    private ACacheUtil mCache;
+    private String mCheckCache;
+    private JSONObject mCacheContent;
 
 
     @Override
@@ -125,7 +131,9 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         });
         mGvClassify.setAdapter(adapter);
 
-
+        //缓存
+        mCache = ACacheUtil.get(getActivity());
+        mCheckCache = mCache.getAsString(Constants.Keys.KEY_CACHE_CLASSIFY_CHECK);
 
         //下拉刷新
         final MaterialHeader header = new MaterialHeader(getActivity());
@@ -139,12 +147,18 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         ptrFrame.setDurationToCloseHeader(1500);
         ptrFrame.setHeaderView(header);
         ptrFrame.addPtrUIHandler(header);
-        ptrFrame.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                ptrFrame.autoRefresh(true);
-            }
-        }, 100);
+        //判断是否有缓存
+        if (mCheckCache!=null) {
+            getCacheData();
+        } else {
+            //没有缓存就自动刷新
+            ptrFrame.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    ptrFrame.autoRefresh(true);
+                }
+            }, 100);
+        }
         ptrFrame.setPtrHandler(new PtrHandler() {
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
@@ -314,6 +328,9 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
             System.out.println(response);
             JsonToClassifyInfo(response);
             adapter.notifyDataSetChanged();
+            //改变缓存
+            mCache.put(Constants.Keys.KEY_CACHE_CLASSIFY_CONTENT, response);
+            mCache.put(Constants.Keys.KEY_CACHE_CLASSIFY_CHECK, "hasCache");
         }
 
         @Override
@@ -381,5 +398,17 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
             Toast.makeText(getActivity(), "请输入搜索内容",
                     Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /*获取分类缓存信息*/
+    public void getCacheData() {
+
+        mCacheContent = mCache.getAsJSONObject(Constants.Keys.KEY_CACHE_CLASSIFY_CONTENT);
+
+        JsonToClassifyInfo(mCacheContent);
+        adapter.notifyDataSetChanged();
+
+        Log.i(TAG,"--------onRefreshBegin : 获取到缓存信息, 显示缓存数据---------");
+
     }
 }
