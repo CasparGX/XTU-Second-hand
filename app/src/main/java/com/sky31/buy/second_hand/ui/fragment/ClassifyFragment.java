@@ -41,7 +41,7 @@ import in.srain.cube.views.ptr.PtrHandler;
 import in.srain.cube.views.ptr.header.MaterialHeader;
 import in.srain.cube.views.ptr.util.PtrLocalDisplay;
 
-public class ClassifyFragment extends Fragment{
+public class ClassifyFragment extends Fragment implements View.OnClickListener {
 
     private String TAG = ClassifyFragment.class.getName();
 
@@ -83,7 +83,7 @@ public class ClassifyFragment extends Fragment{
         /*商品列表布局*/
         mListView = (ListView) view.findViewById(R.id.lv_goods);
         View lvHeader = inflater.inflate(R.layout.include_lv_classify_header, null);
-        mListView.addHeaderView(lvHeader, null, false);
+        mListView.addHeaderView(lvHeader, null, true);
         mListViewAdapter = new HomeFragmentListViewAdapter(inflater);
         mListViewAdapter.setmGoodsData(mGoodsData);
         mListView.setAdapter(mListViewAdapter);
@@ -91,6 +91,8 @@ public class ClassifyFragment extends Fragment{
         /*搜索框*/
         mEtSearch = (EditText) lvHeader.findViewById(R.id.et_search);
         mBtnSearch = (Button) lvHeader.findViewById(R.id.btn_search);
+        mBtnSearch.setOnClickListener(this);
+
 
         /*分类布局*/
         mGvClassify = (GridView) lvHeader.findViewById(R.id.gv_classify);
@@ -186,10 +188,11 @@ public class ClassifyFragment extends Fragment{
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         Log.i(TAG, "---------------------ListView: OnItemClick--------------------");
 
+                        i -= mListView.getHeaderViewsCount();
                         Intent intentGoodsShow = new Intent();
                         intentGoodsShow.setClass(getActivity(), GoodsShowActivity.class);
-                        //Bundle bundleGoodShow = new Bundle();
                         intentGoodsShow.putExtra("goodsInfo", mListViewAdapter.getItem(i));
+                        //intentGoodsShow.putExtra("goodsInfo", mListView.getAdapter().getItem(i));
                         startActivity(intentGoodsShow);
                         getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
 
@@ -198,19 +201,25 @@ public class ClassifyFragment extends Fragment{
                 }
         );
 
+
         return view;
     }
 
     /*根据参数合成查询URL*/
     public void getGoodsData(String title, int id) {
+        if (params.has("title")) {
+            params.remove("title");
+        }
+        if (params.has("type")) {
+            params.remove("type");
+        }
+
         if (title != null){
             params.add("title", title);
         }
         if (id != -1) {
-            if (params.has("type")) {
-                params.remove("type");
-            }
             params.add("type", mClassifyInfo.get(id).getId());
+            //params.add("type", "2");
         }
         params.add("limitID", String.valueOf(limitID));
         System.out.println(params.toString() + " id = " + id);
@@ -331,4 +340,24 @@ public class ClassifyFragment extends Fragment{
         }
     }
 
+    //监听点击事件
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_search :
+                onBtnSearchClick();
+                break;
+        }
+    }
+
+    //搜索按钮点击事件
+    private void onBtnSearchClick() {
+        String keyword = String.valueOf(mEtSearch.getText());
+        if (keyword != null ) {
+            getGoodsData(keyword, -1);
+        } else {
+            Toast.makeText(getActivity(), "请输入搜索内容",
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
 }
