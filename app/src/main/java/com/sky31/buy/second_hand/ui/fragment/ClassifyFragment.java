@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -92,8 +93,20 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
 
         /*搜索框*/
         mEtSearch = (EditText) lvHeader.findViewById(R.id.et_search);
+        //检测输入法按键
+        mEtSearch.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int i, KeyEvent keyEvent) {
+                if(i == KeyEvent.KEYCODE_ENTER){
+                    onBtnSearchClick();
+                    return true;
+                }
+                return false;
+            }
+        });
         mBtnSearch = (Button) lvHeader.findViewById(R.id.btn_search);
         mBtnSearch.setOnClickListener(this);
+        /*搜索框*/
 
 
         /*分类布局*/
@@ -105,10 +118,6 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //获取点击id，传递参数
-                //每次点击将limitID置0
-                if (params.has("limitID")) {
-                    params.remove("limitID");
-                }
                 limitID = 0;
                 //params.add("limitID", String.valueOf(limitID));
                 getGoodsData(null, i);
@@ -159,8 +168,8 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                         if (isBottom && i == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
 
                             if (params.has(Constants.Keys.KEY_LIMITID)) {
-                                //params.remove(Constants.Keys.KEY_LIMITID);
-                                params.put(Constants.Keys.KEY_LIMITID, limitID);
+                                params.remove(Constants.Keys.KEY_LIMITID);
+                                params.add(Constants.Keys.KEY_LIMITID,limitID+"");
                                 HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET
                                         , params
                                         , mListJsonHttpResponseHandler);
@@ -209,21 +218,24 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
 
     /*根据参数合成查询URL*/
     public void getGoodsData(String title, int id) {
-        if (params.has("title")) {
-            params.remove("title");
+        if (params.has(Constants.Keys.KEY_TITLE)) {
+            params.remove(Constants.Keys.KEY_TITLE);
         }
-        if (params.has("type")) {
-            params.remove("type");
+        if (params.has(Constants.Keys.KEY_TYPE)) {
+            params.remove(Constants.Keys.KEY_TYPE);
+        }
+        if (params.has(Constants.Keys.KEY_LIMITID)) {
+            params.remove(Constants.Keys.KEY_LIMITID);
         }
 
         if (title != null){
-            params.add("title", title);
+            params.add(Constants.Keys.KEY_TITLE, title);
         }
         if (id != -1) {
-            params.add("type", mClassifyInfo.get(id).getId());
+            params.add(Constants.Keys.KEY_TYPE, mClassifyInfo.get(id).getId());
             //params.add("type", "2");
         }
-        params.add("limitID", String.valueOf(limitID));
+        params.add(Constants.Keys.KEY_LIMITID, String.valueOf(limitID));
         System.out.println(params.toString() + " id = " + id);
         HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET, params, mListJsonHttpResponseHandler);
         Log.i(TAG, "------------getGoodsData URL:" + Constants.Apis.API_GOODS_LIST_GET + "------------------");
@@ -241,7 +253,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
             mGoodsArray = response;
             mGoodsData.addAll(GoodsData.JSONArrayToGoodsData(mGoodsArray));
             mListViewAdapter.notifyDataSetChanged();
-
+            Log.i(TAG, "limitID : " + limitID);
             limitID++;
             Log.i(TAG, mGoodsData.get(0).imgUrl + "");
         }
@@ -356,8 +368,11 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
     private void onBtnSearchClick() {
         String keyword = String.valueOf(mEtSearch.getText());
         if (!keyword.equals("")) {
+            //limitID置0
+            limitID = 0;
             getGoodsData(keyword, -1);
             mEtSearch.clearFocus();
+            //隐藏输入法
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(mEtSearch.getWindowToken(), 0);
             Toast.makeText(getActivity(), "正在搜索 : "+keyword,

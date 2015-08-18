@@ -1,55 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:id="@+id/include_lv_classify_header"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="#fff"
-    android:clipToPadding="false" >
+    android:clipToPadding="false"
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="34dp"
-        android:orientation="horizontal"
+        android:layout_gravity="center_vertical"
         android:layout_margin="15dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="0.5dp"
         android:background="@drawable/search_boder"
-        android:layout_gravity="center_vertical">
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="0.5dp">
 
         <EditText
+            android:id="@+id/et_search"
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:layout_weight="1"
-            android:hint="输入想要搜索的商品名"
-            android:paddingRight="25dp"
-            android:textColorHint="#AAAAAA"
-            android:id="@+id/et_search"
-            android:singleLine="true"
-            android:gravity="center_vertical|right"
-            android:textSize="15dip"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:background="#fff"
-            />
+            android:gravity="center_vertical|right"
+            android:hint="输入想要搜索的商品名"
+            android:imeOptions="actionSearch"
+            android:paddingRight="25dp"
+            android:singleLine="true"
+            android:textColorHint="#AAAAAA"
+            android:textSize="15dip" />
+
         <Button
+            android:id="@+id/btn_search"
             android:layout_width="wrap_content"
             android:layout_height="33dp"
             android:layout_gravity="center"
-            android:text="biu~"
-            android:id="@+id/btn_search"
             android:background="@drawable/search_button"
-            android:textColor="#fff"
-            />
+            android:text="biu~"
+            android:textColor="#fff" />
     </LinearLayout>
 
     <com.sky31.buy.second_hand.ui.view.GridView
+        android:id="@+id/gv_classify"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/gv_classify"
-        android:numColumns="4"
+        android:background="#ccc"
         android:horizontalSpacing="1px"
-        android:verticalSpacing="1px"
-        android:paddingTop="1px"
+        android:numColumns="4"
         android:paddingBottom="0px"
-        android:background="#ccc">
+        android:paddingTop="1px"
+        android:verticalSpacing="1px">
 
     </com.sky31.buy.second_hand.ui.view.GridView>
 </LinearLayout>
