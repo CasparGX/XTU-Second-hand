@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/ll_toolbar"
-    android:background="#ccc"
-    android:paddingBottom="1dp">
+    android:background="#999"
+    android:paddingBottom="0.5dp">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
