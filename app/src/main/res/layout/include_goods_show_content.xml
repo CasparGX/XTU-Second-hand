@@ -10,7 +10,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="标题啊 "
         android:textColor="#212121"
-        android:id="@+id/title" />
+        android:id="@+id/tv_title" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,34 +18,34 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="钱啊!! "
         android:textColor="#212121"
-        android:id="@+id/price" />
+        android:id="@+id/tv_price" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="描述!! "
         android:textColor="#212121"
-        android:id="@+id/dec" />
+        android:id="@+id/tv_dec" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="1223536467658 "
         android:textColor="#212121"
-        android:id="@+id/phone" />
+        android:id="@+id/tv_phone" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="1223536467658 "
         android:textColor="#212121"
-        android:id="@+id/qq" />
+        android:id="@+id/tv_qq" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="1223536467658 "
         android:textColor="#212121"
-        android:id="@+id/seller" />
+        android:id="@+id/tv_seller" />
 
 </LinearLayout>

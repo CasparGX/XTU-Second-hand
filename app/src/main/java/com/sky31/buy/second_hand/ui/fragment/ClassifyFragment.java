@@ -97,7 +97,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         mListViewAdapter.setmGoodsData(mGoodsData);
         mListView.setAdapter(mListViewAdapter);
 
-        /*搜索框*/
+        /*搜索框开始*/
         mEtSearch = (EditText) lvHeader.findViewById(R.id.et_search);
         //检测输入法按键
         mEtSearch.setOnKeyListener(new View.OnKeyListener() {
@@ -112,7 +112,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         });
         mBtnSearch = (Button) lvHeader.findViewById(R.id.btn_search);
         mBtnSearch.setOnClickListener(this);
-        /*搜索框*/
+        /*搜索框结束*/
 
 
         /*分类布局*/
@@ -127,6 +127,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                 limitID = 0;
                 //params.add("limitID", String.valueOf(limitID));
                 getGoodsData(null, i);
+                Toast.makeText(getActivity(),"正在搜索: "+mClassifyInfo.get(i).getTitle(),Toast.LENGTH_SHORT).show();
             }
         });
         mGvClassify.setAdapter(adapter);

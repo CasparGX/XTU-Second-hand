@@ -39,6 +39,11 @@ public class GoodsShowActivity extends SwipeBackActivity {
 
     private ImageView imgPic;
     private TextView tvTitle;
+    private TextView tvPrice;
+    private TextView tvDec;
+    private TextView tvPhone;
+    private TextView tvQq;
+    private TextView tvSeller;
 
     private ViewPager imgPicViewPager;
     private ArrayList<ImageView> imgList;
@@ -74,9 +79,19 @@ public class GoodsShowActivity extends SwipeBackActivity {
         Intent intent = this.getIntent();
         goods = intent.getParcelableExtra("goodsInfo");
 
-        //init tvTitle
-        tvTitle = (TextView) findViewById(R.id.title);
+        //init TextView
+        tvTitle = (TextView) findViewById(R.id.tv_title);
         tvTitle.setText(goods.title);
+        tvPrice = (TextView) findViewById(R.id.tv_price);
+        tvPrice.setText(goods.price+"");
+        tvDec = (TextView) findViewById(R.id.tv_dec);
+        tvDec.setText(goods.dec);
+        tvPhone = (TextView) findViewById(R.id.tv_phone);
+        tvPhone.setText(goods.phone);
+        tvQq = (TextView) findViewById(R.id.tv_qq);
+        tvQq.setText(goods.qq);
+        tvSeller = (TextView) findViewById(R.id.tv_seller);
+        tvSeller.setText(goods.seller);
 
         //start-> get window's width && height
         DisplayMetrics displayMetrics = new DisplayMetrics();

@@ -3,6 +3,9 @@ package com.sky31.buy.second_hand.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.sky31.buy.second_hand.context.BuyApp;
+import com.sky31.buy.second_hand.context.values.Constants;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,11 +13,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import com.sky31.buy.second_hand.context.BuyApp;
-import com.sky31.buy.second_hand.context.values.Constants;
-import com.sky31.buy.second_hand.context.values.Constants.Keys;
-import com.sky31.buy.second_hand.context.values.Constants.Apis;
 
 /**
  * Created by Caspar on 2015/7/17.
