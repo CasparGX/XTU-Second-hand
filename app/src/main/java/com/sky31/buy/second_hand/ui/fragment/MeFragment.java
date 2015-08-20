@@ -49,6 +49,7 @@ public class MeFragment extends Fragment {
             super.onSuccess(statusCode, headers, response);
             Log.i(TAG, "-----------------接受到JSONArray数据-----------------");
             Log.i(TAG,response+"");
+            Log.i(TAG,headers+"");
         }
 
         @Override
