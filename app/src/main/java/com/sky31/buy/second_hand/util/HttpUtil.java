@@ -35,6 +35,12 @@ public class HttpUtil {
     {
         client.get(uString, bHandler);
     }
+    public static void post(String urlString,JsonHttpResponseHandler res) {
+        client.post(urlString, res);
+    }
+    public static void post(String urlString,RequestParams params,JsonHttpResponseHandler res) {  //带参数，获取json对象或者数组{
+        client.post(urlString, params, res);
+    }
     public static AsyncHttpClient getClient()
     {
         return client;
