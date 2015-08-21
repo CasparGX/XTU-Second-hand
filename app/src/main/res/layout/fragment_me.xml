@@ -11,7 +11,7 @@
         android:orientation="vertical">
 
         <TableRow
-            android:id="@+id/tr_01"
+            android:id="@+id/tr_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/table_row_padding"

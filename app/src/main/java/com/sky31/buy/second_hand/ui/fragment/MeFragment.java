@@ -20,7 +20,6 @@ import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
 import org.apache.http.Header;
-import org.apache.http.client.ClientProtocolException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -44,7 +43,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_me, container, false);
-        tr01 = (TableRow) view.findViewById(R.id.tr_01);
+        tr01 = (TableRow) view.findViewById(R.id.tr_user);
         tr02 = (TableRow) view.findViewById(R.id.tr_02);
         tr01.setOnClickListener(this);
         tr02.setOnClickListener(this);
@@ -91,7 +90,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tr_01:
+            case R.id.tr_user:
                 params.add(Constants.Keys.KEY_USERNAME,"630248976@qq.com");
                 params.add(Constants.Keys.KEY_PASSWORD,"Caspar1995.");
                 HttpUtil.post(Constants.Apis.API_USER_LOGIN_POST
