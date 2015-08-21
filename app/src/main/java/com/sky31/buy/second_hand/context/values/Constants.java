@@ -15,6 +15,10 @@ public class Constants {
 
         public static final String
                 API_USER_LOGIN_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/User/login";
+        public static final String
+                API_GOODS_APPINSERT_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/appInsert";
+        public static final String
+                API_GOODS_TESTINSERT_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/testInsert";
 
 
     }

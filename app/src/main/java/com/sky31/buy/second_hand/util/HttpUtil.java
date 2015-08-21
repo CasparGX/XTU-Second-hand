@@ -23,6 +23,10 @@ public class HttpUtil {
     {
         client.get(urlString, params,res);
     }
+    public static void post(String urlString,RequestParams params,AsyncHttpResponseHandler res)   //url里面带参数
+    {
+        client.post(urlString, params,res);
+    }
     public static void get(String urlString,JsonHttpResponseHandler res)   //不带参数，获取json对象或者数组
     {
         client.get(urlString, res);
