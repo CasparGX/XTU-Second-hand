@@ -72,6 +72,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         tvEmail = (TextView) view.findViewById(R.id.tv_email);
         tvNickname = (TextView) view.findViewById(R.id.tv_nickname);
 
+        //TODO 将用户信息存入缓存或每次启动进行一次登录
         return view;
     }
 
