@@ -10,7 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -41,8 +43,15 @@ public class HomeFragment extends Fragment {
     private BuyApp app = new BuyApp();
 
     private String TAG = HomeFragment.class.getName();
+
+    //ListView
     private ListView mListView;
+    private View listViewFooter;
+    private ImageView ivTips;
+    private TextView tvTips;
     private HomeFragmentListViewAdapter adapter;
+    private boolean isAll;
+    private String loadingFlag;
 
     private ArrayList<GoodsData> mGoodsData = new ArrayList<>();
     private JSONArray mGoodsArray = new JSONArray();
@@ -66,7 +75,13 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         Log.i(TAG, "------------onCreateView");
 
+        listViewFooter = inflater.inflate(R.layout.include_footer_goods_listview, null);
+        ivTips = (ImageView) listViewFooter.findViewById(R.id.iv_tips);
+        tvTips = (TextView) listViewFooter.findViewById(R.id.tv_tips);
+        isAll = false;
+
         mListView = (ListView) view.findViewById(R.id.lv_goods);
+        mListView.addFooterView(listViewFooter, null, true);
         adapter = new HomeFragmentListViewAdapter(inflater);
         mListView.setAdapter(adapter);
 
@@ -117,6 +132,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onRefreshBegin(final PtrFrameLayout frame) {
                     limitID = 0;
+                    isAll = false;
                     getGoodsData();
                     Log.i(TAG, "-------- onRefreshBegin : 刷新 - 请求网络数据 ---------");
             }
@@ -132,7 +148,7 @@ public class HomeFragment extends Fragment {
 
                     @Override
                     public void onScrollStateChanged(AbsListView absListView, int i) {
-                        if (isBottom && i == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                        if (isBottom && i == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && !isAll) {
 
                             if (params.has(Constants.Keys.KEY_LIMITID)) {
                                 //params.remove(Constants.Keys.KEY_LIMITID);
@@ -231,6 +247,13 @@ public class HomeFragment extends Fragment {
     }
 
     JsonHttpResponseHandler mJsonHttpResponseHandler = new JsonHttpResponseHandler() {
+
+        @Override
+        public void onStart() {
+            super.onStart();
+            setListViewFooter("loading");
+        }
+
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
             super.onSuccess(statusCode, headers, response);
@@ -255,6 +278,8 @@ public class HomeFragment extends Fragment {
         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
             super.onSuccess(statusCode, headers, response);
             //if return JSONObject, it's have no data
+            isAll = true;
+            setListViewFooter("isAll");
             Toast.makeText(getActivity(), "已加载全部",
                     Toast.LENGTH_SHORT).show();
             Log.i(TAG, "---------------------- return JSONObject, it's have no data ------------------");
@@ -286,5 +311,22 @@ public class HomeFragment extends Fragment {
         HomeFragment contentFragment = new HomeFragment();
         contentFragment.setArguments(bundle);
         return contentFragment;
+    }
+
+    //设置ListView底部状态
+    public void setListViewFooter(String loadingFlag) {
+        switch (loadingFlag) {
+            case "loading":
+                tvTips.setText("正在加载中...");
+                break;
+
+            case "end":
+
+                break;
+
+            case "isAll":
+                tvTips.setText("已加载全部");
+                break;
+        }
     }
 }

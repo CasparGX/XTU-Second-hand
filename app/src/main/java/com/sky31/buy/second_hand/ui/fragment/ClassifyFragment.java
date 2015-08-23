@@ -16,7 +16,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -63,6 +65,10 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
     /*商品列表*/
     private ListView mListView;
     private HomeFragmentListViewAdapter mListViewAdapter;
+    private View listViewFooter;
+    private ImageView ivTips;
+    private TextView tvTips;
+    private boolean isAll;
 
     /*搜索*/
     private EditText mEtSearch;
@@ -91,8 +97,16 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_classify, container, false);
         /*商品列表布局*/
         mListView = (ListView) view.findViewById(R.id.lv_goods);
+        //listView' header
         View lvHeader = inflater.inflate(R.layout.include_lv_classify_header, null);
         mListView.addHeaderView(lvHeader, null, true);
+        //listView's footer
+        listViewFooter = inflater.inflate(R.layout.include_footer_goods_listview, null);
+        ivTips = (ImageView) listViewFooter.findViewById(R.id.iv_tips);
+        tvTips = (TextView) listViewFooter.findViewById(R.id.tv_tips);
+        isAll = false;
+        mListView.addFooterView(listViewFooter,null,true);
+        //listView's adapter
         mListViewAdapter = new HomeFragmentListViewAdapter(inflater);
         mListViewAdapter.setmGoodsData(mGoodsData);
         mListView.setAdapter(mListViewAdapter);
@@ -125,6 +139,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 //获取点击id，传递参数
                 limitID = 0;
+                isAll = false;
                 //params.add("limitID", String.valueOf(limitID));
                 getGoodsData(null, i);
                 Toast.makeText(getActivity(),"正在搜索: "+mClassifyInfo.get(i).getTitle(),Toast.LENGTH_SHORT).show();
@@ -180,7 +195,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
 
                     @Override
                     public void onScrollStateChanged(AbsListView absListView, int i) {
-                        if (isBottom && i == AbsListView.OnScrollListener.SCROLL_STATE_IDLE) {
+                        if (isBottom && i == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && !isAll) {
 
                             if (params.has(Constants.Keys.KEY_LIMITID)) {
                                 params.remove(Constants.Keys.KEY_LIMITID);
@@ -259,6 +274,12 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
     /*获取商品列表的Handler*/
     JsonHttpResponseHandler mListJsonHttpResponseHandler = new JsonHttpResponseHandler() {
         @Override
+        public void onStart() {
+            super.onStart();
+            setListViewFooter("loading");
+        }
+
+        @Override
         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
             super.onSuccess(statusCode, headers, response);
             Log.i(TAG, "------------------------------ getGoodsData Handler onSuccess ----------------------");
@@ -285,6 +306,9 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                         Toast.LENGTH_SHORT).show();
             }
             else {
+
+                isAll = true;
+                setListViewFooter("isAll");
                 Toast.makeText(getActivity(), "已加载全部",
                         Toast.LENGTH_SHORT).show();
             }
@@ -411,5 +435,22 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
 
         Log.i(TAG,"--------onRefreshBegin : 获取到缓存信息, 显示缓存数据---------");
 
+    }
+
+    //设置ListView底部状态
+    public void setListViewFooter(String loadingFlag) {
+        switch (loadingFlag) {
+            case "loading":
+                tvTips.setText("正在加载中...");
+                break;
+
+            case "end":
+
+                break;
+
+            case "isAll":
+                tvTips.setText("已加载全部");
+                break;
+        }
     }
 }
