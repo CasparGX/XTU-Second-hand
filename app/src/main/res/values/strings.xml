@@ -10,4 +10,9 @@
     <string name="username">邮箱</string>
     <string name="password">密码</string>
     <string name="login">登录</string>
+
+    <string name="defaultTips">主公,小二等候多时了哦</string>
+    <string name="loadingTips">正在加载...</string>
+    <string name="endTips">加载完毕,上拉加载更多</string>
+    <string name="isAllTips">已加载全部</string>
 </resources>

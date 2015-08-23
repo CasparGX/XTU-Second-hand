@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="#fff"
+    android:padding="5dp">
 
     <ImageView
         android:id="@+id/iv_tips"
@@ -17,5 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="正在加载" />
+        android:text="@string/defaultTips"
+        android:textSize="16sp"
+        android:layout_marginLeft="5dp"/>
 </LinearLayout>

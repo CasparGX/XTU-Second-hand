@@ -8,6 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -99,7 +102,7 @@ public class HomeFragment extends Fragment {
         }*/
 
         //判断是否有缓存
-        if (mCheckCache!=null) {
+        if (mCheckCache != null) {
             getCacheData();
         }
 
@@ -131,14 +134,12 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onRefreshBegin(final PtrFrameLayout frame) {
-                    limitID = 0;
-                    isAll = false;
-                    getGoodsData();
-                    Log.i(TAG, "-------- onRefreshBegin : 刷新 - 请求网络数据 ---------");
+                limitID = 0;
+                isAll = false;
+                getGoodsData();
+                Log.i(TAG, "-------- onRefreshBegin : 刷新 - 请求网络数据 ---------");
             }
         });
-
-
 
 
         //监听listview的滚动事件
@@ -212,7 +213,7 @@ public class HomeFragment extends Fragment {
         adapter.setmGoodsData(mGoodsData);
         adapter.notifyDataSetChanged();
 
-        Log.i(TAG,"--------onRefreshBegin : 获取到缓存信息, 显示缓存数据---------");
+        Log.i(TAG, "--------onRefreshBegin : 获取到缓存信息, 显示缓存数据---------");
 
     }
 
@@ -267,9 +268,11 @@ public class HomeFragment extends Fragment {
             adapter.notifyDataSetChanged();
 
             //改变缓存
-            mCache.put(Constants.Keys.KEY_CACHE_HOME_FIRST_CONTENT,response);
-            mCache.put(Constants.Keys.KEY_CACHE_HOME_CHECK,"hasCache");
+            mCache.put(Constants.Keys.KEY_CACHE_HOME_FIRST_CONTENT, response);
+            mCache.put(Constants.Keys.KEY_CACHE_HOME_CHECK, "hasCache");
 
+            //改变footer状态
+            setListViewFooter("end");
             limitID++;
             Log.i(TAG, mGoodsData.get(0).imgUrl + "");
         }
@@ -317,16 +320,35 @@ public class HomeFragment extends Fragment {
     public void setListViewFooter(String loadingFlag) {
         switch (loadingFlag) {
             case "loading":
-                tvTips.setText("正在加载中...");
+                //imageView移动效果
+                AnimationSet animationSet = new AnimationSet(true);
+                //参数1～2：x轴的开始位置
+                //参数3～4：y轴的开始位置
+                //参数5～6：x轴的结束位置
+                //参数7～8：x轴的结束位置
+                TranslateAnimation translateAnimation =
+                        new TranslateAnimation(
+                                Animation.RELATIVE_TO_SELF, 0f,
+                                Animation.RELATIVE_TO_SELF, 0f,
+                                Animation.RELATIVE_TO_SELF, -0.05f,
+                                Animation.RELATIVE_TO_SELF, 0.05f);
+                translateAnimation.setDuration(800);
+                translateAnimation.setRepeatCount(30);
+                animationSet.addAnimation(translateAnimation);
+                ivTips.startAnimation(animationSet);
+                tvTips.setText(getActivity().getResources().getString(R.string.loadingTips));
                 break;
 
             case "end":
-
+                ivTips.clearAnimation();
+                tvTips.setText(getActivity().getResources().getString(R.string.endTips));
                 break;
 
             case "isAll":
-                tvTips.setText("已加载全部");
+                ivTips.clearAnimation();
+                tvTips.setText(getActivity().getResources().getString(R.string.isAllTips));
                 break;
         }
     }
+
 }
