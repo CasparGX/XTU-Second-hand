@@ -10,7 +10,8 @@
         android:divider="#ccc"
         android:dividerHeight="0.5dp"
         android:scrollbarStyle="outsideOverlay"
-        android:clipToPadding="false">
+        android:clipToPadding="false"
+        android:footerDividersEnabled="false">
 
     </ListView>
 </LinearLayout>
