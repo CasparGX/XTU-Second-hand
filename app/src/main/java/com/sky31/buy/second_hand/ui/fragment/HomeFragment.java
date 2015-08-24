@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment {
         isAll = false;
 
         mListView = (ListView) view.findViewById(R.id.lv_goods);
-        mListView.addFooterView(listViewFooter, null, true);
+        mListView.addFooterView(listViewFooter, null, false);
         adapter = new HomeFragmentListViewAdapter(inflater);
         mListView.setAdapter(adapter);
 
@@ -252,7 +252,7 @@ public class HomeFragment extends Fragment {
         @Override
         public void onStart() {
             super.onStart();
-            setListViewFooter("loading");
+            BuyApp.setListViewFooter("loading", ivTips, tvTips, getActivity());
         }
 
         @Override
@@ -272,7 +272,7 @@ public class HomeFragment extends Fragment {
             mCache.put(Constants.Keys.KEY_CACHE_HOME_CHECK, "hasCache");
 
             //改变footer状态
-            setListViewFooter("end");
+            BuyApp.setListViewFooter("end", ivTips, tvTips, getActivity());
             limitID++;
             Log.i(TAG, mGoodsData.get(0).imgUrl + "");
         }
@@ -282,7 +282,7 @@ public class HomeFragment extends Fragment {
             super.onSuccess(statusCode, headers, response);
             //if return JSONObject, it's have no data
             isAll = true;
-            setListViewFooter("isAll");
+            BuyApp.setListViewFooter("isAll", ivTips, tvTips, getActivity());
             Toast.makeText(getActivity(), "已加载全部",
                     Toast.LENGTH_SHORT).show();
             Log.i(TAG, "---------------------- return JSONObject, it's have no data ------------------");
@@ -314,41 +314,6 @@ public class HomeFragment extends Fragment {
         HomeFragment contentFragment = new HomeFragment();
         contentFragment.setArguments(bundle);
         return contentFragment;
-    }
-
-    //设置ListView底部状态
-    public void setListViewFooter(String loadingFlag) {
-        switch (loadingFlag) {
-            case "loading":
-                //imageView移动效果
-                AnimationSet animationSet = new AnimationSet(true);
-                //参数1～2：x轴的开始位置
-                //参数3～4：y轴的开始位置
-                //参数5～6：x轴的结束位置
-                //参数7～8：x轴的结束位置
-                TranslateAnimation translateAnimation =
-                        new TranslateAnimation(
-                                Animation.RELATIVE_TO_SELF, 0f,
-                                Animation.RELATIVE_TO_SELF, 0f,
-                                Animation.RELATIVE_TO_SELF, -0.05f,
-                                Animation.RELATIVE_TO_SELF, 0.05f);
-                translateAnimation.setDuration(800);
-                translateAnimation.setRepeatCount(30);
-                animationSet.addAnimation(translateAnimation);
-                ivTips.startAnimation(animationSet);
-                tvTips.setText(getActivity().getResources().getString(R.string.loadingTips));
-                break;
-
-            case "end":
-                ivTips.clearAnimation();
-                tvTips.setText(getActivity().getResources().getString(R.string.endTips));
-                break;
-
-            case "isAll":
-                ivTips.clearAnimation();
-                tvTips.setText(getActivity().getResources().getString(R.string.isAllTips));
-                break;
-        }
     }
 
 }

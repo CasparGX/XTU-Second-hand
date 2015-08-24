@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.sky31.buy.second_hand.R;
+import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.ClassifyInfo;
 import com.sky31.buy.second_hand.model.GoodsData;
@@ -108,7 +109,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         ivTips = (ImageView) listViewFooter.findViewById(R.id.iv_tips);
         tvTips = (TextView) listViewFooter.findViewById(R.id.tv_tips);
         isAll = false;
-        mListView.addFooterView(listViewFooter,null,true);
+        mListView.addFooterView(listViewFooter,null,false);
         //listView's adapter
         mListViewAdapter = new HomeFragmentListViewAdapter(inflater);
         mListViewAdapter.setmGoodsData(mGoodsData);
@@ -279,7 +280,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         @Override
         public void onStart() {
             super.onStart();
-            setListViewFooter("loading");
+            BuyApp.setListViewFooter("loading", ivTips, tvTips, getActivity());
         }
 
         @Override
@@ -292,7 +293,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
             mGoodsArray = response;
             mGoodsData.addAll(GoodsData.JSONArrayToGoodsData(mGoodsArray));
             mListViewAdapter.notifyDataSetChanged();
-            setListViewFooter("end");
+            BuyApp.setListViewFooter("end", ivTips, tvTips, getActivity());
             limitID++;
             Log.i(TAG, mGoodsData.get(0).imgUrl + "");
         }
@@ -306,14 +307,14 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                 mGoodsData.clear();
                 mListViewAdapter.notifyDataSetChanged();
                 isAll = true;
-                setListViewFooter("isAll");
+                BuyApp.setListViewFooter("isAll", ivTips, tvTips, getActivity());
                 Toast.makeText(getActivity(), "暂时没有此类商品上架",
                         Toast.LENGTH_SHORT).show();
             }
             else {
 
                 isAll = true;
-                setListViewFooter("isAll");
+                BuyApp.setListViewFooter("isAll", ivTips, tvTips, getActivity());
                 Toast.makeText(getActivity(), "已加载全部",
                         Toast.LENGTH_SHORT).show();
             }
@@ -442,38 +443,4 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    //设置ListView底部状态
-    public void setListViewFooter(String loadingFlag) {
-        switch (loadingFlag) {
-            case "loading":
-                //imageView移动效果
-                AnimationSet animationSet = new AnimationSet(true);
-                //参数1～2：x轴的开始位置
-                //参数3～4：y轴的开始位置
-                //参数5～6：x轴的结束位置
-                //参数7～8：x轴的结束位置
-                TranslateAnimation translateAnimation =
-                        new TranslateAnimation(
-                                Animation.RELATIVE_TO_SELF,0f,
-                                Animation.RELATIVE_TO_SELF,0f,
-                                Animation.RELATIVE_TO_SELF,-0.05f,
-                                Animation.RELATIVE_TO_SELF,0.05f);
-                translateAnimation.setDuration(800);
-                translateAnimation.setRepeatCount(30);
-                animationSet.addAnimation(translateAnimation);
-                ivTips.startAnimation(animationSet);
-                tvTips.setText(getActivity().getResources().getString(R.string.loadingTips));
-                break;
-
-            case "end":
-                ivTips.clearAnimation();
-                tvTips.setText(getActivity().getResources().getString(R.string.endTips));
-                break;
-
-            case "isAll":
-                ivTips.clearAnimation();
-                tvTips.setText(getActivity().getResources().getString(R.string.isAllTips));
-                break;
-        }
-    }
 }

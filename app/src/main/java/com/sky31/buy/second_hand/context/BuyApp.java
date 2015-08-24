@@ -7,7 +7,11 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -175,6 +179,41 @@ public class BuyApp extends Application {
         // 设置一个颜色给系统栏
         tintManager.setTintColor(activity.getResources().getColor(R.color.themeColor));
         //tintManager.setTintColor(Color.parseColor("#ff0000"));
+    }
+
+    //设置ListView底部状态
+    public static void setListViewFooter(String loadingFlag, ImageView ivTips, TextView tvTips, Context context) {
+        switch (loadingFlag) {
+            case "loading":
+                //imageView移动效果
+                AnimationSet animationSet = new AnimationSet(true);
+                //参数1～2：x轴的开始位置
+                //参数3～4：y轴的开始位置
+                //参数5～6：x轴的结束位置
+                //参数7～8：x轴的结束位置
+                TranslateAnimation translateAnimation =
+                        new TranslateAnimation(
+                                Animation.RELATIVE_TO_SELF, 0f,
+                                Animation.RELATIVE_TO_SELF, 0f,
+                                Animation.RELATIVE_TO_SELF, -0.05f,
+                                Animation.RELATIVE_TO_SELF, 0.05f);
+                translateAnimation.setDuration(800);
+                translateAnimation.setRepeatCount(30);
+                animationSet.addAnimation(translateAnimation);
+                ivTips.startAnimation(animationSet);
+                tvTips.setText(context.getResources().getString(R.string.loadingTips));
+                break;
+
+            case "end":
+                ivTips.clearAnimation();
+                tvTips.setText(context.getResources().getString(R.string.endTips));
+                break;
+
+            case "isAll":
+                ivTips.clearAnimation();
+                tvTips.setText(context.getResources().getString(R.string.isAllTips));
+                break;
+        }
     }
 
 
