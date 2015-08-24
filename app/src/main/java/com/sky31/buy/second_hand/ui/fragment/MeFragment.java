@@ -42,8 +42,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private boolean isLogin;
 
     /*控件*/
-    private TableRow tr01;
-    private TableRow tr02;
+    private TableRow trEditInfo;
+    private TableRow trPublish;
+    private TableRow trSelling;
     private TextView tvNickname;
     private TextView tvEmail;
     private ImageView ivUsericon;
@@ -72,10 +73,12 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         ivUsericon = (ImageView) view.findViewById(R.id.iv_usericon);
 
         /*TableRow*/
-        tr01 = (TableRow) view.findViewById(R.id.tr_user);
-        tr02 = (TableRow) view.findViewById(R.id.tr_selling);
-        tr01.setOnClickListener(this);
-        tr02.setOnClickListener(this);
+        trEditInfo = (TableRow) view.findViewById(R.id.tr_edit_info);
+        trPublish = (TableRow) view.findViewById(R.id.tr_publish);
+        trSelling = (TableRow) view.findViewById(R.id.tr_selling);
+        trEditInfo.setOnClickListener(this);
+        trPublish.setOnClickListener(this);
+        trSelling.setOnClickListener(this);
 
         /*TableRow Content*/
         tvEmail = (TextView) view.findViewById(R.id.tv_email);
@@ -157,12 +160,19 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tr_user:
+            /*修改用户信息*/
+            case R.id.tr_edit_info:
 
-                showLoginDialog();
                 break;
 
+            /*正在出售商品*/
             case R.id.tr_selling:
+
+                break;
+
+            /*发布商品*/
+            case R.id.tr_publish:
+                /*上传图片测试样例*/
                 File file = new File("/mnt/sdcard/","home.jpg");
                 RequestParams params = new RequestParams();
                 if(file.exists() && file.length()>0) {
@@ -185,6 +195,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 }
                 break;
 
+            /*登录链接*/
             case R.id.tv_login_link:
                 if (isLogin) {
                     logOutSuccess();

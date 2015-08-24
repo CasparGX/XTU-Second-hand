@@ -67,7 +67,7 @@
             </TableRow>
 
             <TableRow
-                android:id="@+id/tr_user"
+                android:id="@+id/tr_publish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/table_row_paddingLeft"
