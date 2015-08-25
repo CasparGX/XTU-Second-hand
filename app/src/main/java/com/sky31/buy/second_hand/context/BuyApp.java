@@ -213,6 +213,11 @@ public class BuyApp extends Application {
                 ivTips.clearAnimation();
                 tvTips.setText(context.getResources().getString(R.string.isAllTips));
                 break;
+
+            case "isNull":
+                ivTips.clearAnimation();
+                tvTips.setText(context.getResources().getString(R.string.isNullTips));
+                break;
         }
     }
 

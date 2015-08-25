@@ -25,4 +25,5 @@
     <string name="loadingTips">正在加载...</string>
     <string name="endTips">加载完毕,上拉加载更多</string>
     <string name="isAllTips">已加载全部</string>
+    <string name="isNullTips">暂无商品哦</string>
 </resources>

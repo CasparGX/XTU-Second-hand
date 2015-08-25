@@ -272,7 +272,13 @@ public class HomeFragment extends Fragment {
             mCache.put(Constants.Keys.KEY_CACHE_HOME_CHECK, "hasCache");
 
             //改变footer状态
-            BuyApp.setListViewFooter("end", ivTips, tvTips, getActivity());
+            if (response.length()<getActivity().getResources().getInteger(R.integer.defaultGoodsLoadCount)) {
+                //商品数量未达到默认加载数量,判断为加载完毕
+                BuyApp.setListViewFooter("isAll", ivTips, tvTips, getActivity());
+            } else {
+                //
+                BuyApp.setListViewFooter("end", ivTips, tvTips, getActivity());
+            }
             limitID++;
             Log.i(TAG, mGoodsData.get(0).imgUrl + "");
         }

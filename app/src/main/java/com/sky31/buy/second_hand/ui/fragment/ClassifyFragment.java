@@ -296,7 +296,13 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
             mGoodsArray = response;
             mGoodsData.addAll(GoodsData.JSONArrayToGoodsData(mGoodsArray));
             mListViewAdapter.notifyDataSetChanged();
-            BuyApp.setListViewFooter("end", ivTips, tvTips, getActivity());
+            if (response.length()<getActivity().getResources().getInteger(R.integer.defaultGoodsLoadCount)) {
+                //商品数量未达到默认加载数量,判断为加载完毕
+                BuyApp.setListViewFooter("isAll", ivTips, tvTips, getActivity());
+            } else {
+                //
+                BuyApp.setListViewFooter("end", ivTips, tvTips, getActivity());
+            }
             limitID++;
             Log.i(TAG, mGoodsData.get(0).imgUrl + "");
         }
@@ -310,16 +316,12 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                 mGoodsData.clear();
                 mListViewAdapter.notifyDataSetChanged();
                 isAll = true;
-                BuyApp.setListViewFooter("isAll", ivTips, tvTips, getActivity());
-                Toast.makeText(getActivity(), "暂时没有此类商品上架",
-                        Toast.LENGTH_SHORT).show();
+                BuyApp.setListViewFooter("isNull", ivTips, tvTips, getActivity());
             }
             else {
 
                 isAll = true;
                 BuyApp.setListViewFooter("isAll", ivTips, tvTips, getActivity());
-                Toast.makeText(getActivity(), "已加载全部",
-                        Toast.LENGTH_SHORT).show();
             }
             Log.i(TAG, "---------------------- return JSONObject, it's have no data ------------------");
             Log.i(TAG, response + "");
