@@ -38,7 +38,8 @@
             android:layout_height="33dp"
             android:layout_gravity="center"
             android:background="@drawable/search_button"
-            android:text="biu~"
+            android:text="@string/searchBtn"
+            android:textAllCaps="false"
             android:textColor="#fff" />
     </LinearLayout>
 
