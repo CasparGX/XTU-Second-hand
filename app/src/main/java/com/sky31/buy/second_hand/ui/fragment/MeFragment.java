@@ -71,18 +71,15 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         tvLoginLink = (TextView) view.findViewById(R.id.tv_login_link);
         tvLoginLink.setOnClickListener(this);
         ivUsericon = (ImageView) view.findViewById(R.id.iv_usericon);
+        tvNickname = (TextView) view.findViewById(R.id.tv_nickname);
 
         /*TableRow*/
         trEditInfo = (TableRow) view.findViewById(R.id.tr_edit_info);
-        trPublish = (TableRow) view.findViewById(R.id.tr_publish);
-        trSelling = (TableRow) view.findViewById(R.id.tr_selling);
         trEditInfo.setOnClickListener(this);
+        trPublish = (TableRow) view.findViewById(R.id.tr_publish);
         trPublish.setOnClickListener(this);
+        trSelling = (TableRow) view.findViewById(R.id.tr_selling);
         trSelling.setOnClickListener(this);
-
-        /*TableRow Content*/
-        tvEmail = (TextView) view.findViewById(R.id.tv_email);
-        tvNickname = (TextView) view.findViewById(R.id.tv_nickname);
 
         //TODO 将用户信息存入缓存或每次启动进行一次登录
         return view;
@@ -142,7 +139,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             isLogin = true;
             userInfo = response;
             tvLoginLink.setText(getActivity().getResources().getString(R.string.logOut));
-            tvEmail.setText(response.get("email")+"");
             tvNickname.setText(response.get("nickname")+"");
         } catch (JSONException e) {
             e.printStackTrace();
@@ -162,16 +158,35 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             /*修改用户信息*/
             case R.id.tr_edit_info:
+                if (isLogin) {
+                    //已登陆进行操作
 
+                } else {
+                    //未登录
+                    showLoginDialog();
+                }
                 break;
 
             /*正在出售商品*/
             case R.id.tr_selling:
+                if (isLogin) {
+                    //已登陆进行操作
 
+                } else {
+                    //未登录
+                    showLoginDialog();
+                }
                 break;
 
             /*发布商品*/
             case R.id.tr_publish:
+                if (isLogin) {
+                    //已登陆进行操作
+
+                } else {
+                    //未登录
+                    showLoginDialog();
+                }
                 /*上传图片测试样例*/
                 File file = new File("/mnt/sdcard/","home.jpg");
                 RequestParams params = new RequestParams();
@@ -208,6 +223,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     }
 
 
+    /*显示登陆dialog*/
     public void showLoginDialog() {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.dialog_signin, null);
@@ -243,6 +259,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         }).setNegativeButton("取消", null).create()
                 .show();
     }
+
 
 
 }

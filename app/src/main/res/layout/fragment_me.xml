@@ -19,7 +19,7 @@
                 android:orientation="vertical"
                 android:gravity="center"
                 android:background="@color/white"
-                android:layout_margin="20dp"
+                android:layout_margin="@dimen/usericon_layout_margin"
                 android:padding="20dp">
 
                 <ImageView
@@ -51,7 +51,7 @@
                 android:paddingRight="@dimen/table_row_paddingLeft"
                 android:paddingTop="@dimen/table_row_paddingTop"
                 android:paddingBottom="@dimen/table_row_paddingTop"
-                android:layout_marginBottom="@dimen/table_row_margin"
+                android:layout_marginBottom="@dimen/table_row_marginBottom"
                 android:background="@color/white">
 
                 <TextView
@@ -75,7 +75,7 @@
                 android:paddingTop="@dimen/table_row_paddingTop"
                 android:paddingBottom="@dimen/table_row_paddingTop"
                 android:background="@color/white"
-                android:layout_marginBottom="@dimen/table_row_margin">
+                android:layout_marginBottom="@dimen/table_row_marginBottom">
 
                 <TextView
                     android:id="@+id/tv_publish"
@@ -84,7 +84,6 @@
                     android:text="@string/publish" />
 
                 <TextView
-                    android:id="@+id/tv_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text=">"
@@ -100,13 +99,37 @@
                 android:paddingRight="@dimen/table_row_paddingLeft"
                 android:paddingTop="@dimen/table_row_paddingTop"
                 android:paddingBottom="@dimen/table_row_paddingTop"
-                android:layout_marginBottom="@dimen/table_row_margin"
+                android:layout_marginBottom="@dimen/table_row_marginBottom"
                 android:background="@color/white">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/selling" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=">"
+                    android:gravity="right"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tr_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/table_row_paddingLeft"
+                android:paddingRight="@dimen/table_row_paddingLeft"
+                android:paddingTop="@dimen/table_row_paddingTop"
+                android:paddingBottom="@dimen/table_row_paddingTop"
+                android:layout_marginBottom="@dimen/table_row_marginBottom"
+                android:layout_marginTop="@dimen/table_row_marginTop"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about" />
 
                 <TextView
                     android:layout_width="match_parent"

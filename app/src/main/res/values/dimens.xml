@@ -3,7 +3,9 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <dimen name="table_row_paddingTop">12dp</dimen>
+    <dimen name="table_row_paddingTop">16dp</dimen>
     <dimen name="table_row_paddingLeft">20dp</dimen>
-    <dimen name="table_row_margin">0.8dp</dimen>
+    <dimen name="table_row_marginBottom">0.8dp</dimen>
+    <dimen name="table_row_marginTop">20dp</dimen>
+    <dimen name="usericon_layout_margin">10dp</dimen>
 </resources>

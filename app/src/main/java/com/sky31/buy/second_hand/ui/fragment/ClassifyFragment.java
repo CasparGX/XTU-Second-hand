@@ -146,7 +146,10 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                 isAll = false;
                 //params.add("limitID", String.valueOf(limitID));
                 getGoodsData(null, i);
-                Toast.makeText(getActivity(),"正在搜索: "+mClassifyInfo.get(i).getTitle(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity()
+                        ,"正在搜索: "+mClassifyInfo.get(i).getTitle()
+                        ,Toast.LENGTH_SHORT)
+                        .show();
             }
         });
         mGvClassify.setAdapter(adapter);
@@ -393,7 +396,13 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                 mObjClassifyInfo.setIcon(null);
                 this.mClassifyInfo.add(mObjClassifyInfo);
 
-                System.out.println(this.mClassifyInfo.get(i).getId() + " # " + this.mClassifyInfo.get(i).getTitle() + " # " + i + " # " + this.mClassifyInfo.size());
+                System.out.println(this.mClassifyInfo.get(i).getId()
+                        + " # "
+                        + this.mClassifyInfo.get(i).getTitle()
+                        + " # "
+                        + i
+                        + " # "
+                        + this.mClassifyInfo.size());
                 i++;
 
             } catch (JSONException e) {
