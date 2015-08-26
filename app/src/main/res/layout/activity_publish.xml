@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.sky31.buy.second_hand.ui.EditInfoActivity">
+    tools:context="com.sky31.buy.second_hand.ui.PublishActivity">
 
-    <include layout="@layout/include_header_home"/>
+    <include layout="@layout/include_header_with_button"/>
 
 </LinearLayout>

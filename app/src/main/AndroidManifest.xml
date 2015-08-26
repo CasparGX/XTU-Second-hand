@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.EditInfoActivity"
+            android:name=".ui.PublishActivity"
             android:label="@string/title_activity_edit_info" >
         </activity>
     </application>

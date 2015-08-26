@@ -6,21 +6,19 @@
     android:backgroundTintMode="src_in"
     android:background="@color/themeColor">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/iv_back_btn"
+        android:layout_width="40dp"
         android:layout_height="match_parent"
-        android:text="←"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#fff"
-        android:gravity="center"
-        android:layout_gravity="left"/>
+        android:padding="10dp"
+        android:src="@drawable/back"/>
 
     <TextView
+        android:id="@+id/tv_header_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="湘大二手街"
-        android:id="@+id/textView"
         android:textColor="#fff"
         android:gravity="center"
         android:layout_gravity="center"/>
