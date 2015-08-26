@@ -38,6 +38,8 @@ public class Constants {
         public static final String KEY_CACHE_HOME_FIRST_CONTENT = "CacheHomeFirstContent";
         public static final String KEY_CACHE_CLASSIFY_CHECK = "checkCacheClassify";
         public static final String KEY_CACHE_CLASSIFY_CONTENT = "CacheClassifyContent";
+        public static final String KEY_CACHE_USERNAME = "CacheUserName";
+        public static final String KEY_CACHE_PASSWORD = "CachePassWord";
 
         //用户
         public static final String KEY_USERNAME = "username";

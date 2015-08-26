@@ -4,6 +4,7 @@ package com.sky31.buy.second_hand.ui.fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,9 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
+import com.sky31.buy.second_hand.ui.GoodsShowActivity;
+import com.sky31.buy.second_hand.ui.PublishActivity;
+import com.sky31.buy.second_hand.util.ACacheUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
 import org.apache.http.Header;
@@ -33,7 +37,7 @@ import java.io.FileNotFoundException;
 
 public class MeFragment extends Fragment implements View.OnClickListener {
 
-    private String TAG = this.getTag();
+    private String TAG = MeFragment.class.getName();
 
     /*用户登录信息*/
     private JSONObject userInfo = new JSONObject();
@@ -55,11 +59,14 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private EditText etPhoneNum;
     private EditText etQq;
 
-
-
     private AlertDialog.Builder builderLogin;
     private EditText mEtPassWord;
     private EditText mEtUserName;
+
+    //Cache
+    private ACacheUtil mCache;
+    private String mCacheUserName;
+    private String mCachePassWord;
 
     private RequestParams params = new RequestParams();
 
@@ -74,6 +81,11 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_me, container, false);
 
+        //缓存
+        mCache = ACacheUtil.get(getActivity());
+        mCacheUserName = mCache.getAsString(Constants.Keys.KEY_CACHE_USERNAME);
+        mCachePassWord = mCache.getAsString(Constants.Keys.KEY_CACHE_PASSWORD);
+
         /*userinfo*/
         tvLoginLink = (TextView) view.findViewById(R.id.tv_login_link);
         tvLoginLink.setOnClickListener(this);
@@ -87,6 +99,11 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         trPublish.setOnClickListener(this);
         trSelling = (TableRow) view.findViewById(R.id.tr_selling);
         trSelling.setOnClickListener(this);
+
+        /*自动登录*/
+        if (mCacheUserName != null && mCachePassWord != null) {
+            login(mCacheUserName,mCachePassWord);
+        }
 
         //TODO 将用户信息存入缓存或每次启动进行一次登录
         return view;
@@ -147,6 +164,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             userInfo = response;
             tvLoginLink.setText(getActivity().getResources().getString(R.string.logOut));
             tvNickname.setText(response.get("nickname")+"");
+            mCache.put(Constants.Keys.KEY_CACHE_USERNAME, mCacheUserName);
+            mCache.put(Constants.Keys.KEY_CACHE_PASSWORD, mCachePassWord);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -189,32 +208,24 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             case R.id.tr_publish:
                 if (isLogin) {
                     //已登陆进行操作
+                    try {
+                        Intent intentGoodsShow = new Intent();
+                        intentGoodsShow.setClass(getActivity(), PublishActivity.class);
+                        intentGoodsShow.putExtra("seller", userInfo.getString(Constants.Keys.KEY_NICKNAME));
+                        intentGoodsShow.putExtra("phone", userInfo.getString(Constants.Keys.KEY_PHONE));
+                        intentGoodsShow.putExtra("qq", userInfo.getString(Constants.Keys.KEY_QQ));
+                        intentGoodsShow.putExtra("headerTitle", "发布商品");
+                        startActivity(intentGoodsShow);
+                        getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                 } else {
                     //未登录
                     showLoginDialog();
                 }
-                /*上传图片测试样例*/
-                File file = new File("/mnt/sdcard/","home.jpg");
-                RequestParams params = new RequestParams();
-                if(file.exists() && file.length()>0) {
-                    try {
-                        params.put("file1", file);
-                        params.put("file2", file);
-                        params.put("file3", file);
-                        Log.i(TAG, Environment.getExternalStorageDirectory().toString());
-                        //params.add("file", String.valueOf(getActivity().getResources().getDrawable(R.drawable.loading)));
-                        HttpUtil.post(Constants.Apis.API_GOODS_APPINSERT_POST
-                                , params
-                                , mLogInHandler);
 
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-
-                    Log.i(TAG, "文件不存在");
-                }
                 break;
 
             /*登录链接*/
@@ -289,21 +300,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
-                                    //删除已有参数,防止参数过多
-                                    if (params.has(Constants.Keys.KEY_NICKNAME))
-                                        params.remove(Constants.Keys.KEY_NICKNAME);
-                                    if (params.has(Constants.Keys.KEY_QQ))
-                                        params.remove(Constants.Keys.KEY_QQ);
-                                    if (params.has(Constants.Keys.KEY_PHONE))
-                                        params.remove(Constants.Keys.KEY_PHONE);
-                                    params.add(Constants.Keys.KEY_NICKNAME, etNickName.getText().toString());
-                                    params.add(Constants.Keys.KEY_PHONE, etPhoneNum.getText().toString());
-                                    params.add(Constants.Keys.KEY_QQ, etQq.getText().toString());
-                                    HttpUtil.post(Constants.Apis.API_USER_CHANGE_INFO_POST
-                                            , params
-                                            , mEditInfoHandler);
-
+                                    editInfo();
                                 }
                             })
                     .setNegativeButton("取消", null)
@@ -314,6 +311,22 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             e.printStackTrace();
         }
 
+    }
+
+    public void editInfo() {
+        //删除已有参数,防止参数过多
+        if (params.has(Constants.Keys.KEY_NICKNAME))
+            params.remove(Constants.Keys.KEY_NICKNAME);
+        if (params.has(Constants.Keys.KEY_QQ))
+            params.remove(Constants.Keys.KEY_QQ);
+        if (params.has(Constants.Keys.KEY_PHONE))
+            params.remove(Constants.Keys.KEY_PHONE);
+        params.add(Constants.Keys.KEY_NICKNAME, etNickName.getText().toString());
+        params.add(Constants.Keys.KEY_PHONE, etPhoneNum.getText().toString());
+        params.add(Constants.Keys.KEY_QQ, etQq.getText().toString());
+        HttpUtil.post(Constants.Apis.API_USER_CHANGE_INFO_POST
+                , params
+                , mEditInfoHandler);
     }
 
 
@@ -331,20 +344,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                                                 int which) {
                                 mEtUserName = (EditText) dialogView.findViewById(R.id.username);
                                 mEtPassWord = (EditText) dialogView.findViewById(R.id.password);
-
-                                //登录
-//                                        params.add(Constants.Keys.KEY_USERNAME,"630248976@qq.com");
-                                //params.add(Constants.Keys.KEY_PASSWORD,"Caspar1995.");
-                                //删除已有参数,防止参数过多
-                                if (params.has(Constants.Keys.KEY_USERNAME))
-                                    params.remove(Constants.Keys.KEY_USERNAME);
-                                if (params.has(Constants.Keys.KEY_PASSWORD))
-                                    params.remove(Constants.Keys.KEY_PASSWORD);
-                                params.add(Constants.Keys.KEY_USERNAME, mEtUserName.getText().toString());
-                                params.add(Constants.Keys.KEY_PASSWORD, mEtPassWord.getText().toString());
-                                HttpUtil.post(Constants.Apis.API_USER_LOGIN_POST
-                                        , params
-                                        , mLogInHandler);
+                                login(mEtUserName.getText().toString(),mEtPassWord.getText().toString());
 
                                 Log.i(TAG, String.valueOf(mEtUserName.getText().toString().equals("630248976@qq.com")));
                                 Log.i(TAG, params + "");
@@ -354,6 +354,20 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 .show();
     }
 
+    public void login(String username, String password) {
+        //删除已有参数,防止参数过多
+        if (params.has(Constants.Keys.KEY_USERNAME))
+            params.remove(Constants.Keys.KEY_USERNAME);
+        if (params.has(Constants.Keys.KEY_PASSWORD))
+            params.remove(Constants.Keys.KEY_PASSWORD);
+        params.add(Constants.Keys.KEY_USERNAME, username);
+        params.add(Constants.Keys.KEY_PASSWORD, password);
+        mCacheUserName = username;
+        mCachePassWord = password;
+        HttpUtil.post(Constants.Apis.API_USER_LOGIN_POST
+                , params
+                , mLogInHandler);
+    }
 
 
 }
