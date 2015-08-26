@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1"
+    android:padding="5dp">
+
+    <TableRow
+        android:layout_margin="@dimen/table_row_editview_margin">
+        <TextView
+            android:text="昵称:"
+            android:textStyle="bold"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="18sp"/>
+
+        <EditText android:id="@+id/et_nickname"
+            android:padding="3dip"
+            android:scrollHorizontally="true"
+            android:textSize="18sp"
+            android:background="@drawable/editview_border"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_margin="@dimen/table_row_editview_margin">
+        <TextView
+            android:text="手机号:"
+            android:textStyle="bold"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="18sp"/>
+
+        <EditText android:id="@+id/et_phone_num"
+            android:padding="3dip"
+            android:scrollHorizontally="true"
+            android:inputType="phone"
+            android:textSize="18sp"
+            android:background="@drawable/editview_border"/>
+    </TableRow>
+
+    <TableRow
+        android:layout_margin="@dimen/table_row_editview_margin">
+        <TextView
+            android:text="QQ号:"
+            android:textStyle="bold"
+            android:gravity="right"
+            android:padding="3dip"
+            android:textSize="18sp"/>
+
+        <EditText android:id="@+id/et_qq"
+            android:padding="3dip"
+            android:scrollHorizontally="true"
+            android:inputType="number"
+            android:textSize="18sp"
+            android:background="@drawable/editview_border"/>
+    </TableRow>
+
+
+</TableLayout>

@@ -16,6 +16,8 @@ public class Constants {
         public static final String
                 API_USER_LOGIN_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/User/login";
         public static final String
+                API_USER_CHANGE_INFO_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/User/changeInfo";
+        public static final String
                 API_GOODS_APPINSERT_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/appInsert";
         public static final String
                 API_GOODS_TESTINSERT_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/testInsert";
@@ -40,12 +42,17 @@ public class Constants {
         //用户
         public static final String KEY_USERNAME = "username";
         public static final String KEY_PASSWORD = "password";
+        public static final String KEY_NICKNAME = "nickname";
+        public static final String KEY_QQ = "qq";
+        public static final String KEY_PHONE = "phone";
 
     }
 
     public final class Values {
         public static final String VALUE_MIN_SIZE_PRE = "s_";
         public static final String VALUE_MIDDLE_SIZE_PRE = "m_";
+
+        public static final String VALUE_SERVICE_NO_RESPONSE = "服务器未响应";
 
     }
 }

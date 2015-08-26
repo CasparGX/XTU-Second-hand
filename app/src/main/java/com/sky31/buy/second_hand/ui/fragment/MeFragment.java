@@ -50,6 +50,12 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private ImageView ivUsericon;
     private TextView tvLoginLink;
 
+    private AlertDialog.Builder builderEditInfo;
+    private EditText etNickName;
+    private EditText etPhoneNum;
+    private EditText etQq;
+
+
 
     private AlertDialog.Builder builderLogin;
     private EditText mEtPassWord;
@@ -61,6 +67,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         builderLogin = new AlertDialog.Builder(getActivity());
+        builderEditInfo = new AlertDialog.Builder(getActivity());
     }
 
     @Override
@@ -86,7 +93,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     }
 
     /*登录handler*/
-    JsonHttpResponseHandler mJsonHttpResponseHandler = new JsonHttpResponseHandler() {
+    JsonHttpResponseHandler mLogInHandler = new JsonHttpResponseHandler() {
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
             super.onSuccess(statusCode, headers, response);
@@ -123,7 +130,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
             super.onFailure(statusCode, headers, responseString, throwable);
 
-            Toast.makeText(getActivity(), "上传失败", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), Constants.Values.VALUE_SERVICE_NO_RESPONSE, Toast.LENGTH_LONG).show();
             /*throwable.printStackTrace();
             Log.i(TAG, " onFailure" + statusCode + " \n" + responseString.toString());*/
         }
@@ -160,7 +167,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             case R.id.tr_edit_info:
                 if (isLogin) {
                     //已登陆进行操作
-
+                    showEditInfoDialog();
                 } else {
                     //未登录
                     showLoginDialog();
@@ -199,7 +206,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         //params.add("file", String.valueOf(getActivity().getResources().getDrawable(R.drawable.loading)));
                         HttpUtil.post(Constants.Apis.API_GOODS_APPINSERT_POST
                                 , params
-                                , mJsonHttpResponseHandler);
+                                , mLogInHandler);
 
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -220,6 +227,93 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 break;
 
         }
+    }
+
+    /*修改信息handler*/
+    JsonHttpResponseHandler mEditInfoHandler = new JsonHttpResponseHandler() {
+
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            super.onSuccess(statusCode, headers, response);
+            Log.i(TAG, "-----------------开始: 接受到JSONObject数据-----------------");
+            Log.i(TAG, response + "");
+            try {
+                if (response.get("result").equals("error")) {
+                    Toast.makeText(getActivity(),"修改失败:"+response.get("msg")+"",Toast.LENGTH_SHORT).show();
+                } else if (response.get("result").equals("success")) {
+                    HttpUtil.post(Constants.Apis.API_USER_LOGIN_POST
+                            , null
+                            , mLogInHandler);
+                } else{
+                    Toast.makeText(getActivity(),Constants.Values.VALUE_SERVICE_NO_RESPONSE,Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Log.i(TAG, "-----------------结束: 接受到JSONObject数据-----------------");
+        }
+
+        @Override
+        public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+            super.onFailure(statusCode, headers, responseString, throwable);
+
+            Toast.makeText(getActivity(), Constants.Values.VALUE_SERVICE_NO_RESPONSE, Toast.LENGTH_LONG).show();
+            /*throwable.printStackTrace();
+            Log.i(TAG, " onFailure" + statusCode + " \n" + responseString.toString());*/
+        }
+
+        public void onFinish() {
+            Log.i(TAG, "onFinish");
+        }
+    };
+
+    /*显示修改用户信息dialog*/
+    private void showEditInfoDialog() {
+        try {
+
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            final View dialogView = inflater.inflate(R.layout.dialog_edit_info, null);
+
+            etNickName  = (EditText) dialogView.findViewById(R.id.et_nickname);
+            etPhoneNum  = (EditText) dialogView.findViewById(R.id.et_phone_num);
+            etQq        = (EditText) dialogView.findViewById(R.id.et_qq);
+            etNickName.setText(userInfo.getString("nickname"));
+            etPhoneNum.setText(userInfo.getString("phone"));
+            etQq.setText(userInfo.getString("qq"));
+
+            builderEditInfo
+                    .setTitle(R.string.editInfo)
+                    .setView(dialogView)
+                    .setPositiveButton("确认修改",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    //删除已有参数,防止参数过多
+                                    if (params.has(Constants.Keys.KEY_NICKNAME))
+                                        params.remove(Constants.Keys.KEY_NICKNAME);
+                                    if (params.has(Constants.Keys.KEY_QQ))
+                                        params.remove(Constants.Keys.KEY_QQ);
+                                    if (params.has(Constants.Keys.KEY_PHONE))
+                                        params.remove(Constants.Keys.KEY_PHONE);
+                                    params.add(Constants.Keys.KEY_NICKNAME, etNickName.getText().toString());
+                                    params.add(Constants.Keys.KEY_PHONE, etPhoneNum.getText().toString());
+                                    params.add(Constants.Keys.KEY_QQ, etQq.getText().toString());
+                                    HttpUtil.post(Constants.Apis.API_USER_CHANGE_INFO_POST
+                                            , params
+                                            , mEditInfoHandler);
+
+                                }
+                            })
+                    .setNegativeButton("取消", null)
+                    .create()
+                    .show();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -250,7 +344,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                                 params.add(Constants.Keys.KEY_PASSWORD, mEtPassWord.getText().toString());
                                 HttpUtil.post(Constants.Apis.API_USER_LOGIN_POST
                                         , params
-                                        , mJsonHttpResponseHandler);
+                                        , mLogInHandler);
 
                                 Log.i(TAG, String.valueOf(mEtUserName.getText().toString().equals("630248976@qq.com")));
                                 Log.i(TAG, params + "");
