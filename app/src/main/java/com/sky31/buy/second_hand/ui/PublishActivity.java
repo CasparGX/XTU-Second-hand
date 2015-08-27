@@ -6,18 +6,25 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
+import com.sky31.buy.second_hand.model.ClassifyInfo;
+import com.sky31.buy.second_hand.ui.fragment.ClassifyFragment;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
@@ -32,6 +39,11 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
 
     /*滑动返回*/
     private SwipeBackLayout mSwipeBackLayout;
+
+    /*填写内容部分*/
+    private Spinner spnClassify;
+    private ArrayList<ClassifyInfo> mClassifyInfo = new ArrayList<>();
+    private ArrayList<String> mClassifyInfoTitle = new ArrayList<>();
 
 
     @Override
@@ -51,6 +63,27 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         ivBackBtn.setOnClickListener(this);
         tvHeaderTitle = (TextView) findViewById(R.id.tv_header_title);
         setTvHeaderTitle(); //修改header标题
+
+        /*填写内容部分*/
+        mClassifyInfo = ClassifyFragment.mClassifyInfo;
+        for (int i = 0; i< mClassifyInfo.size(); i++) {
+            mClassifyInfoTitle.add(mClassifyInfo.get(i).getTitle());
+        }
+        spnClassify = (Spinner) findViewById(R.id.spn_classify);
+        //将可选内容与ArrayAdapter连接起来
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mClassifyInfoTitle);
+
+        //设置下拉列表的风格
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        //将adapter 添加到spinner中
+        spnClassify.setAdapter(adapter);
+
+        //添加事件Spinner事件监听
+        spnClassify.setOnItemSelectedListener(new SpinnerSelectedListener());
+
+        //设置默认值
+        spnClassify.setVisibility(View.VISIBLE);
 
     }
 
@@ -104,4 +137,17 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
 
     /*insert商品handler*/
     JsonHttpResponseHandler mInsertHandler = new JsonHttpResponseHandler();
+
+    //使用数组形式操作
+    class SpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
+
+        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+                                   long arg3) {
+            Toast.makeText(PublishActivity.this,mClassifyInfo.get(arg2).getId()+"",Toast.LENGTH_SHORT).show();
+        }
+
+        public void onNothingSelected(AdapterView<?> arg0) {
+        }
+    }
 }
+

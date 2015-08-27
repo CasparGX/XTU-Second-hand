@@ -56,11 +56,18 @@
 
         <EditText
             android:id="@+id/et_goods_price"
+            android:layout_weight="1"
             android:background="@drawable/editview_border"
             android:padding="@dimen/table_row_editview_padding"
             android:scrollHorizontally="true"
             android:inputType="number"
             android:textSize="18sp" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     </TableRow>
 
     <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
@@ -71,12 +78,16 @@
             android:text="分类:"
             android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/et_goods_classify"
-            android:background="@drawable/editview_border"
-            android:padding="@dimen/table_row_editview_padding"
-            android:scrollHorizontally="true"
-            android:textSize="18sp" />
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spn_classify"
+            android:layout_column="1"
+            android:layout_weight="1"
+            android:background="@drawable/editview_border">
+
+        </Spinner>
+
     </TableRow>
 
     <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">

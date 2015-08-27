@@ -57,7 +57,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
 
 
     /*分类信息*/
-    private ArrayList<ClassifyInfo> mClassifyInfo = new ArrayList<>();
+    public static ArrayList<ClassifyInfo> mClassifyInfo = new ArrayList<>();
 
     /*分类信息布局*/
     private GridView mGvClassify;
