@@ -1,6 +1,5 @@
 package com.sky31.buy.second_hand.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -8,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,6 +33,9 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
 
     private String TAG = PublishActivity.class.getName();
 
+
+    private Intent mIntent;
+
     /*header*/
     private ImageView ivBackBtn;
     private TextView tvHeaderTitle;
@@ -42,14 +45,29 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
 
     /*填写内容部分*/
     private Spinner spnClassify;
+    private Spinner spnTrading;
+    private Spinner spnBargain;
+    private Spinner spnTime;
     private ArrayList<ClassifyInfo> mClassifyInfo = new ArrayList<>();
     private ArrayList<String> mClassifyInfoTitle = new ArrayList<>();
+    private ArrayList<String> mTrading = new ArrayList<>();
+    private ArrayList<String> mBargain = new ArrayList<>();
+    private ArrayList<String> mTime = new ArrayList<>();
+    private EditText etGoodsTitle;
+    private EditText etGoodsDec;
+    private EditText etGoodsPrice;
+    private EditText etNickname;
+    private EditText etPhone;
+    private EditText etQq;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publish);
+
+        //Intent
+        mIntent = getIntent();
 
         //设置状态栏颜色
         BuyApp.setStatusBarColor(this);
@@ -64,29 +82,84 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         tvHeaderTitle = (TextView) findViewById(R.id.tv_header_title);
         setTvHeaderTitle(); //修改header标题
 
-        /*填写内容部分*/
+        /*EditText*/
+        etGoodsDec = (EditText) findViewById(R.id.et_goods_dec);
+        etGoodsTitle = (EditText) findViewById(R.id.et_goods_title);
+        etGoodsPrice = (EditText) findViewById(R.id.et_goods_price);
+        etNickname = (EditText) findViewById(R.id.et_nickname);
+        etPhone = (EditText) findViewById(R.id.et_phone_num);
+        etQq = (EditText) findViewById(R.id.et_qq);
+        setSellerInfo();
+
+        /* start - 分类spinner */
         mClassifyInfo = ClassifyFragment.mClassifyInfo;
         for (int i = 0; i< mClassifyInfo.size(); i++) {
             mClassifyInfoTitle.add(mClassifyInfo.get(i).getTitle());
         }
         spnClassify = (Spinner) findViewById(R.id.spn_classify);
         //将可选内容与ArrayAdapter连接起来
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mClassifyInfoTitle);
-
+        ArrayAdapter<String> classifySpnAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mClassifyInfoTitle);
         //设置下拉列表的风格
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+        classifySpnAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         //将adapter 添加到spinner中
-        spnClassify.setAdapter(adapter);
-
+        spnClassify.setAdapter(classifySpnAdapter);
         //添加事件Spinner事件监听
-        spnClassify.setOnItemSelectedListener(new SpinnerSelectedListener());
-
+        spnClassify.setOnItemSelectedListener(new ClassifySpinnerSelectedListener());
         //设置默认值
         spnClassify.setVisibility(View.VISIBLE);
+        /* end - 分类spinner */
 
+        /* start - trading spinner */
+        mTrading.add("自取");
+        mTrading.add("送货上门");
+        spnTrading = (Spinner) findViewById(R.id.spn_goods_trading);
+        //将可选内容与ArrayAdapter连接起来
+        ArrayAdapter<String> tradingSpnAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mTrading);
+        //设置下拉列表的风格
+        tradingSpnAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //将adapter 添加到spinner中
+        spnTrading.setAdapter(tradingSpnAdapter);
+        //添加事件Spinner事件监听
+        spnTrading.setOnItemSelectedListener(new TradingSpinnerSelectedListener());
+        //设置默认值
+        spnTrading.setVisibility(View.VISIBLE);
+        /* end - trading spinner */
+
+        /* start - bargain spinner */
+        mBargain.add("是");
+        mBargain.add("否");
+        spnBargain = (Spinner) findViewById(R.id.spn_goods_bargain);
+        //将可选内容与ArrayAdapter连接起来
+        ArrayAdapter<String> bargainSpnAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mBargain);
+        //设置下拉列表的风格
+        bargainSpnAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //将adapter 添加到spinner中
+        spnBargain.setAdapter(bargainSpnAdapter);
+        //添加事件Spinner事件监听
+        spnBargain.setOnItemSelectedListener(new BargainSpinnerSelectedListener());
+        //设置默认值
+        spnBargain.setVisibility(View.VISIBLE);
+        /* end - bargain spinner */
+
+        /* start - time spinner */
+        mTime.add("30");
+        mTime.add("15");
+        mTime.add("7");
+        spnTime = (Spinner) findViewById(R.id.spn_goods_time);
+        //将可选内容与ArrayAdapter连接起来
+        ArrayAdapter<String> timeSpnAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mTime);
+        //设置下拉列表的风格
+        timeSpnAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        //将adapter 添加到spinner中
+        spnTime.setAdapter(timeSpnAdapter);
+        //添加事件Spinner事件监听
+        spnTime.setOnItemSelectedListener(new TimeSpinnerSelectedListener());
+        //设置默认值
+        spnTime.setVisibility(View.VISIBLE);
+        /* end - time spinner */
     }
 
+    /*返回键*/
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -95,10 +168,19 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
 
     /*修改header标题*/
     private void setTvHeaderTitle() {
-        Intent mIntent = getIntent();
             String title = mIntent.hasExtra("headerTitle")
                     ? mIntent.getStringExtra("headerTitle") : getResources().getString(R.string.app_title);
             tvHeaderTitle.setText(title);
+    }
+
+    /*填充卖家信息*/
+    private void setSellerInfo() {
+        String seller = mIntent.getStringExtra("seller");
+        String phone = mIntent.getStringExtra("phone");
+        String qq = mIntent.getStringExtra("qq");
+        etNickname.setText(seller);
+        etPhone.setText(phone);
+        etQq.setText(qq);
     }
 
     /*点击事件*/
@@ -138,12 +220,51 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
     /*insert商品handler*/
     JsonHttpResponseHandler mInsertHandler = new JsonHttpResponseHandler();
 
-    //使用数组形式操作
-    class SpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
+    /*分类信息spinner*/
+    class ClassifySpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
             Toast.makeText(PublishActivity.this,mClassifyInfo.get(arg2).getId()+"",Toast.LENGTH_SHORT).show();
+        }
+
+        public void onNothingSelected(AdapterView<?> arg0) {
+        }
+    }
+
+    /*trading spinner*/
+    private class TradingSpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
+        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+                                   long arg3) {
+            Toast.makeText(PublishActivity.this,(arg2+1)+"",Toast.LENGTH_SHORT).show();
+        }
+
+        public void onNothingSelected(AdapterView<?> arg0) {
+        }
+    }
+
+    /*bargain spinner*/
+    private class BargainSpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
+
+        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+                                   long arg3) {
+            if (mBargain.get(arg2).equals("是")) {
+                Toast.makeText(PublishActivity.this,1+"",Toast.LENGTH_SHORT).show();
+            } else if (mBargain.get(arg2).equals("否")) {
+                Toast.makeText(PublishActivity.this,0+"",Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        public void onNothingSelected(AdapterView<?> arg0) {
+        }
+    }
+
+    /*time spinner*/
+    private class TimeSpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
+        public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
+                                   long arg3) {
+                Toast.makeText(PublishActivity.this,mTime.get(arg2),Toast.LENGTH_SHORT).show();
+
         }
 
         public void onNothingSelected(AdapterView<?> arg0) {

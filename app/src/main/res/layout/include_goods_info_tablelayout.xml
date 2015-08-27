@@ -58,9 +58,9 @@
             android:id="@+id/et_goods_price"
             android:layout_weight="1"
             android:background="@drawable/editview_border"
+            android:inputType="number"
             android:padding="@dimen/table_row_editview_padding"
             android:scrollHorizontally="true"
-            android:inputType="number"
             android:textSize="18sp" />
     </TableRow>
 
@@ -79,14 +79,13 @@
             android:textSize="20sp" />
 
         <Spinner
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/spn_classify"
+            android:layout_height="match_parent"
             android:layout_column="1"
             android:layout_weight="1"
-            android:background="@drawable/editview_border">
-
-        </Spinner>
+            android:background="@drawable/editview_border"
+            android:textSize="18sp"
+            android:spinnerMode="dropdown"></Spinner>
 
     </TableRow>
 
@@ -98,12 +97,14 @@
             android:text="上架天数:"
             android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/et_goods_time"
+        <Spinner
+            android:id="@+id/spn_goods_time"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:layout_weight="1"
             android:background="@drawable/editview_border"
-            android:padding="@dimen/table_row_editview_padding"
-            android:scrollHorizontally="true"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:spinnerMode="dropdown"></Spinner>
     </TableRow>
 
     <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
@@ -114,12 +115,15 @@
             android:text="交易方式:"
             android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/et_goods_trading"
+        <Spinner
+            android:id="@+id/spn_goods_trading"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:layout_weight="1"
             android:background="@drawable/editview_border"
-            android:padding="@dimen/table_row_editview_padding"
-            android:scrollHorizontally="true"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:spinnerMode="dropdown"></Spinner>
+
     </TableRow>
 
     <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
@@ -130,12 +134,15 @@
             android:text="是否可讲价:"
             android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/et_goods_bargain"
+
+        <Spinner
+            android:id="@+id/spn_goods_bargain"
+            android:layout_height="match_parent"
+            android:layout_column="1"
+            android:layout_weight="1"
             android:background="@drawable/editview_border"
-            android:padding="@dimen/table_row_editview_padding"
-            android:scrollHorizontally="true"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:spinnerMode="dropdown"></Spinner>
     </TableRow>
 
     <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
@@ -148,6 +155,7 @@
 
         <EditText
             android:id="@+id/et_phone_num"
+            android:layout_weight="1"
             android:background="@drawable/editview_border"
             android:inputType="phone"
             android:padding="@dimen/table_row_editview_padding"
@@ -166,6 +174,7 @@
         <EditText
             android:id="@+id/et_qq"
             android:layout_width="match_parent"
+            android:layout_weight="1"
             android:background="@drawable/editview_border"
             android:inputType="number"
             android:padding="@dimen/table_row_editview_padding"
@@ -183,6 +192,7 @@
 
         <EditText
             android:id="@+id/et_nickname"
+            android:layout_weight="1"
             android:background="@drawable/editview_border"
             android:padding="@dimen/table_row_editview_padding"
             android:scrollHorizontally="true"
