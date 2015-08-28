@@ -146,10 +146,10 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                 isAll = false;
                 //params.add("limitID", String.valueOf(limitID));
                 getGoodsData(null, i);
-                Toast.makeText(getActivity()
+                /*Toast.makeText(getActivity()
                         ,"正在搜索: "+mClassifyInfo.get(i).getTitle()
                         ,Toast.LENGTH_SHORT)
-                        .show();
+                        .show();*/
             }
         });
         mGvClassify.setAdapter(adapter);
