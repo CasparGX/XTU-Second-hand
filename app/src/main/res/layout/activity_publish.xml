@@ -2,10 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/themeBgColor"
     android:clipToPadding="false"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:background="@color/themeBgColor"
     tools:context="com.sky31.buy.second_hand.ui.PublishActivity">
 
     <include layout="@layout/include_header_with_button" />
@@ -21,44 +21,52 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/iv_file1"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
                     android:src="@drawable/waiter" />
+
                 <ImageView
                     android:id="@+id/iv_file2"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
                     android:src="@drawable/waiter" />
+
                 <ImageView
                     android:id="@+id/iv_file3"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
                     android:src="@drawable/waiter" />
             </LinearLayout>
 
 
-            <include layout="@layout/include_goods_info_tablelayout"/>
+            <include layout="@layout/include_goods_info_tablelayout" />
 
             <TextView
-                android:layout_gravity="center"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="点击发布按钮表示您已阅读并同意 商品发布协议"/>
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="点击发布按钮表示您已阅读并同意 商品发布协议" />
 
             <Button
                 android:id="@+id/btn_publish"
-                android:layout_gravity="center"
-                android:padding="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:background="@drawable/editview_border"
-                android:text="同意协议并发布"/>
+                android:padding="8dp"
+                android:text="同意协议并发布" />
 
         </LinearLayout>
 

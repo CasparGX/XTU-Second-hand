@@ -2,7 +2,7 @@ package com.sky31.buy.second_hand.ui;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -25,6 +25,7 @@ import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.ClassifyInfo;
 import com.sky31.buy.second_hand.ui.fragment.ClassifyFragment;
+import com.sky31.buy.second_hand.util.CompImageUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
 import org.apache.http.Header;
@@ -79,6 +80,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
     private ImageView ivFile1;
     private ImageView ivFile2;
     private ImageView ivFile3;
+    private int imgFlag;
 
 
     @Override
@@ -107,6 +109,8 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         ivFile2 = (ImageView) findViewById(R.id.iv_file2);
         ivFile3 = (ImageView) findViewById(R.id.iv_file3);
         ivFile1.setOnClickListener(this);
+        ivFile2.setOnClickListener(this);
+        ivFile3.setOnClickListener(this);
 
         /*EditText*/
         etGoodsDec = (EditText) findViewById(R.id.et_goods_dec);
@@ -229,16 +233,24 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
 
             case R.id.iv_file1:
                 //图片文件
-                addImageFile();
+                addImageFile(1);
+                break;
+            case R.id.iv_file2:
+                //图片文件
+                addImageFile(2);
+                break;
+            case R.id.iv_file3:
+                //图片文件
+                addImageFile(3);
                 break;
         }
     }
 
     /*添加图片文件*/
-    private void addImageFile() {
+    private void addImageFile(int imgFlag) {
+        this.imgFlag = imgFlag;
         Intent i = new Intent(
                 Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
         startActivityForResult(i, RESULT_LOAD_IMAGE);
     }
 
@@ -258,12 +270,29 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
 
-            File file = new File(picturePath);
-            String fileLength = file.length()+"";
-
-            ImageView imageView = (ImageView) findViewById(R.id.iv_file1);
-            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-            Log.i(TAG, fileLength+"\n"+picturePath+"\n"+(4096*4096));
+            //图片压缩工具类
+            CompImageUtil compImage = new CompImageUtil();
+            Bitmap bitmapImage = compImage.getimage(picturePath, 1500f, 1500f, 500);
+            String tmpImagePath = getCacheDir()+"tmp"+this.imgFlag+".jpg";
+            compImage.saveBitmapFile(bitmapImage, tmpImagePath);
+            switch (this.imgFlag) {
+                case 1:
+                    ivFile1.setImageBitmap(bitmapImage);
+                    break;
+                case 2:
+                    ivFile2.setImageBitmap(bitmapImage);
+                    break;
+                case 3:
+                    ivFile3.setImageBitmap(bitmapImage);
+                    break;
+            }
+            /*上传图片测试样例*/
+            File file = new File(tmpImagePath);
+            if(file.exists() && file.length()>0) {
+                setParamsFile("file"+this.imgFlag, file);
+            } else {
+                Log.i(TAG, "文件不存在");
+            }
         }
 
     }
@@ -272,31 +301,22 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
      *  spinner选中的值在spinnerSelectListener中设置setParams
      * */
     private void publishGoods() {
-        setParams(Constants.Keys.KEY_TITLE,etGoodsTitle.getText()+"");//title
-        setParams(Constants.Keys.KEY_DESCRIBE,etGoodsDec.getText()+"");//dec
-        setParams(Constants.Keys.KEY_PRICE,etGoodsPrice.getText()+"");//price
+        if (params.has("file1")){
+            setParams(Constants.Keys.KEY_TITLE,etGoodsTitle.getText()+"");//title
+            setParams(Constants.Keys.KEY_DESCRIBE,etGoodsDec.getText()+"");//dec
+            setParams(Constants.Keys.KEY_PRICE,etGoodsPrice.getText()+"");//price
 
-        setParams(Constants.Keys.KEY_SELLER,etNickname.getText()+"");//seller
-        setParams(Constants.Keys.KEY_PHONE,etPhone.getText()+"");//phone
-        setParams(Constants.Keys.KEY_QQ,etQq.getText()+"");//qq
+            setParams(Constants.Keys.KEY_SELLER,etNickname.getText()+"");//seller
+            setParams(Constants.Keys.KEY_PHONE,etPhone.getText()+"");//phone
+            setParams(Constants.Keys.KEY_QQ,etQq.getText()+"");//qq
 
-        /*上传图片测试样例*/
-        File file = new File("/mnt/sdcard/","home.jpg");
-        if(file.exists() && file.length()>0) {
-            try {
-                params.put("file1", file, "image/jpg");
-                params.put("file2", file, "image/jpg");
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            params.setForceMultipartEntityContentType(true);
+            HttpUtil.post(Constants.Apis.API_GOODS_APPINSERT_POST
+                    , params
+                    , mInsertHandler);
         } else {
-            Log.i(TAG, "文件不存在");
+            Toast.makeText(PublishActivity.this, "请选择一张图片", Toast.LENGTH_SHORT).show();
         }
-        Log.i(TAG, params+"");
-        params.setForceMultipartEntityContentType(true);
-        HttpUtil.post(Constants.Apis.API_GOODS_APPINSERT_POST
-                , params
-                , mInsertHandler);
 
     }
 
@@ -306,6 +326,18 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
             params.remove(key);
         }
         params.add(key, value);
+    }
+
+    /*合成网络请求所附带文件*/
+    public void setParamsFile(String key, File file) {
+        try {
+            if (params.has(key)) {
+                params.remove(key);
+            }
+            params.put(key, file, "image/jpg");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     private void insert() {
