@@ -18,6 +18,7 @@
             android:layout_weight="1"
             android:background="@drawable/editview_border"
             android:hint="最多输入18字"
+            android:maxLength="18"
             android:padding="@dimen/table_row_editview_padding"
             android:scrollHorizontally="true"
             android:singleLine="true"
@@ -192,6 +193,7 @@
             android:textSize="20sp" />
 
         <EditText
+            android:editable="false"
             android:id="@+id/et_nickname"
             android:layout_weight="1"
             android:background="@drawable/editview_border"

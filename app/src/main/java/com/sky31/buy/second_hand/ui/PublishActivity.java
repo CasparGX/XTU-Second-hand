@@ -1,12 +1,17 @@
 package com.sky31.buy.second_hand.ui;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -22,6 +27,10 @@ import com.sky31.buy.second_hand.model.ClassifyInfo;
 import com.sky31.buy.second_hand.ui.fragment.ClassifyFragment;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
+import org.apache.http.Header;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -30,10 +39,15 @@ import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 public class PublishActivity extends SwipeBackActivity implements View.OnClickListener {
-
+    /*TAG*/
     private String TAG = PublishActivity.class.getName();
 
+    /*网络参数*/
+    RequestParams params = new RequestParams();
 
+    private static int RESULT_LOAD_IMAGE = 1;
+
+    /*Intent*/
     private Intent mIntent;
 
     /*header*/
@@ -59,6 +73,12 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
     private EditText etNickname;
     private EditText etPhone;
     private EditText etQq;
+    private Button btnPublish;
+
+    /*图片file*/
+    private ImageView ivFile1;
+    private ImageView ivFile2;
+    private ImageView ivFile3;
 
 
     @Override
@@ -81,6 +101,12 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         ivBackBtn.setOnClickListener(this);
         tvHeaderTitle = (TextView) findViewById(R.id.tv_header_title);
         setTvHeaderTitle(); //修改header标题
+
+        /*图片file*/
+        ivFile1 = (ImageView) findViewById(R.id.iv_file1);
+        ivFile2 = (ImageView) findViewById(R.id.iv_file2);
+        ivFile3 = (ImageView) findViewById(R.id.iv_file3);
+        ivFile1.setOnClickListener(this);
 
         /*EditText*/
         etGoodsDec = (EditText) findViewById(R.id.et_goods_dec);
@@ -157,6 +183,10 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         //设置默认值
         spnTime.setVisibility(View.VISIBLE);
         /* end - time spinner */
+
+        /*发布按钮*/
+        btnPublish = (Button) findViewById(R.id.btn_publish);
+        btnPublish.setOnClickListener(this);
     }
 
     /*返回键*/
@@ -191,7 +221,91 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
                 //返回按钮
                 onBackPressed();
                 break;
+
+            case R.id.btn_publish:
+                //发布按钮
+                publishGoods();
+                break;
+
+            case R.id.iv_file1:
+                //图片文件
+                addImageFile();
+                break;
         }
+    }
+
+    /*添加图片文件*/
+    private void addImageFile() {
+        Intent i = new Intent(
+                Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+
+        startActivityForResult(i, RESULT_LOAD_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            Uri selectedImage = data.getData();
+            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+            Cursor cursor = getContentResolver().query(selectedImage,
+                    filePathColumn, null, null, null);
+            cursor.moveToFirst();
+
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            String picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            File file = new File(picturePath);
+            String fileLength = file.length()+"";
+
+            ImageView imageView = (ImageView) findViewById(R.id.iv_file1);
+            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+            Log.i(TAG, fileLength+"\n"+picturePath+"\n"+(4096*4096));
+        }
+
+    }
+
+    /** 发布商品
+     *  spinner选中的值在spinnerSelectListener中设置setParams
+     * */
+    private void publishGoods() {
+        setParams(Constants.Keys.KEY_TITLE,etGoodsTitle.getText()+"");//title
+        setParams(Constants.Keys.KEY_DESCRIBE,etGoodsDec.getText()+"");//dec
+        setParams(Constants.Keys.KEY_PRICE,etGoodsPrice.getText()+"");//price
+
+        setParams(Constants.Keys.KEY_SELLER,etNickname.getText()+"");//seller
+        setParams(Constants.Keys.KEY_PHONE,etPhone.getText()+"");//phone
+        setParams(Constants.Keys.KEY_QQ,etQq.getText()+"");//qq
+
+        /*上传图片测试样例*/
+        File file = new File("/mnt/sdcard/","home.jpg");
+        if(file.exists() && file.length()>0) {
+            try {
+                params.put("file1", file, "image/jpg");
+                params.put("file2", file, "image/jpg");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        } else {
+            Log.i(TAG, "文件不存在");
+        }
+        Log.i(TAG, params+"");
+        params.setForceMultipartEntityContentType(true);
+        HttpUtil.post(Constants.Apis.API_GOODS_APPINSERT_POST
+                , params
+                , mInsertHandler);
+
+    }
+
+    /*合成网络请求参数*/
+    public void setParams(String key, String value) {
+        if (params.has(key)) {
+            params.remove(key);
+        }
+        params.add(key, value);
     }
 
     private void insert() {
@@ -204,7 +318,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
                 params.put("file2", file);
                 params.put("file3", file);
                 Log.i(TAG, Environment.getExternalStorageDirectory().toString());
-                HttpUtil.post(Constants.Apis.API_GOODS_APPINSERT_POST
+                HttpUtil.post(Constants.Apis.API_GOODS_TESTINSERT_POST
                         , params
                         , mInsertHandler);
 
@@ -218,14 +332,38 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
     }
 
     /*insert商品handler*/
-    JsonHttpResponseHandler mInsertHandler = new JsonHttpResponseHandler();
+    JsonHttpResponseHandler mInsertHandler = new JsonHttpResponseHandler() {
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            super.onSuccess(statusCode, headers, response);
+            try {
+                if (response.getString("result").equals("error")) {
+                    //上传出错
+                    Toast.makeText(PublishActivity.this, response.getString("msg"), Toast.LENGTH_SHORT).show();
+                } else if (response.getString("result").equals("success")) {
+                    //上传成功
+                    Toast.makeText(PublishActivity.this, response.getString("msg"), Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+            super.onFailure(statusCode, headers, responseString, throwable);
+            Log.i(TAG, statusCode + "\n" + responseString +" \n" + throwable);
+        }
+    };
 
     /*分类信息spinner*/
     class ClassifySpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
 
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
-            Toast.makeText(PublishActivity.this,mClassifyInfo.get(arg2).getId()+"",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(PublishActivity.this,mClassifyInfo.get(arg2).getId()+"",Toast.LENGTH_SHORT).show();
+            setParams(Constants.Keys.KEY_TYPE, mClassifyInfo.get(arg2).getId()+"");//type
         }
 
         public void onNothingSelected(AdapterView<?> arg0) {
@@ -236,7 +374,8 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
     private class TradingSpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
-            Toast.makeText(PublishActivity.this,(arg2+1)+"",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(PublishActivity.this,(arg2+1)+"",Toast.LENGTH_SHORT).show();
+            setParams(Constants.Keys.KEY_TRADING, (arg2+1)+"");//trading
         }
 
         public void onNothingSelected(AdapterView<?> arg0) {
@@ -249,9 +388,11 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
             if (mBargain.get(arg2).equals("是")) {
-                Toast.makeText(PublishActivity.this,1+"",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(PublishActivity.this,1+"",Toast.LENGTH_SHORT).show();
+                setParams(Constants.Keys.KEY_BARGAIN, 1+"");//bargain
             } else if (mBargain.get(arg2).equals("否")) {
-                Toast.makeText(PublishActivity.this,0+"",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(PublishActivity.this,0+"",Toast.LENGTH_SHORT).show();
+                setParams(Constants.Keys.KEY_BARGAIN, 0+"");//bargain
             }
         }
 
@@ -263,8 +404,8 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
     private class TimeSpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
-                Toast.makeText(PublishActivity.this,mTime.get(arg2),Toast.LENGTH_SHORT).show();
-
+            //Toast.makeText(PublishActivity.this,mTime.get(arg2),Toast.LENGTH_SHORT).show();
+            setParams(Constants.Keys.KEY_INTERVAL, mTime.get(arg2) + "");//interval
         }
 
         public void onNothingSelected(AdapterView<?> arg0) {
