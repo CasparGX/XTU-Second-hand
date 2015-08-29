@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#ffffff</color><!--白色-->
+    <color name="gray">#ccc</color><!--灰色-->
     <color name="themeColor">#F44336</color><!--主题颜色-->
     <color name="themeBgColor">#f7f7f7</color><!--主题背景颜色-->
     <color name="itemClick">#f7f7f7</color><!--listview gridview点击时颜色-->

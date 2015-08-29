@@ -1,205 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:padding="@dimen/table_row_editview_margin"
-    android:stretchColumns="1">
+    android:layout_width="match_parent"
+    android:orientation="vertical">
 
-    <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
-
-        <TextView
-            android:gravity="right"
-            android:padding="3dip"
-            android:text="商品名称:"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/et_goods_title"
-            android:layout_weight="1"
-            android:background="@drawable/editview_border"
-            android:hint="最多输入18字"
-            android:maxLength="18"
-            android:padding="@dimen/table_row_editview_padding"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:textColorHint="#ccc"
-            android:textSize="18sp" />
-    </TableRow>
-
-    <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
-
-        <TextView
-            android:gravity="right"
-            android:padding="3dip"
-            android:text="商品详情:"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/et_goods_dec"
-            android:layout_height="100dp"
-            android:layout_weight="1"
-            android:background="@drawable/editview_border"
-            android:gravity="left|top"
-            android:hint="描述商品的用途、新旧程度、原价等。至少15字。"
-            android:padding="@dimen/table_row_editview_padding"
-            android:scrollHorizontally="false"
-            android:singleLine="false"
-            android:textColorHint="#ccc"
-            android:textSize="18sp" />
-    </TableRow>
-
-    <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
-
-        <TextView
-            android:gravity="right"
-            android:padding="3dip"
-            android:text="价格:"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/et_goods_price"
-            android:layout_weight="1"
-            android:background="@drawable/editview_border"
-            android:inputType="number"
-            android:padding="@dimen/table_row_editview_padding"
-            android:scrollHorizontally="true"
-            android:textSize="18sp" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </TableRow>
-
-    <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
-
-        <TextView
-            android:gravity="right"
-            android:padding="3dip"
-            android:text="分类:"
-            android:textSize="20sp" />
-
-        <Spinner
-            android:id="@+id/spn_classify"
-            android:layout_height="match_parent"
-            android:layout_column="1"
-            android:layout_weight="1"
-            android:background="@drawable/editview_border"
-            android:textSize="18sp"
-            android:spinnerMode="dropdown"></Spinner>
-
-    </TableRow>
-
-    <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
-
-        <TextView
-            android:gravity="right"
-            android:padding="3dip"
-            android:text="上架天数:"
-            android:textSize="20sp" />
-
-        <Spinner
-            android:id="@+id/spn_goods_time"
-            android:layout_height="match_parent"
-            android:layout_column="1"
-            android:layout_weight="1"
-            android:background="@drawable/editview_border"
-            android:textSize="18sp"
-            android:spinnerMode="dropdown"></Spinner>
-    </TableRow>
-
-    <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
-
-        <TextView
-            android:gravity="right"
-            android:padding="3dip"
-            android:text="交易方式:"
-            android:textSize="20sp" />
-
-        <Spinner
-            android:id="@+id/spn_goods_trading"
-            android:layout_height="match_parent"
-            android:layout_column="1"
-            android:layout_weight="1"
-            android:background="@drawable/editview_border"
-            android:textSize="18sp"
-            android:spinnerMode="dropdown"></Spinner>
-
-    </TableRow>
-
-    <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
-
-        <TextView
-            android:gravity="right"
-            android:padding="3dip"
-            android:text="是否可讲价:"
-            android:textSize="20sp" />
-
-
-        <Spinner
-            android:id="@+id/spn_goods_bargain"
-            android:layout_height="match_parent"
-            android:layout_column="1"
-            android:layout_weight="1"
-            android:background="@drawable/editview_border"
-            android:textSize="18sp"
-            android:spinnerMode="dropdown"></Spinner>
-    </TableRow>
-
-    <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
-
-        <TextView
-            android:gravity="right"
-            android:padding="3dip"
-            android:text="手机号:"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/et_phone_num"
-            android:layout_weight="1"
-            android:background="@drawable/editview_border"
-            android:inputType="phone"
-            android:padding="@dimen/table_row_editview_padding"
-            android:scrollHorizontally="true"
-            android:textSize="18sp" />
-    </TableRow>
-
-    <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
-
-        <TextView
-            android:gravity="right"
-            android:padding="3dip"
-            android:text="QQ号:"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/et_qq"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/editview_border"
-            android:inputType="number"
-            android:padding="@dimen/table_row_editview_padding"
-            android:scrollHorizontally="true"
-            android:textSize="18sp" />
-    </TableRow>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:padding="10dp">
+            <EditText
+                android:id="@+id/et_goods_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/blank_bg"
+                android:hint="标题"
+                android:maxLength="18"
+                android:padding="@dimen/table_row_editview_padding"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:textColorHint="#ccc"
+                android:textSize="18sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_margin="5dp"
+                android:layout_height="0.8dp"
+                android:background="@color/gray"/>
+            <EditText
+                android:id="@+id/et_goods_dec"
+                android:layout_height="100dp"
+                android:layout_width="match_parent"
+                android:background="@drawable/blank_bg"
+                android:gravity="left|top"
+                android:hint="描述商品的用途、新旧程度、原价等。至少15字。"
+                android:padding="@dimen/table_row_editview_padding"
+                android:scrollHorizontally="false"
+                android:singleLine="false"
+                android:textColorHint="#ccc"
+                android:textSize="18sp" />
 
-    <TableRow android:layout_marginTop="@dimen/table_row_editview_margin">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal"
+                android:background="@color/white">
 
-        <TextView
-            android:gravity="right"
-            android:padding="3dip"
-            android:text="昵称:"
-            android:textSize="20sp" />
+                <ImageView
+                    android:id="@+id/iv_file1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/waiter"/>
 
-        <EditText
-            android:editable="false"
-            android:id="@+id/et_nickname"
-            android:layout_weight="1"
-            android:background="@drawable/editview_border"
-            android:padding="@dimen/table_row_editview_padding"
-            android:scrollHorizontally="true"
-            android:textSize="18sp" />
-    </TableRow>
+                <ImageView
+                    android:id="@+id/iv_file2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/waiter" />
 
-</TableLayout>
+                <ImageView
+                    android:id="@+id/iv_file3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/waiter" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1"
+        android:layout_marginTop="5dp">
+
+
+        <TableRow android:layout_marginTop="@dimen/table_row_editview_margin"
+            android:background="@color/white"
+            android:padding="@dimen/table_row_editview_padding">
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text="价格:"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_goods_price"
+                android:layout_weight="1"
+                android:background="@drawable/blank_bg"
+                android:hint="￥"
+                android:inputType="number"
+                android:padding="@dimen/table_row_editview_padding"
+                android:scrollHorizontally="true"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/table_row_editview_margin"
+            android:background="@color/white"
+            android:padding="@dimen/table_row_editview_padding">
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text="分类:"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spn_classify"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:background="@drawable/blank_bg"
+                android:spinnerMode="dropdown"
+                android:textSize="18sp"></Spinner>
+
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/table_row_editview_margin"
+            android:background="@color/white"
+            android:padding="@dimen/table_row_editview_padding">
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text="上架天数:"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spn_goods_time"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:background="@drawable/blank_bg"
+                android:spinnerMode="dropdown"
+                android:textSize="18sp"></Spinner>
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/table_row_editview_margin"
+            android:background="@color/white"
+            android:padding="@dimen/table_row_editview_padding">
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text="交易方式:"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spn_goods_trading"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:background="@drawable/blank_bg"
+                android:spinnerMode="dropdown"
+                android:textSize="18sp"></Spinner>
+
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/table_row_editview_margin"
+            android:background="@color/white"
+            android:padding="@dimen/table_row_editview_padding">
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text="是否可讲价:"
+                android:textSize="20sp" />
+
+
+            <Spinner
+                android:id="@+id/spn_goods_bargain"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:layout_weight="1"
+                android:background="@drawable/blank_bg"
+                android:spinnerMode="dropdown"
+                android:textSize="18sp"></Spinner>
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/table_row_editview_margin"
+            android:background="@color/white"
+            android:padding="@dimen/table_row_editview_padding">
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text="手机号:"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_phone_num"
+                android:layout_weight="1"
+                android:background="@drawable/blank_bg"
+                android:inputType="phone"
+                android:padding="@dimen/table_row_editview_padding"
+                android:scrollHorizontally="true"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/table_row_editview_margin"
+            android:background="@color/white"
+            android:padding="@dimen/table_row_editview_padding">
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text="QQ号:"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_qq"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/blank_bg"
+                android:inputType="number"
+                android:padding="@dimen/table_row_editview_padding"
+                android:scrollHorizontally="true"
+                android:textSize="18sp" />
+        </TableRow>
+
+        <TableRow android:layout_marginTop="@dimen/table_row_editview_margin"
+            android:background="@color/white"
+            android:padding="@dimen/table_row_editview_padding">
+
+            <TextView
+                android:gravity="right"
+                android:padding="3dip"
+                android:text="昵称:"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_nickname"
+                android:layout_weight="1"
+                android:background="@drawable/blank_bg"
+                android:editable="false"
+                android:padding="@dimen/table_row_editview_padding"
+                android:scrollHorizontally="true"
+                android:textSize="18sp" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>
