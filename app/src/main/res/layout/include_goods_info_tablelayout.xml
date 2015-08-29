@@ -126,6 +126,12 @@
                 android:spinnerMode="dropdown"
                 android:textSize="18sp"></Spinner>
 
+            <TextView android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="∨"
+                android:gravity="center"
+                android:paddingRight="8dp"/>
+
         </TableRow>
 
         <TableRow android:layout_marginTop="@dimen/table_row_editview_margin"
@@ -146,6 +152,11 @@
                 android:background="@drawable/blank_bg"
                 android:spinnerMode="dropdown"
                 android:textSize="18sp"></Spinner>
+            <TextView android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="∨"
+                android:gravity="center"
+                android:paddingRight="8dp"/>
         </TableRow>
 
         <TableRow android:layout_marginTop="@dimen/table_row_editview_margin"
@@ -166,6 +177,11 @@
                 android:background="@drawable/blank_bg"
                 android:spinnerMode="dropdown"
                 android:textSize="18sp"></Spinner>
+            <TextView android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="∨"
+                android:gravity="center"
+                android:paddingRight="8dp"/>
 
         </TableRow>
 
@@ -188,6 +204,11 @@
                 android:background="@drawable/blank_bg"
                 android:spinnerMode="dropdown"
                 android:textSize="18sp"></Spinner>
+            <TextView android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:text="∨"
+                android:gravity="center"
+                android:paddingRight="8dp"/>
         </TableRow>
 
         <TableRow android:layout_marginTop="@dimen/table_row_editview_margin"
@@ -245,6 +266,7 @@
                 android:id="@+id/et_nickname"
                 android:layout_weight="1"
                 android:background="@drawable/blank_bg"
+                android:textColor="@color/gray"
                 android:editable="false"
                 android:padding="@dimen/table_row_editview_padding"
                 android:scrollHorizontally="true"

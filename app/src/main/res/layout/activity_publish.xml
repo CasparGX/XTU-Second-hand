@@ -21,17 +21,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:focusable="true"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            android:paddingBottom="8dp">
 
 
             <include layout="@layout/include_goods_info_tablelayout" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="点击发布按钮表示您已阅读并同意 商品发布协议" />
 
             <Button
                 android:id="@+id/btn_publish"
@@ -41,6 +35,13 @@
                 android:background="@drawable/editview_border"
                 android:padding="8dp"
                 android:text="同意协议并发布" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="点击发布按钮表示您已阅读并同意 商品发布协议" />
 
         </LinearLayout>
 
