@@ -9,6 +9,7 @@
     <dimen name="table_row_marginTop">20dp</dimen>
 
     <dimen name="table_row_editview_margin">0.8dp</dimen>
+    <dimen name="table_row_margin">8dp</dimen>
     <dimen name="table_row_editview_padding">5dp</dimen>
 
     <dimen name="usericon_layout_margin">10dp</dimen>
