@@ -10,6 +10,8 @@ public class Constants {
         public static final String
                 API_GOODS_LIST_GET = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/query?";
         public static final String
+                API_GOODS_SOLDOUT_GET = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/soldOut?";
+        public static final String
                 API_GOODS_CLASSIFY_GET = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/getClassify";
 
 
@@ -39,6 +41,7 @@ public class Constants {
         public static final String KEY_TRADING= "trading";
         public static final String KEY_SELLER= "seller";
         public static final String KEY_BARGAIN= "bargain";
+        public static final String KEY_GID= "gid";
 
         //缓存
         public static final String KEY_CACHE_HOME_CHECK = "checkCacheHome";
@@ -54,6 +57,7 @@ public class Constants {
         public static final String KEY_NICKNAME = "nickname";
         public static final String KEY_QQ = "qq";
         public static final String KEY_PHONE = "phone";
+        public static final String KEY_UID = "uid";
 
     }
 

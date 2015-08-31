@@ -24,6 +24,7 @@ import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.ui.GoodsShowActivity;
 import com.sky31.buy.second_hand.ui.PublishActivity;
+import com.sky31.buy.second_hand.ui.SellingActivity;
 import com.sky31.buy.second_hand.util.ACacheUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
@@ -196,8 +197,17 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             /*正在出售商品*/
             case R.id.tr_selling:
                 if (isLogin) {
-                    //已登陆进行操作
-
+                    //已登陆跳转SellingActivity
+                    try {
+                        Intent intentGoodsShow = new Intent();
+                        intentGoodsShow.setClass(getActivity(), SellingActivity.class);
+                        intentGoodsShow.putExtra("uid", userInfo.getString("id"));
+                        intentGoodsShow.putExtra("headerTitle", "我的正上架商品");
+                        startActivity(intentGoodsShow);
+                        getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     //未登录
                     showLoginDialog();
