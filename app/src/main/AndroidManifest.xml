@@ -39,6 +39,10 @@
             android:name=".ui.PublishActivity"
             android:label="@string/title_activity_edit_info" >
         </activity>
+        <activity
+            android:name=".ui.SellingActivity"
+            android:label="@string/title_activity_selling" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,14 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.sky31.buy.second_hand.ui.SellingActivity">
+
+    <include layout="@layout/include_header_with_button" />
+
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/smlv_selling_goods"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>

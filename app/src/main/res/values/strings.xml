@@ -29,4 +29,5 @@
     <string name="isAllTips">已加载全部</string>
     <string name="isNullTips">暂无商品哦</string>
     <string name="title_activity_edit_info">EditInfoActivity</string>
+    <string name="title_activity_selling">SellingActivity</string>
 </resources>
