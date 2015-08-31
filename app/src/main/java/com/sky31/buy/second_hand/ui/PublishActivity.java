@@ -1,5 +1,6 @@
 package com.sky31.buy.second_hand.ui;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -47,6 +48,10 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
     RequestParams params = new RequestParams();
 
     private static int RESULT_LOAD_IMAGE = 1;
+
+    /*diaLog*/
+    private AlertDialog.Builder builderLoading;
+    private AlertDialog dialog;
 
     /*Intent*/
     private Intent mIntent;
@@ -301,6 +306,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
      *  spinner选中的值在spinnerSelectListener中设置setParams
      * */
     private void publishGoods() {
+        showLoadingDialog();
         if (params.has("file1")){
             setParams(Constants.Keys.KEY_TITLE,etGoodsTitle.getText()+"");//title
             setParams(Constants.Keys.KEY_DESCRIBE,etGoodsDec.getText()+"");//dec
@@ -375,6 +381,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
                 } else if (response.getString("result").equals("success")) {
                     //上传成功
                     Toast.makeText(PublishActivity.this, response.getString("msg"), Toast.LENGTH_SHORT).show();
+                    onBackPressed();
                 }
 
             } catch (JSONException e) {
@@ -386,6 +393,12 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
             super.onFailure(statusCode, headers, responseString, throwable);
             Log.i(TAG, statusCode + "\n" + responseString +" \n" + throwable);
+        }
+
+        @Override
+        public void onFinish() {
+            super.onFinish();
+            hideLoadingDialog();
         }
     };
 
@@ -442,6 +455,20 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
 
         public void onNothingSelected(AdapterView<?> arg0) {
         }
+    }
+
+    /*隐藏加载dialog*/
+    private void hideLoadingDialog() {
+        dialog.dismiss();
+    }
+
+    /*显示加载dialog*/
+    private void showLoadingDialog() {
+        builderLoading = new AlertDialog.Builder(this);
+        builderLoading.setMessage("请稍后...")
+                .setCancelable(false)
+                .create();
+        dialog = builderLoading.show();
     }
 }
 
