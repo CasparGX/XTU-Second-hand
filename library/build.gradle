@@ -9,7 +9,7 @@ repositories {
 }
 
 dependencies {
-    compile ('com.android.support:support-v4:21.0.3') {
+    compile('com.android.support:support-v4:21.0.3') {
         //exclude module: 'print'
     }
     //修改i状态栏
@@ -18,7 +18,7 @@ dependencies {
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    buildToolsVersion '19.1.0'
 
     defaultConfig {
         minSdkVersion 7
