@@ -1,6 +1,7 @@
 package com.sky31.buy.second_hand.ui;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -13,6 +14,7 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.sky31.buy.second_hand.R;
@@ -57,7 +59,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     private int mScreen1_3;
 
     private int mCurrentPageIndex;
-
+    private boolean canExit;
 
 
     @Override
@@ -229,6 +231,23 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
                 mViewPager.setCurrentItem(3,true);
                 break;
 
+        }
+    }
+
+    /*close app*/
+    @Override
+    public void onBackPressed() {
+        if (canExit) {
+            super.onBackPressed();
+        } else {
+            canExit = true;
+            Toast.makeText(HomeActivity.this,"再按一次退出",Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    canExit = false;
+                }
+            }, 2000);
         }
     }
 }

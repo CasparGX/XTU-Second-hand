@@ -175,7 +175,9 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         ptrFrame.addPtrUIHandler(header);
         //判断是否有缓存
         if (mCheckCache!=null) {
-            getCacheData();
+            if (mClassifyInfo==null) {
+                getCacheData();
+            }
         } else {
             //没有缓存就自动刷新
             ptrFrame.postDelayed(new Runnable() {
