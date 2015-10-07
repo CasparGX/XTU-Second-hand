@@ -62,6 +62,8 @@ public class HomeFragment extends Fragment {
     private int limitID = 0;
     RequestParams params = new RequestParams();
 
+    private boolean isNew = false;
+
 
     //pull refresh
     private PtrFrameLayout ptrFrame;
@@ -136,6 +138,7 @@ public class HomeFragment extends Fragment {
             public void onRefreshBegin(final PtrFrameLayout frame) {
                 limitID = 0;
                 isAll = false;
+                isNew = true;
                 getGoodsData();
                 Log.i(TAG, "-------- onRefreshBegin : 刷新 - 请求网络数据 ---------");
             }
@@ -154,6 +157,7 @@ public class HomeFragment extends Fragment {
                             if (params.has(Constants.Keys.KEY_LIMITID)) {
                                 //params.remove(Constants.Keys.KEY_LIMITID);
                                 params.put(Constants.Keys.KEY_LIMITID, limitID);
+                                isNew = false;
                                 HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET
                                         , params
                                         , mJsonHttpResponseHandler);
@@ -261,7 +265,9 @@ public class HomeFragment extends Fragment {
             Log.i(TAG, "------------------------------ getGoodsData Handler onSuccess ----------------------");
             Log.i(TAG, response + "");
             //处理数据,刷新显示
-            adapter.setGoodsDataEmpty();
+            if (isNew) {
+                adapter.setGoodsDataEmpty();
+            }
             mGoodsArray = response;
             mGoodsData = GoodsData.JSONArrayToGoodsData(mGoodsArray);
             adapter.addAll(mGoodsData);

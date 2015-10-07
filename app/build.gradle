@@ -2,12 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion '19.1.0'
+    buildToolsVersion '21.1.2'
 
     defaultConfig {
         applicationId "com.sky31.buy.second_hand"
-        minSdkVersion 14
-        targetSdkVersion 19
+        minSdkVersion 15
+        targetSdkVersion 21
         versionCode 1
         versionName "1.0"
         multiDexEnabled true

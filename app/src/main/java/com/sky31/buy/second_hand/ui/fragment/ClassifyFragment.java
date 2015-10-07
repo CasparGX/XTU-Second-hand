@@ -55,6 +55,8 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
 
     private String TAG = ClassifyFragment.class.getName();
 
+    /*is new classify or add more*/
+    private boolean isNew = false;
 
     /*分类信息*/
     public static ArrayList<ClassifyInfo> mClassifyInfo = new ArrayList<>();
@@ -144,6 +146,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                 //获取点击id，传递参数
                 limitID = 0;
                 isAll = false;
+                isNew = true;
                 //params.add("limitID", String.valueOf(limitID));
                 getGoodsData(null, i);
                 /*Toast.makeText(getActivity()
@@ -206,7 +209,8 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
 
                             if (params.has(Constants.Keys.KEY_LIMITID)) {
                                 params.remove(Constants.Keys.KEY_LIMITID);
-                                params.add(Constants.Keys.KEY_LIMITID,limitID+"");
+                                params.add(Constants.Keys.KEY_LIMITID, limitID + "");
+                                isNew = false;
                                 HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET
                                         , params
                                         , mListJsonHttpResponseHandler);
@@ -292,7 +296,9 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
             Log.i(TAG, "------------------------------ getGoodsData Handler onSuccess ----------------------");
             Log.i(TAG, response + "");
             //处理数据,刷新显示
-            mGoodsData.clear();
+            if (isNew) {
+                mGoodsData.clear();
+            }
             mGoodsArray = response;
             mGoodsData.addAll(GoodsData.JSONArrayToGoodsData(mGoodsArray));
             mListViewAdapter.notifyDataSetChanged();
