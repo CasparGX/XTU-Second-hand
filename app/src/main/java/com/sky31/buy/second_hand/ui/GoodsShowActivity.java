@@ -1,7 +1,10 @@
 package com.sky31.buy.second_hand.ui;
 
 import android.annotation.TargetApi;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -14,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -32,7 +36,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 /**
  * Created by Caspar on 2015/7/21.
  */
-public class GoodsShowActivity extends SwipeBackActivity {
+public class GoodsShowActivity extends SwipeBackActivity implements View.OnClickListener {
 
     private SwipeBackLayout mSwipeBackLayout;
     private SwipeBackActivityHelper mHelper;
@@ -88,8 +92,10 @@ public class GoodsShowActivity extends SwipeBackActivity {
         tvDec.setText(goods.dec);
         tvPhone = (TextView) findViewById(R.id.tv_phone);
         tvPhone.setText(goods.phone);
+        tvPhone.setOnClickListener(this);
         tvQq = (TextView) findViewById(R.id.tv_qq);
         tvQq.setText(goods.qq);
+        tvQq.setOnClickListener(this);
         tvSeller = (TextView) findViewById(R.id.tv_seller);
         tvSeller.setText(goods.seller);
 
@@ -190,4 +196,30 @@ public class GoodsShowActivity extends SwipeBackActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_qq:
+                String qq = (String) tvQq.getText();
+                ClipboardManager cmb = (ClipboardManager)this.getSystemService(Context.CLIPBOARD_SERVICE);
+                cmb.setText(qq.trim());
+                Toast.makeText(GoodsShowActivity.this,"已复制QQ号，可直接粘贴",Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.tv_phone:
+                //取得电话号码串
+                String phone = tvPhone.getText().toString();
+                //如果输入不为空创建打电话的Intent
+                if(phone.trim().length()>=5)
+                {
+                    Intent phoneIntent = new Intent("android.intent.action.DIAL",
+                            Uri.parse("tel:" + phone));
+                    //启动
+                    startActivity(phoneIntent);
+                } else {
+                    Toast.makeText(GoodsShowActivity.this,"号码为空不能拨号",Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
+    }
 }

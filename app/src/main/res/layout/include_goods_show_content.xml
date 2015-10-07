@@ -12,40 +12,58 @@
         android:textColor="#212121"
         android:id="@+id/tv_title" />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="钱啊!! "
-        android:textColor="#212121"
-        android:id="@+id/tv_price" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="钱啊!! "
+            android:textColor="#212121"
+            android:id="@+id/tv_price" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="seller "
+            android:textColor="#212121"
+            android:id="@+id/tv_seller" />
+    </LinearLayout>
+
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="描述!! "
         android:textColor="#212121"
         android:id="@+id/tv_dec" />
-    <TextView
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="1223536467658 "
-        android:textColor="#212121"
-        android:id="@+id/tv_phone" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="1223536467658 "
-        android:textColor="#212121"
-        android:id="@+id/tv_qq" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="1223536467658 "
-        android:textColor="#212121"
-        android:id="@+id/tv_seller" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="phone"
+            android:layout_weight="1"
+            android:textColor="#212121"
+            android:id="@+id/tv_phone" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="qq"
+            android:layout_weight="1"
+            android:textColor="#212121"
+            android:id="@+id/tv_qq" />
+    </LinearLayout>
 
 </LinearLayout>
