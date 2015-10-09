@@ -476,7 +476,8 @@ public class SwipeBackLayout extends FrameLayout {
         // 激活导航栏设置
         tintManager.setNavigationBarTintEnabled(true);
         // 设置一个颜色给系统栏
-        tintManager.setTintColor(Color.parseColor("#F44336"));
+        //tintManager.setTintColor(activity.getResources().getColor(R.color.themeColor));
+        tintManager.setTintColor(Color.parseColor("#5dac81"));
     }
 
     @Override
