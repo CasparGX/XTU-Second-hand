@@ -52,7 +52,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:src="@drawable/waiter"/>
+                    android:src="@drawable/add_pic"/>
 
                 <ImageView
                     android:id="@+id/iv_file2"
@@ -60,7 +60,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:src="@drawable/waiter" />
+                    android:src="@drawable/add_pic" />
 
                 <ImageView
                     android:id="@+id/iv_file3"
@@ -68,7 +68,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:src="@drawable/waiter" />
+                    android:src="@drawable/add_pic" />
             </LinearLayout>
 
         </LinearLayout>
@@ -85,7 +85,7 @@
             android:padding="@dimen/table_row_editview_padding">
 
             <TextView
-                android:gravity="right"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text="价格:"
                 android:textSize="20sp" />
@@ -112,7 +112,7 @@
             android:padding="@dimen/table_row_editview_padding">
 
             <TextView
-                android:gravity="right"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text="分类:"
                 android:textSize="20sp" />
@@ -139,7 +139,7 @@
             android:padding="@dimen/table_row_editview_padding">
 
             <TextView
-                android:gravity="right"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text="上架天数:"
                 android:textSize="20sp" />
@@ -164,7 +164,7 @@
             android:padding="@dimen/table_row_editview_padding">
 
             <TextView
-                android:gravity="right"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text="交易方式:"
                 android:textSize="20sp" />
@@ -190,7 +190,7 @@
             android:padding="@dimen/table_row_editview_padding">
 
             <TextView
-                android:gravity="right"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text="是否可讲价:"
                 android:textSize="20sp" />
@@ -216,7 +216,7 @@
             android:padding="@dimen/table_row_editview_padding">
 
             <TextView
-                android:gravity="right"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text="手机号:"
                 android:textSize="20sp" />
@@ -236,7 +236,7 @@
             android:padding="@dimen/table_row_editview_padding">
 
             <TextView
-                android:gravity="right"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text="QQ号:"
                 android:textSize="20sp" />
@@ -257,7 +257,7 @@
             android:padding="@dimen/table_row_editview_padding">
 
             <TextView
-                android:gravity="right"
+                android:gravity="left"
                 android:padding="3dip"
                 android:text="昵称:"
                 android:textSize="20sp" />

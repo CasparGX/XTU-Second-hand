@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@color/white">
 
     <TextView
         android:layout_width="wrap_content"
@@ -19,19 +20,26 @@
         android:orientation="horizontal"
         android:layout_margin="4dp">
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="￥"
-            android:textColor="@color/themeColor" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="钱啊!! "
-            android:textColor="@color/themeColor"
-            android:id="@+id/tv_price" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="￥"
+                android:textColor="@color/themeColor" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="钱啊!! "
+                android:textColor="@color/themeColor"
+                android:id="@+id/tv_price" />
+        </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
@@ -39,18 +47,43 @@
             android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="seller "
-            android:textColor="#212121"
+            android:layout_gravity="center_vertical"
+            android:textColor="#666"
             android:id="@+id/tv_seller" />
     </LinearLayout>
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_margin="4dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="描述!! "
-        android:textColor="#666"
-        android:id="@+id/tv_dec" />
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="商品信息"
+            android:textSize="15sp"
+            android:textColor="#666"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="18dp"
+            android:layout_marginRight="4dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="描述!! "
+            android:textSize="13sp"
+            android:textColor="#666"
+            android:id="@+id/tv_dec" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,16 +92,18 @@
         android:layout_margin="4dp">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="phone"
             android:layout_weight="1"
             android:textColor="#212121"
             android:id="@+id/tv_phone" />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="qq"
             android:layout_weight="1"

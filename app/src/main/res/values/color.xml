@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="white">#ffffff</color><!--白色-->
+    <color name="white">#fff</color><!--白色-->
     <color name="gray">#ccc</color><!--灰色-->
-    <color name="themeColor">#F44336</color><!--主题颜色-->
+    <!--<color name="themeColor">#F44336</color>&lt;!&ndash;主题颜色&ndash;&gt;-->
+    <color name="themeColor">#5dac81</color><!--主题颜色-->
     <color name="themeBgColor">#f7f7f7</color><!--主题背景颜色-->
+    <color name="homePageSelect">#5DAC81</color><!--Tab页标题选中颜色-->
+    <color name="homePageDefault">#9BBFC3</color><!--Tab页标题一般颜色-->
     <color name="itemClick">#f7f7f7</color><!--listview gridview点击时颜色-->
-    <color name="homePageSelect">#F44336</color><!--Tab页标题选中颜色-->
-    <color name="homePageDefault">#a9ee3f1a</color><!--Tab页标题一般颜色-->
 
 </resources>

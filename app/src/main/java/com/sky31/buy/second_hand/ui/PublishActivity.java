@@ -113,6 +113,8 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         ivFile1 = (ImageView) findViewById(R.id.iv_file1);
         ivFile2 = (ImageView) findViewById(R.id.iv_file2);
         ivFile3 = (ImageView) findViewById(R.id.iv_file3);
+        ivFile2.setVisibility(View.INVISIBLE);
+        ivFile3.setVisibility(View.INVISIBLE);
         ivFile1.setOnClickListener(this);
         ivFile2.setOnClickListener(this);
         ivFile3.setOnClickListener(this);
@@ -283,9 +285,11 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
             switch (this.imgFlag) {
                 case 1:
                     ivFile1.setImageBitmap(bitmapImage);
+                    ivFile2.setVisibility(View.VISIBLE);
                     break;
                 case 2:
                     ivFile2.setImageBitmap(bitmapImage);
+                    ivFile3.setVisibility(View.VISIBLE);
                     break;
                 case 3:
                     ivFile3.setImageBitmap(bitmapImage);
