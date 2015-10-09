@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -66,8 +67,9 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_show);
 
+        Log.i("goodsShowActivity",this.getPackageName().toString());
         //设置状态栏颜色
-        BuyApp.setStatusBarColor(this);
+        BuyApp.setStatusBarColor(GoodsShowActivity.this);
 
         /*mSwipeBackLayout = getSwipeBackLayout();
         //设置可以滑动的区域，推荐用屏幕像素的一半来指定
