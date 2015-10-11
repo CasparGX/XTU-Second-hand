@@ -46,7 +46,7 @@ public class BuyApp extends Application {
 
 
     //GoodsData
-    private ArrayList<GoodsData> mGoodsData = new ArrayList<>();
+    private ArrayList<GoodsData> mGoodsData = new ArrayList<GoodsData>();
 
     //ImageLoader
     private ImageLoader imageLoader;

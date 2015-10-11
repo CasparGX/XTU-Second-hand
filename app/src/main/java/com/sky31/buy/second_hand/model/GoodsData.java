@@ -111,7 +111,7 @@ public class GoodsData implements Parcelable{
     }
 
     public static ArrayList<GoodsData> JSONArrayToGoodsData(JSONArray goodsData) {
-        final ArrayList<GoodsData> mGoodsData = new ArrayList<>();
+        final ArrayList<GoodsData> mGoodsData = new ArrayList<GoodsData>();
         String imgUrl;
         for (int i = 0; i < goodsData.length(); i++) {
             try {

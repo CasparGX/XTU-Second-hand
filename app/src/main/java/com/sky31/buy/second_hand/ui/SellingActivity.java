@@ -72,7 +72,7 @@ public class SellingActivity extends SwipeBackActivity implements View.OnClickLi
     private TextView tvTips;
     private boolean isAll;
     private HomeFragmentListViewAdapter adapter;
-    private ArrayList<GoodsData> mGoodsData = new ArrayList<>();
+    private ArrayList<GoodsData> mGoodsData = new ArrayList<GoodsData>();
     private JSONArray mGoodsArray = new JSONArray();
     private int itemPosition;
 

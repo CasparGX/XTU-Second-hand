@@ -126,13 +126,13 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         mListTv.add(tvFenlei);
         //mListTv.add(tvSousuo);
         mListTv.add(tvWo);
-        mListTv.get(0).setTextColor(0xffff3621);
+        mListTv.get(0).setTextColor(this.getResources().getColor(R.color.homePageSelect));
 
         mViewPager = (ViewPager) findViewById(R.id.vp_home);
         mViewPager.setOffscreenPageLimit(mListTv.size());
         mDatas = new ArrayList<Fragment>();
 
-        ArrayList<String> params = new ArrayList<>();
+        ArrayList<String> params = new ArrayList<String>();
         //params.add(Constants.Keys.KEY_LIMITID);
         //params.add("0");
         HomeFragment mHomeFragment = HomeFragment.newInstance(params);
