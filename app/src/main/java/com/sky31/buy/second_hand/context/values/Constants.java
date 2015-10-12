@@ -67,5 +67,14 @@ public class Constants {
 
         public static final String VALUE_SERVICE_NO_RESPONSE = "服务器未响应";
 
+        public static final String VALUE_CLASSIFY = "{\"1\":\"\\u56fe\\u4e66\\u6559\\u6750\"," +
+                "\"2\":\"\\u6570\\u7801\\u4ea7\\u54c1\"," +
+                "\"3\":\"\\u4ee3\\u6b65\\u5de5\\u5177\"," +
+                "\"4\":\"\\u8fd0\\u52a8\\u5668\\u6750\"," +
+                "\"5\":\"\\u8863\\u7269\\u8863\\u5e3d\"," +
+                "\"6\":\"\\u5bb6\\u7528\\u7535\\u5668\"," +
+                "\"7\":\"\\u79df\\u8d41\"," +
+                "\"8\":\"\\u5176\\u4ed6\"}";
+
     }
 }

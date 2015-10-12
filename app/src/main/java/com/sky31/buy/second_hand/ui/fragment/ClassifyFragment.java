@@ -179,13 +179,15 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                 getCacheData();
             }
         } else {
-            //没有缓存就自动刷新
+            /*//没有缓存就自动刷新
             ptrFrame.postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     ptrFrame.autoRefresh(true);
                 }
-            }, 100);
+            }, 100);*/
+            //getClassify if it's have no cache
+            getClassify();
         }
         ptrFrame.setPtrHandler(new PtrHandler() {
             @Override
@@ -351,7 +353,19 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
     /*获取分类信息*/
     private void getClassify() {
         Log.i(TAG, "------------getClassify URL:" + Constants.Apis.API_GOODS_LIST_GET + "------------------");
-        HttpUtil.get(Constants.Apis.API_GOODS_CLASSIFY_GET, null, mClassifyJsonHttpResponseHandler);
+        //HttpUtil.get(Constants.Apis.API_GOODS_CLASSIFY_GET, null, mClassifyJsonHttpResponseHandler);
+        JSONObject mClassifyData = null;
+        try {
+            mClassifyData = new JSONObject(Constants.Values.VALUE_CLASSIFY);
+            mClassifyInfo.clear();
+            JsonToClassifyInfo(mClassifyData);
+            adapter.notifyDataSetChanged();
+            //改变缓存
+            mCache.put(Constants.Keys.KEY_CACHE_CLASSIFY_CONTENT, mClassifyData);
+            mCache.put(Constants.Keys.KEY_CACHE_CLASSIFY_CHECK, "hasCache");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     /*获取分类信息的Handler*/
