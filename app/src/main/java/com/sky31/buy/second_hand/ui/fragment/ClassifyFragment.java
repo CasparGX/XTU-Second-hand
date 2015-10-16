@@ -162,7 +162,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         mCheckCache = mCache.getAsString(Constants.Keys.KEY_CACHE_CLASSIFY_CHECK);
 
         //下拉刷新
-        final MaterialHeader header = new MaterialHeader(getActivity());
+        /*final MaterialHeader header = new MaterialHeader(getActivity());
         ptrFrame = (PtrFrameLayout) view.findViewById(R.id.ptr_classify_grid);
 
         header.setLayoutParams(new PtrFrameLayout.LayoutParams(-1, -2));
@@ -172,24 +172,11 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         ptrFrame.setLoadingMinTime(1000);
         ptrFrame.setDurationToCloseHeader(1500);
         ptrFrame.setHeaderView(header);
-        ptrFrame.addPtrUIHandler(header);
-        //判断是否有缓存
-        if (mCheckCache!=null) {
-            if (mClassifyInfo==null) {
-                getCacheData();
-            }
-        } else {
-            /*//没有缓存就自动刷新
-            ptrFrame.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    ptrFrame.autoRefresh(true);
-                }
-            }, 100);*/
-            //getClassify if it's have no cache
-            getClassify();
-        }
-        ptrFrame.setPtrHandler(new PtrHandler() {
+        ptrFrame.addPtrUIHandler(header);*/
+        //get classify data
+        getClassify();
+
+        /*ptrFrame.setPtrHandler(new PtrHandler() {
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
                 return PtrDefaultHandler.checkContentCanBePulledDown(frame, mListView, header);
@@ -200,7 +187,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                 getClassify();
                 Log.i(TAG, "-------- onRefreshBegin : 刷新 - 请求网络数据 ---------");
             }
-        });
+        });*/
 
         //监听listview的滚动事件
         mListView.setOnScrollListener(
