@@ -44,6 +44,11 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
+            android:name=".ui.EditGoodsInfoActivity"
+            android:label="@string/title_activity_edit_info"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
             android:name=".ui.SellingActivity"
             android:label="@string/title_activity_selling"
             android:theme="@style/AppTheme" >

@@ -252,7 +252,7 @@ public class SellingActivity extends SwipeBackActivity implements View.OnClickLi
                 switch (index) {
                     case 0:
                         // 修改
-
+                        editGoodsInfo(position);
                         break;
                     case 1:
                         // 下架
@@ -265,9 +265,18 @@ public class SellingActivity extends SwipeBackActivity implements View.OnClickLi
         });
     }
 
+    private void editGoodsInfo(int i) {
+        Intent intentEditGoodsInfo = new Intent();
+        intentEditGoodsInfo.setClass(SellingActivity.this, EditGoodsInfoActivity.class);
+        //intentEditGoodsInfo.putExtra("uid", userInfo.getString("id"));
+        intentEditGoodsInfo.putExtra("goodsInfo", adapter.getItem(i));
+        intentEditGoodsInfo.putExtra("headerTitle", "修改商品信息");
+        startActivity(intentEditGoodsInfo);
+        SellingActivity.this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+    }
+
     /*下架商品*/
     private void goodsSoldOut(int position) {
-        showLoadingDialog();
         if (soldOutParams.has(Constants.Keys.KEY_GID)) {
             soldOutParams.remove(Constants.Keys.KEY_GID);
         }
@@ -311,7 +320,8 @@ public class SellingActivity extends SwipeBackActivity implements View.OnClickLi
         }
         params.add(Constants.Keys.KEY_LIMITID, limitID + "");
         params.add(Constants.Keys.KEY_UID, uid);
-        HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET, params, mUserGoodsJsonHandler);
+        //HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET, params, mUserGoodsJsonHandler);
+        HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET+"limitID=0", null, mUserGoodsJsonHandler);
     }
 
     /*用户商品handler*/
@@ -400,6 +410,12 @@ public class SellingActivity extends SwipeBackActivity implements View.OnClickLi
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
             super.onFailure(statusCode, headers, responseString, throwable);
             Log.e(TAG, " onFailure" + responseString.toString());
+        }
+
+        @Override
+        public void onStart() {
+            super.onStart();
+            showLoadingDialog();
         }
 
         public void onFinish() {

@@ -25,6 +25,7 @@ import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.ClassifyInfo;
+import com.sky31.buy.second_hand.model.GoodsData;
 import com.sky31.buy.second_hand.ui.fragment.ClassifyFragment;
 import com.sky31.buy.second_hand.util.CompImageUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
@@ -198,6 +199,12 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
         /*发布按钮*/
         btnPublish = (Button) findViewById(R.id.btn_publish);
         btnPublish.setOnClickListener(this);
+
+        /* 禁用不可修改选项的控件 */
+        ivFile1.setVisibility(View.GONE);
+        ivFile2.setVisibility(View.GONE);
+        ivFile3.setVisibility(View.GONE);
+        etNickname.setFocusable(false);
     }
 
     /*返回键*/
@@ -216,9 +223,11 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
 
     /*填充卖家信息*/
     private void setSellerInfo() {
-        String seller = mIntent.getStringExtra("seller");
-        String phone = mIntent.getStringExtra("phone");
-        String qq = mIntent.getStringExtra("qq");
+        Intent intent = this.getIntent();
+        GoodsData goods = intent.getParcelableExtra("goodsInfo");
+        String seller = goods.seller;
+        String phone = goods.phone;
+        String qq = goods.qq;
         etNickname.setText(seller);
         etPhone.setText(phone);
         etQq.setText(qq);
@@ -347,29 +356,6 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
             params.put(key, file, "image/jpg");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
-    }
-
-    private void insert() {
-        /*上传图片测试样例*/
-        File file = new File("/mnt/sdcard/","home.jpg");
-        RequestParams params = new RequestParams();
-        if(file.exists() && file.length()>0) {
-            try {
-                params.put("file1", file);
-                params.put("file2", file);
-                params.put("file3", file);
-                Log.i(TAG, Environment.getExternalStorageDirectory().toString());
-                HttpUtil.post(Constants.Apis.API_GOODS_TESTINSERT_POST
-                        , params
-                        , mInsertHandler);
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
-        } else {
-
-            Log.i(TAG, "文件不存在");
         }
     }
 
