@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:theme="@style/AppBaseThemeMain">
 
     <include layout="@layout/include_header_home" />
 
