@@ -159,7 +159,10 @@ public class BuyApp extends Application {
                                 imgUrl,
                                 imgUrlArray,
                                 good.getInt("price"),
-                                good.getString("creat_time")
+                                good.getString("creat_time"),
+                                good.getString("bargain"),
+                                good.getString("trading"),
+                                good.getString("interval")
                         )
                 );
             } catch (JSONException e) {

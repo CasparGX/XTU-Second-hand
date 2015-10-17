@@ -33,6 +33,7 @@ public class GoodsData implements Parcelable{
     public int id,price,countImg;
     public String title,seller,dec,phone,qq,imgUrl,type,date;
     public List<String> imgUrlArray = new ArrayList<String>();
+    public String bargain,trading,interval;
 
     public GoodsData() {
 
@@ -48,7 +49,10 @@ public class GoodsData implements Parcelable{
             , String imgUrl
             , List<String> imgUrlArray
             , int price
-            , String date) {
+            , String date
+            , String bargain
+            , String trading
+            , String interval) {
         this.dec = dec;
         this.id = id;
         this.phone = phone;
@@ -60,6 +64,9 @@ public class GoodsData implements Parcelable{
         this.imgUrlArray = imgUrlArray;
         this.date = date;
         this.price = price;
+        this.bargain = bargain;
+        this.trading = trading;
+        this.interval = interval;
     }
 
     @Override
@@ -80,6 +87,9 @@ public class GoodsData implements Parcelable{
         parcel.writeStringList(imgUrlArray);
         parcel.writeInt(price);
         parcel.writeString(date);
+        parcel.writeString(bargain);
+        parcel.writeString(trading);
+        parcel.writeString(interval);
     }
 
     public static final Creator<GoodsData> CREATOR = new Creator<GoodsData>() {
@@ -108,6 +118,10 @@ public class GoodsData implements Parcelable{
 
         this.price = in.readInt();
         this.date = in.readString();
+
+        this.bargain = in.readString();
+        this.trading = in.readString();
+        this.interval = in.readString();
     }
 
     public static ArrayList<GoodsData> JSONArrayToGoodsData(JSONArray goodsData) {
@@ -142,7 +156,10 @@ public class GoodsData implements Parcelable{
                                 imgUrl,
                                 imgUrlArray,
                                 good.getInt("price"),
-                                good.getString("creat_time")
+                                good.getString("creat_time"),
+                                good.getString("bargain"),
+                                good.getString("trading"),
+                                good.getString("interval")
                         )
                 );
             } catch (JSONException e) {
