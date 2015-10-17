@@ -22,6 +22,7 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
+import com.sky31.buy.second_hand.ui.AboutActivity;
 import com.sky31.buy.second_hand.ui.GoodsShowActivity;
 import com.sky31.buy.second_hand.ui.PublishActivity;
 import com.sky31.buy.second_hand.ui.SellingActivity;
@@ -50,6 +51,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private TableRow trEditInfo;
     private TableRow trPublish;
     private TableRow trSelling;
+    private TableRow trAbout;
     private TextView tvNickname;
     private TextView tvEmail;
     private ImageView ivUsericon;
@@ -100,6 +102,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         trPublish.setOnClickListener(this);
         trSelling = (TableRow) view.findViewById(R.id.tr_selling);
         trSelling.setOnClickListener(this);
+        trAbout = (TableRow) view.findViewById(R.id.tr_about);
+        trAbout.setOnClickListener(this);
 
         /*自动登录*/
         if (mCacheUserName != null && mCachePassWord != null) {
@@ -236,6 +240,14 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                     showLoginDialog();
                 }
 
+                break;
+
+            /*About*/
+            case R.id.tr_about:
+                Intent intentAbout = new Intent();
+                intentAbout.setClass(getActivity(), AboutActivity.class);
+                startActivity(intentAbout);
+                getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
                 break;
 
             /*登录链接*/

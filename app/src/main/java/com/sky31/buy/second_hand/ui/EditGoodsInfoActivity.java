@@ -2,12 +2,7 @@ package com.sky31.buy.second_hand.ui;
 
 import android.app.AlertDialog;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,7 +22,6 @@ import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.ClassifyInfo;
 import com.sky31.buy.second_hand.model.GoodsData;
 import com.sky31.buy.second_hand.ui.fragment.ClassifyFragment;
-import com.sky31.buy.second_hand.util.CompImageUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
 import org.apache.http.Header;
@@ -37,7 +31,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
@@ -112,14 +105,14 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
         setTvHeaderTitle(); //修改header标题
 
         /*图片file*/
-        ivFile1 = (ImageView) findViewById(R.id.iv_file1);
+        /*ivFile1 = (ImageView) findViewById(R.id.iv_file1);
         ivFile2 = (ImageView) findViewById(R.id.iv_file2);
         ivFile3 = (ImageView) findViewById(R.id.iv_file3);
         ivFile2.setVisibility(View.INVISIBLE);
         ivFile3.setVisibility(View.INVISIBLE);
         ivFile1.setOnClickListener(this);
         ivFile2.setOnClickListener(this);
-        ivFile3.setOnClickListener(this);
+        ivFile3.setOnClickListener(this);*/
 
         /*EditText*/
         etGoodsDec = (EditText) findViewById(R.id.et_goods_dec);
@@ -206,7 +199,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
         ivFile3.setVisibility(View.GONE);
         etNickname.setFocusable(false);
 
-        setSellerInfo();
+        setPublishInfo();
     }
 
     /*返回键*/
@@ -223,8 +216,8 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
         tvHeaderTitle.setText(title);
     }
 
-    /*填充卖家信息*/
-    private void setSellerInfo() {
+    /*填充信息*/
+    private void setPublishInfo() {
         Intent intent = this.getIntent();
         GoodsData goods = intent.getParcelableExtra("goodsInfo");
         String seller = goods.seller;
@@ -274,7 +267,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
                 publishGoods();
                 break;
 
-            case R.id.iv_file1:
+            /*case R.id.iv_file1:
                 //图片文件
                 addImageFile(1);
                 break;
@@ -285,11 +278,11 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
             case R.id.iv_file3:
                 //图片文件
                 addImageFile(3);
-                break;
+                break;*/
         }
     }
 
-    /*添加图片文件*/
+    /*添加图片文件*//*
     private void addImageFile(int imgFlag) {
         this.imgFlag = imgFlag;
         Intent i = new Intent(
@@ -331,7 +324,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
                     ivFile3.setImageBitmap(bitmapImage);
                     break;
             }
-            /*上传图片测试样例*/
+            *//*上传图片测试样例*//*
             File file = new File(tmpImagePath);
             if (file.exists() && file.length() > 0) {
                 setParamsFile("file" + this.imgFlag, file);
@@ -340,7 +333,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
             }
         }
 
-    }
+    }*/
 
     /**
      * 发布商品
@@ -348,7 +341,6 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
      */
     private void publishGoods() {
         showLoadingDialog();
-        if (params.has("file1")) {
             setParams(Constants.Keys.KEY_TITLE, etGoodsTitle.getText() + "");//title
             setParams(Constants.Keys.KEY_DESCRIBE, etGoodsDec.getText() + "");//dec
             setParams(Constants.Keys.KEY_PRICE, etGoodsPrice.getText() + "");//price
@@ -358,12 +350,9 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
             setParams(Constants.Keys.KEY_QQ, etQq.getText() + "");//qq
 
             params.setForceMultipartEntityContentType(true);
-            HttpUtil.post(Constants.Apis.API_GOODS_APPINSERT_POST
+            HttpUtil.post(Constants.Apis.API_USER_CHANGE_INFO_POST
                     , params
                     , mInsertHandler);
-        } else {
-            Toast.makeText(EditGoodsInfoActivity.this, "请选择一张图片", Toast.LENGTH_SHORT).show();
-        }
 
     }
 
