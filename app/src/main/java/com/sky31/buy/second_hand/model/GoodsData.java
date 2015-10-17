@@ -51,8 +51,7 @@ public class GoodsData implements Parcelable{
             , int price
             , String date
             , String bargain
-            , String trading
-            , String interval) {
+            , String trading) {
         this.dec = dec;
         this.id = id;
         this.phone = phone;
@@ -66,7 +65,6 @@ public class GoodsData implements Parcelable{
         this.price = price;
         this.bargain = bargain;
         this.trading = trading;
-        this.interval = interval;
     }
 
     @Override
@@ -89,7 +87,6 @@ public class GoodsData implements Parcelable{
         parcel.writeString(date);
         parcel.writeString(bargain);
         parcel.writeString(trading);
-        parcel.writeString(interval);
     }
 
     public static final Creator<GoodsData> CREATOR = new Creator<GoodsData>() {
@@ -121,7 +118,6 @@ public class GoodsData implements Parcelable{
 
         this.bargain = in.readString();
         this.trading = in.readString();
-        this.interval = in.readString();
     }
 
     public static ArrayList<GoodsData> JSONArrayToGoodsData(JSONArray goodsData) {
@@ -158,8 +154,7 @@ public class GoodsData implements Parcelable{
                                 good.getInt("price"),
                                 good.getString("creat_time"),
                                 good.getString("bargain"),
-                                good.getString("trading"),
-                                good.getString("interval")
+                                good.getString("trading")
                         )
                 );
             } catch (JSONException e) {

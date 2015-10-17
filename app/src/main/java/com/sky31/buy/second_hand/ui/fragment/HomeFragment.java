@@ -286,7 +286,7 @@ public class HomeFragment extends Fragment {
                 BuyApp.setListViewFooter("end", ivTips, tvTips, getActivity());
             }
             limitID++;
-            Log.i(TAG, mGoodsData.get(0).imgUrl + "");
+            //Log.i(TAG, mGoodsData.get(0).imgUrl + "");
         }
 
         @Override

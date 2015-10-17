@@ -37,6 +37,7 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
@@ -127,11 +128,10 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
         etNickname = (EditText) findViewById(R.id.et_nickname);
         etPhone = (EditText) findViewById(R.id.et_phone_num);
         etQq = (EditText) findViewById(R.id.et_qq);
-        setSellerInfo();
 
         /* start - 分类spinner */
         mClassifyInfo = ClassifyFragment.mClassifyInfo;
-        for (int i = 0; i< mClassifyInfo.size(); i++) {
+        for (int i = 0; i < mClassifyInfo.size(); i++) {
             mClassifyInfoTitle.add(mClassifyInfo.get(i).getTitle());
         }
         spnClassify = (Spinner) findViewById(R.id.spn_classify);
@@ -205,6 +205,8 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
         ivFile2.setVisibility(View.GONE);
         ivFile3.setVisibility(View.GONE);
         etNickname.setFocusable(false);
+
+        setSellerInfo();
     }
 
     /*返回键*/
@@ -216,9 +218,9 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
 
     /*修改header标题*/
     private void setTvHeaderTitle() {
-            String title = mIntent.hasExtra("headerTitle")
-                    ? mIntent.getStringExtra("headerTitle") : getResources().getString(R.string.app_title);
-            tvHeaderTitle.setText(title);
+        String title = mIntent.hasExtra("headerTitle")
+                ? mIntent.getStringExtra("headerTitle") : getResources().getString(R.string.app_title);
+        tvHeaderTitle.setText(title);
     }
 
     /*填充卖家信息*/
@@ -228,9 +230,34 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
         String seller = goods.seller;
         String phone = goods.phone;
         String qq = goods.qq;
+        int price = goods.price;
+        String title = goods.title;
+        String bargain = goods.bargain;
+        String trading = goods.trading;
+        //String interval = goods.interval;
+        String dec = goods.dec;
+        String type = goods.type;
+
+        ArrayList<ClassifyInfo> mClassifyData = new ArrayList<ClassifyInfo>();
+        mClassifyData = ClassifyFragment.mClassifyInfo;
+
+        etGoodsTitle.setText(title);
+        etGoodsDec.setText(dec);
+        etGoodsPrice.setText(price + "");
         etNickname.setText(seller);
         etPhone.setText(phone);
         etQq.setText(qq);
+
+        spnBargain.setSelection(Integer.parseInt(bargain));
+        spnTrading.setSelection(Integer.parseInt(trading) - 1);
+        //spnTime.setSelection(30 % Integer.parseInt(interval) - 1);
+        for (int i=0; mClassifyData.size()>i; i++) {
+            if (mClassifyData.get(i).getTitle().equals(type)) {
+                spnClassify.setSelection(Integer.parseInt(mClassifyData.get(i).getId()));
+                break;
+            }
+        }
+
     }
 
     /*点击事件*/
@@ -276,7 +303,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
 
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
             Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
             Cursor cursor = getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
@@ -289,7 +316,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
             //图片压缩工具类
             CompImageUtil compImage = new CompImageUtil();
             Bitmap bitmapImage = compImage.getimage(picturePath, 1500f, 1500f, 500);
-            String tmpImagePath = getCacheDir()+"tmp"+this.imgFlag+".jpg";
+            String tmpImagePath = getCacheDir() + "tmp" + this.imgFlag + ".jpg";
             compImage.saveBitmapFile(bitmapImage, tmpImagePath);
             switch (this.imgFlag) {
                 case 1:
@@ -306,8 +333,8 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
             }
             /*上传图片测试样例*/
             File file = new File(tmpImagePath);
-            if(file.exists() && file.length()>0) {
-                setParamsFile("file"+this.imgFlag, file);
+            if (file.exists() && file.length() > 0) {
+                setParamsFile("file" + this.imgFlag, file);
             } else {
                 Log.i(TAG, "文件不存在");
             }
@@ -315,19 +342,20 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
 
     }
 
-    /** 发布商品
-     *  spinner选中的值在spinnerSelectListener中设置setParams
-     * */
+    /**
+     * 发布商品
+     * spinner选中的值在spinnerSelectListener中设置setParams
+     */
     private void publishGoods() {
         showLoadingDialog();
-        if (params.has("file1")){
-            setParams(Constants.Keys.KEY_TITLE,etGoodsTitle.getText()+"");//title
-            setParams(Constants.Keys.KEY_DESCRIBE,etGoodsDec.getText()+"");//dec
-            setParams(Constants.Keys.KEY_PRICE,etGoodsPrice.getText()+"");//price
+        if (params.has("file1")) {
+            setParams(Constants.Keys.KEY_TITLE, etGoodsTitle.getText() + "");//title
+            setParams(Constants.Keys.KEY_DESCRIBE, etGoodsDec.getText() + "");//dec
+            setParams(Constants.Keys.KEY_PRICE, etGoodsPrice.getText() + "");//price
 
-            setParams(Constants.Keys.KEY_SELLER,etNickname.getText()+"");//seller
-            setParams(Constants.Keys.KEY_PHONE,etPhone.getText()+"");//phone
-            setParams(Constants.Keys.KEY_QQ,etQq.getText()+"");//qq
+            setParams(Constants.Keys.KEY_SELLER, etNickname.getText() + "");//seller
+            setParams(Constants.Keys.KEY_PHONE, etPhone.getText() + "");//phone
+            setParams(Constants.Keys.KEY_QQ, etQq.getText() + "");//qq
 
             params.setForceMultipartEntityContentType(true);
             HttpUtil.post(Constants.Apis.API_GOODS_APPINSERT_POST
@@ -382,7 +410,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
         @Override
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
             super.onFailure(statusCode, headers, responseString, throwable);
-            Log.i(TAG, statusCode + "\n" + responseString +" \n" + throwable);
+            Log.i(TAG, statusCode + "\n" + responseString + " \n" + throwable);
         }
 
         @Override
@@ -398,7 +426,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
             //Toast.makeText(PublishActivity.this,mClassifyInfo.get(arg2).getId()+"",Toast.LENGTH_SHORT).show();
-            setParams(Constants.Keys.KEY_TYPE, mClassifyInfo.get(arg2).getId()+"");//type
+            setParams(Constants.Keys.KEY_TYPE, mClassifyInfo.get(arg2).getId() + "");//type
         }
 
         public void onNothingSelected(AdapterView<?> arg0) {
@@ -410,7 +438,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2,
                                    long arg3) {
             //Toast.makeText(PublishActivity.this,(arg2+1)+"",Toast.LENGTH_SHORT).show();
-            setParams(Constants.Keys.KEY_TRADING, (arg2+1)+"");//trading
+            setParams(Constants.Keys.KEY_TRADING, (arg2 + 1) + "");//trading
         }
 
         public void onNothingSelected(AdapterView<?> arg0) {
@@ -424,10 +452,10 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
                                    long arg3) {
             if (mBargain.get(arg2).equals("是")) {
                 //Toast.makeText(PublishActivity.this,1+"",Toast.LENGTH_SHORT).show();
-                setParams(Constants.Keys.KEY_BARGAIN, 1+"");//bargain
+                setParams(Constants.Keys.KEY_BARGAIN, 1 + "");//bargain
             } else if (mBargain.get(arg2).equals("否")) {
                 //Toast.makeText(PublishActivity.this,0+"",Toast.LENGTH_SHORT).show();
-                setParams(Constants.Keys.KEY_BARGAIN, 0+"");//bargain
+                setParams(Constants.Keys.KEY_BARGAIN, 0 + "");//bargain
             }
         }
 

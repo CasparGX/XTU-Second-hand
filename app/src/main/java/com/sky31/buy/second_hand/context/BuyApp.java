@@ -161,8 +161,7 @@ public class BuyApp extends Application {
                                 good.getInt("price"),
                                 good.getString("creat_time"),
                                 good.getString("bargain"),
-                                good.getString("trading"),
-                                good.getString("interval")
+                                good.getString("trading")
                         )
                 );
             } catch (JSONException e) {
