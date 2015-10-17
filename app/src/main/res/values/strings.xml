@@ -30,4 +30,5 @@
     <string name="isNullTips">暂无商品哦</string>
     <string name="title_activity_edit_info">EditInfoActivity</string>
     <string name="title_activity_selling">SellingActivity</string>
+    <string name="title_activity_about">AboutActivity</string>
 </resources>

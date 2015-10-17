@@ -1,0 +1,142 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/themeBgColor"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.sky31.buy.second_hand.ui.AboutActivity">
+
+    <include layout="@layout/include_header_home" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@color/white"
+                android:layout_margin="@dimen/usericon_layout_margin"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/icon"/>
+                <TextView
+                    android:id="@+id/tv_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="湘大二手街" />
+
+            </LinearLayout>
+
+            <TableRow
+                android:id="@+id/tr_edit_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/table_row_paddingLeft"
+                android:paddingRight="@dimen/table_row_paddingLeft"
+                android:paddingTop="@dimen/table_row_paddingTop"
+                android:paddingBottom="@dimen/table_row_paddingTop"
+                android:layout_marginBottom="@dimen/table_row_marginBottom"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/editInfo" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=">"
+                    android:gravity="right"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tr_publish"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/table_row_paddingLeft"
+                android:paddingRight="@dimen/table_row_paddingLeft"
+                android:paddingTop="@dimen/table_row_paddingTop"
+                android:paddingBottom="@dimen/table_row_paddingTop"
+                android:background="@color/white"
+                android:layout_marginBottom="@dimen/table_row_marginBottom">
+
+                <TextView
+                    android:id="@+id/tv_publish"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/publish" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=">"
+                    android:gravity="right"/>
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tr_selling"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/table_row_paddingLeft"
+                android:paddingRight="@dimen/table_row_paddingLeft"
+                android:paddingTop="@dimen/table_row_paddingTop"
+                android:paddingBottom="@dimen/table_row_paddingTop"
+                android:layout_marginBottom="@dimen/table_row_marginBottom"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/selling" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=">"
+                    android:gravity="right"/>
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tr_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/table_row_paddingLeft"
+                android:paddingRight="@dimen/table_row_paddingLeft"
+                android:paddingTop="@dimen/table_row_paddingTop"
+                android:paddingBottom="@dimen/table_row_paddingTop"
+                android:layout_marginBottom="@dimen/table_row_marginBottom"
+                android:layout_marginTop="@dimen/table_row_marginTop"
+                android:background="@color/white">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=">"
+                    android:gravity="right"/>
+            </TableRow>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>
