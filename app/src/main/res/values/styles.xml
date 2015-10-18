@@ -16,6 +16,9 @@
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>
         <item name="android:windowIsTranslucent">false</item>
 
+        <item name="android:windowBackground">@null</item>//@null黑屏  @drawable/icon放一张启动图片
+        <item name="android:windowNoTitle">true</item> //启动界面是否显示应用名称 true不显示 false显示
+
         <!-- API 19 theme customizations can go here. -->
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
         <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>
