@@ -239,6 +239,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     public void onBackPressed() {
         if (canExit) {
             super.onBackPressed();
+            //super.onDestroy();
         } else {
             canExit = true;
             Toast.makeText(HomeActivity.this,"再按一次退出",Toast.LENGTH_SHORT).show();

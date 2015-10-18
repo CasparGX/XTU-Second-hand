@@ -105,9 +105,10 @@ public class EditGoodsInfoActivity extends SwipeBackActivity implements View.OnC
         setTvHeaderTitle(); //修改header标题
 
         /*图片file*/
-        /*ivFile1 = (ImageView) findViewById(R.id.iv_file1);
+        ivFile1 = (ImageView) findViewById(R.id.iv_file1);
         ivFile2 = (ImageView) findViewById(R.id.iv_file2);
         ivFile3 = (ImageView) findViewById(R.id.iv_file3);
+        /*
         ivFile2.setVisibility(View.INVISIBLE);
         ivFile3.setVisibility(View.INVISIBLE);
         ivFile1.setOnClickListener(this);
