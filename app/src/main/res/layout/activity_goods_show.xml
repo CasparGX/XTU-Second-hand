@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:clipToPadding="false">
 
-    <include layout="@layout/include_header_home" />
+    <include layout="@layout/include_header_with_button" />
 
     <RelativeLayout
         android:layout_width="match_parent"
