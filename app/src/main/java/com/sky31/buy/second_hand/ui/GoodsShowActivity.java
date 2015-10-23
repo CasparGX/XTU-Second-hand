@@ -2,8 +2,10 @@ package com.sky31.buy.second_hand.ui;
 
 import android.annotation.TargetApi;
 import android.content.ClipboardManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -33,6 +35,8 @@ import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
 
+import static com.sky31.buy.second_hand.R.id.iv_share;
+
 
 /**
  * Created by Caspar on 2015/7/21.
@@ -49,6 +53,9 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
     private TextView tvPhone;
     private TextView tvQq;
     private TextView tvSeller;
+
+    private ImageView ivBack;
+    private ImageView ivShare;
 
     private ViewPager imgPicViewPager;
     private ArrayList<ImageView> imgList;
@@ -67,7 +74,7 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_show);
 
-        Log.i("goodsShowActivity",this.getPackageName().toString());
+        Log.i("goodsShowActivity", this.getPackageName().toString());
         //设置状态栏颜色
         BuyApp.setStatusBarColor(GoodsShowActivity.this);
 
@@ -84,6 +91,12 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
 
         Intent intent = this.getIntent();
         goods = intent.getParcelableExtra("goodsInfo");
+        //init ImageView btn
+        ivBack = (ImageView) findViewById(R.id.iv_back_btn);
+        ivBack.setOnClickListener(this);
+        ivShare = (ImageView) findViewById(R.id.iv_share);
+        ivShare.setOnClickListener(this);
+        ivShare.setVisibility(View.VISIBLE);
 
         //init TextView
         tvTitle = (TextView) findViewById(R.id.tv_title);
@@ -134,9 +147,9 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
                 ImageView imageViewMin = new ImageView(GoodsShowActivity.this);
                 llMinImage = (LinearLayout) findViewById(R.id.ll_minImage);
 
-                LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(60,60);
+                LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(30,30);
                 float densityMargin = getResources().getDisplayMetrics().density;
-                int finalDimensMargin = (int)(60 * densityMargin);
+                int finalDimensMargin = (int)(30 * densityMargin);
 
                 linearParams.width = finalDimensMargin;
                 linearParams.height = finalDimensMargin;
@@ -184,23 +197,18 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
         overridePendingTransition(R.anim.slide_right_out, R.anim.slide_right_out);
     }
 
-    @TargetApi(19)
-    private void setTranslucentStatus(boolean on) {
-        Window win = getWindow();
-        WindowManager.LayoutParams winParams = win.getAttributes();
-        final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-        if (on) {
-            winParams.flags |= bits;
-        } else {
-            winParams.flags &= ~bits;
-        }
-        win.setAttributes(winParams);
-    }
-
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.iv_back_btn:
+                onBackPressed();
+                break;
+
+            case R.id.iv_share:
+                share();
+                break;
+
             case R.id.tv_qq:
                 String qq = (String) tvQq.getText();
                 ClipboardManager cmb = (ClipboardManager)this.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -222,6 +230,32 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
                     Toast.makeText(GoodsShowActivity.this,"号码为空不能拨号",Toast.LENGTH_SHORT).show();
                 }
                 break;
+
         }
+    }
+
+    private void share() {
+        Intent intent=new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "湘大二手街");
+        String msgText = "我在湘大二手街上看到了一个没人要的东西 -「"+goods.title+"」,给你看看。\n"
+                +"http://buy.sky31.com/show.html?gid="+goods.id+"\n分享来自「湘大二手街APP」";
+        intent.putExtra(Intent.EXTRA_TEXT, msgText);
+
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(Intent.createChooser(intent, "湘大二手街"));
+
+        /*Intent shareIntent = new Intent(Intent.ACTION_SEND);
+
+        shareIntent.setType("image*//*");
+        Resources r = this.getResources();
+        Uri uri = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://"
+                + r.getResourcePackageName(R.drawable.icon) + "/"
+                + r.getResourceTypeName(R.drawable.icon) + "/"
+                + r.getResourceEntryName(R.drawable.icon));
+        //Uri uri = Uri.fromFile(getResources().getDrawable(R.drawable.icon));
+
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        startActivity(Intent.createChooser(shareIntent, getTitle()));*/
     }
 }
