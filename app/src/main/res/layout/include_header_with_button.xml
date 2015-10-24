@@ -30,10 +30,10 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:text="share"
-        android:src="@drawable/icon"
+        android:src="@drawable/share_btn"
         android:gravity="center"
         android:textColor="#fff"
         android:layout_gravity="center"
-        android:visibility="visible"
+        android:visibility="invisible"
         />
 </LinearLayout>

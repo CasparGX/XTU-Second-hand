@@ -275,11 +275,12 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     /* user icon click eggs*/
     private void eggs() {
         switch (userIconClickNum) {
-            case 5:
-                //ivUsericon.setBackground(getResources().getDrawable(R.drawable.ff1));
-                Toast.makeText(getActivity(),"clicke 5",Toast.LENGTH_SHORT);
-                //ivUsericon.setBackgroundResource(R.drawable.ff1);
-                ivUsericon.setImageResource(R.drawable.ff1);
+            case 0:
+                ivUsericon.setImageResource(R.drawable.waiter_not_avatar);
+                break;
+
+            case 1:
+                ivUsericon.setImageResource(R.drawable.waiter_not_avatar_blank);
                 break;
         }
     }
