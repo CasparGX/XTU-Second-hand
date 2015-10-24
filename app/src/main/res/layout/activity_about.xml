@@ -42,7 +42,7 @@
             </LinearLayout>
 
             <TableRow
-                android:id="@+id/tr_edit_info"
+                android:id="@+id/tr_call_me"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/table_row_paddingLeft"
@@ -55,7 +55,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/editInfo" />
+                    android:text="@string/callMe" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -65,7 +65,7 @@
             </TableRow>
 
             <TableRow
-                android:id="@+id/tr_publish"
+                android:id="@+id/tr_update"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/table_row_paddingLeft"
@@ -76,10 +76,10 @@
                 android:layout_marginBottom="@dimen/table_row_marginBottom">
 
                 <TextView
-                    android:id="@+id/tv_publish"
+                    android:id="@+id/tv_checkUpdate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/publish" />
+                    android:text="@string/checkUpdate" />
 
                 <TextView
                     android:layout_width="match_parent"
