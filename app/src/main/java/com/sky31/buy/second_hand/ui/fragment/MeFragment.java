@@ -47,6 +47,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     /*登录状态*/
     private boolean isLogin;
 
+    /*user icon click eggs num*/
+    private int userIconClickNum = 0;
+
     /*控件*/
     private TableRow trEditInfo;
     private TableRow trPublish;
@@ -93,6 +96,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         tvLoginLink = (TextView) view.findViewById(R.id.tv_login_link);
         tvLoginLink.setOnClickListener(this);
         ivUsericon = (ImageView) view.findViewById(R.id.iv_usericon);
+        ivUsericon.setOnClickListener(this);
         tvNickname = (TextView) view.findViewById(R.id.tv_nickname);
 
         /*TableRow*/
@@ -187,6 +191,12 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+            /*UserIcon*/
+            case R.id.iv_usericon:
+                eggs();
+                userIconClickNum++;
+                break;
+
             /*修改用户信息*/
             case R.id.tr_edit_info:
                 if (isLogin) {
@@ -259,6 +269,18 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 }
                 break;
 
+        }
+    }
+
+    /* user icon click eggs*/
+    private void eggs() {
+        switch (userIconClickNum) {
+            case 5:
+                //ivUsericon.setBackground(getResources().getDrawable(R.drawable.ff1));
+                Toast.makeText(getActivity(),"clicke 5",Toast.LENGTH_SHORT);
+                //ivUsericon.setBackgroundResource(R.drawable.ff1);
+                ivUsericon.setImageResource(R.drawable.ff1);
+                break;
         }
     }
 
