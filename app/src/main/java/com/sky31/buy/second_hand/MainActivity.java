@@ -1,16 +1,16 @@
 package com.sky31.buy.second_hand;
 
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
+import android.view.Window;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-import com.sky31.buy.second_hand.api.GoodsApi;
 import com.sky31.buy.second_hand.context.BuyApp;
-import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.GoodsData;
-import com.sky31.buy.second_hand.util.HttpUtil;
+import com.sky31.buy.second_hand.ui.HomeActivity;
 
 import org.apache.http.Header;
 import org.json.JSONArray;
@@ -19,7 +19,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity {
 
     private BuyApp app = new BuyApp();
     private ArrayList<GoodsData> mGoodsData = app.getGoodsData();
@@ -28,11 +28,26 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
+
         setContentView(R.layout.activity_main);
+
+        /*splashscreen*/
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);  //从启动动画ui跳转到主ui
+                startActivity(intent);
+                MainActivity.this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+                MainActivity.this.finish();    // 结束启动动画界面
+            }
+        }, 2000);    //启动动画持续3秒钟
+
+        /*
         GoodsApi goodsApi = new GoodsApi();
         RequestParams params = new RequestParams(); // 绑定参数
         params.put(Constants.Keys.KEY_LIMITID, 0);
-        HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET, params, mJsonHttpResponseHandler);
+        HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET, params, mJsonHttpResponseHandler);*/
 
     }
 
