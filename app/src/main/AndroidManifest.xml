@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppBaseThemeMain" >
         <activity
-            android:name=".ui.HomeActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/AppBaseThemeMain" >
@@ -26,6 +26,19 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.HomeActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppHomeTheme" >
+            <intent-filter><!--
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />-->
+
+                <action android:name="com.sky31.buy.second_hand.ui.HomeActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity

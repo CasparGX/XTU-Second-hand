@@ -1,5 +1,6 @@
 package com.sky31.buy.second_hand.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
+import com.sky31.buy.second_hand.MainActivity;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.ui.adapter.HomeViewPagerAdapter;
@@ -66,6 +68,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
 
         //设置状态栏颜色
         BuyApp.setStatusBarColor(this);
