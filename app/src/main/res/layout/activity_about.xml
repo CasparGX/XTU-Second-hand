@@ -89,21 +89,30 @@
 
             </TableRow>
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/usericon_layout_margin"
+                android:layout_marginTop="10dp"
+                android:text="开发者"
+                />
+
             <TableRow
                 android:id="@+id/tr_selling"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/table_row_paddingLeft"
                 android:paddingRight="@dimen/table_row_paddingLeft"
-                android:paddingTop="@dimen/table_row_paddingTop"
-                android:paddingBottom="@dimen/table_row_paddingTop"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:layout_marginBottom="@dimen/table_row_marginBottom"
                 android:background="@color/white">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/selling" />
+                    android:text="CasparGX(周恩旭)" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -112,22 +121,29 @@
                     android:gravity="right"/>
             </TableRow>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/usericon_layout_margin"
+                android:layout_marginTop="10dp"
+                android:text="感谢蠢萌设计师"
+                />
+
             <TableRow
-                android:id="@+id/tr_about"
+                android:id="@+id/tr_design"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/table_row_paddingLeft"
                 android:paddingRight="@dimen/table_row_paddingLeft"
-                android:paddingTop="@dimen/table_row_paddingTop"
-                android:paddingBottom="@dimen/table_row_paddingTop"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:layout_marginBottom="@dimen/table_row_marginBottom"
-                android:layout_marginTop="@dimen/table_row_marginTop"
                 android:background="@color/white">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/about" />
+                    android:text="\@音然-脑电波调频-" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -135,6 +151,14 @@
                     android:text=">"
                     android:gravity="right"/>
             </TableRow>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:textColor="#999"
+                android:text="\@翼工坊"/>
 
         </LinearLayout>
     </ScrollView>
