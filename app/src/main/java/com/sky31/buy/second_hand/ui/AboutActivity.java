@@ -1,8 +1,10 @@
 package com.sky31.buy.second_hand.ui;
 
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
@@ -10,7 +12,14 @@ import com.sky31.buy.second_hand.context.BuyApp;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
-public class AboutActivity extends SwipeBackActivity {
+public class AboutActivity extends SwipeBackActivity implements View.OnClickListener {
+
+    /* Widget */
+    private TextView tvTitle;
+    private TableRow trCallMe;
+    private TableRow trCheckUpdate;
+    private TableRow trDevelop;
+    private TableRow trDesigner;
 
     /*滑动返回*/
     private SwipeBackLayout mSwipeBackLayout;
@@ -26,20 +35,25 @@ public class AboutActivity extends SwipeBackActivity {
         /*滑动返回*/
         mSwipeBackLayout = getSwipeBackLayout();
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+
+        initWidget();
+    }
+
+    private void initWidget() {
+        tvTitle = (TextView) findViewById(R.id.textView);
+        //tvTitle.setText("关于");
+        trCallMe = (TableRow) findViewById(R.id.tr_call_me);
+        trCheckUpdate = (TableRow) findViewById(R.id.tr_update);
+        trDevelop = (TableRow) findViewById(R.id.tr_develop);
+        trDesigner = (TableRow) findViewById(R.id.tr_design);
+        trCallMe.setOnClickListener(this);
+        trCheckUpdate.setOnClickListener(this);
+        trDevelop.setOnClickListener(this);
+        trDesigner.setOnClickListener(this);
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+    public void onClick(View v) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }

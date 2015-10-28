@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="com.sky31.buy.second_hand.ui.AboutActivity">
 
-    <include layout="@layout/include_header_home" />
+    <include layout="@layout/include_header_with_button" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -99,7 +99,7 @@
                 />
 
             <TableRow
-                android:id="@+id/tr_selling"
+                android:id="@+id/tr_develop"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/table_row_paddingLeft"
@@ -157,6 +157,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
+                android:layout_gravity="bottom"
                 android:textColor="#999"
                 android:text="\@翼工坊"/>
 

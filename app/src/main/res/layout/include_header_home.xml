@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="15dp"
+    android:layout_height="@dimen/header_height"
+    android:padding="0dp"
     android:divider="@drawable/home_goods_listview_shadow"
     android:dividerPadding="5dp"
     android:backgroundTintMode="src_in"
@@ -15,6 +15,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="湘大二手街"
+        android:layout_marginLeft="15dp"
+        android:layout_gravity="center"
         android:id="@+id/textView"
         android:textColor="#fff" />
 </LinearLayout>
