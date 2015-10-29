@@ -1,5 +1,7 @@
 package com.sky31.buy.second_hand.ui;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,6 +56,23 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
+        Uri uri ;
+        Intent it ;
+        switch (v.getId()) {
+            /* develop*/
+            case R.id.tr_develop:
+                uri = Uri.parse("http://github.com/CasparGX");
+                it = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(it);
+                break;
+
+            /*designer's weibo*/
+            case R.id.tr_design:
+                uri = Uri.parse("http://weibo.com/konokenno");
+                it = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(it);
+                break;
+        }
 
     }
 }
