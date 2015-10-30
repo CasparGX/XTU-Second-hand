@@ -275,11 +275,11 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     /* user icon click eggs*/
     private void eggs() {
         switch (userIconClickNum) {
-            case 0:
+            case 2:
                 ivUsericon.setImageResource(R.drawable.waiter_not_avatar);
                 break;
 
-            case 1:
+            case 6:
                 ivUsericon.setImageResource(R.drawable.waiter_not_avatar_blank);
                 break;
         }
