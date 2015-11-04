@@ -223,6 +223,11 @@ public class BuyApp extends Application {
         }
     }
 
+    /*update*/
+    public static void update() {
+
+    }
+
 
 
 }

@@ -24,6 +24,9 @@ public class Constants {
         public static final String
                 API_GOODS_TESTINSERT_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/testInsert";
 
+        public static final String
+                API_APP_UPDATE = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/appUpdate";
+
 
     }
 
