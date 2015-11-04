@@ -91,7 +91,6 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
 
     /*显示dialog*/
     public void showDialog() {
-        LayoutInflater inflater = this.getLayoutInflater();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("联系我们")
                 .setMessage("请联系我们的官方QQ：1643787575")
