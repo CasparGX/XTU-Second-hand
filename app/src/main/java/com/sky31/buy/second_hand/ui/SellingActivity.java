@@ -320,8 +320,8 @@ public class SellingActivity extends SwipeBackActivity implements View.OnClickLi
         }
         params.add(Constants.Keys.KEY_LIMITID, limitID + "");
         params.add(Constants.Keys.KEY_UID, uid);
-        //HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET, params, mUserGoodsJsonHandler);
-        HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET+"limitID=0", null, mUserGoodsJsonHandler);
+        HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET, params, mUserGoodsJsonHandler);
+        //HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET+"limitID=0", null, mUserGoodsJsonHandler);
     }
 
     /*用户商品handler*/
