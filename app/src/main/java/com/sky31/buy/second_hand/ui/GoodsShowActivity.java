@@ -106,11 +106,19 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
         tvDec = (TextView) findViewById(R.id.tv_dec);
         tvDec.setText(goods.dec);
         tvPhone = (TextView) findViewById(R.id.tv_phone);
-        tvPhone.setText(goods.phone);
-        tvPhone.setOnClickListener(this);
+        if (goods.phone.equals("0")) {
+            tvPhone.setVisibility(View.GONE);
+        } else {
+            tvPhone.setText(goods.phone);
+            tvPhone.setOnClickListener(this);
+        }
         tvQq = (TextView) findViewById(R.id.tv_qq);
-        tvQq.setText(goods.qq);
-        tvQq.setOnClickListener(this);
+        if (goods.qq.equals("0")) {
+            tvQq.setVisibility(View.GONE);
+        } else {
+            tvQq.setText(goods.qq);
+            tvQq.setOnClickListener(this);
+        }
         tvSeller = (TextView) findViewById(R.id.tv_seller);
         tvSeller.setText(goods.seller);
 
