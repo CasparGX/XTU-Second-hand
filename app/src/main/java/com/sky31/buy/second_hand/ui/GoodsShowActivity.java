@@ -246,8 +246,12 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
         Intent intent=new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, "湘大二手街");
-        String msgText = "我在湘大二手街上看到了一个没人要的东西 -「"+goods.title+"」,给你看看。\n"
-                +"http://buy.sky31.com/show.html?gid="+goods.id+"\n分享来自「湘大二手街APP」";
+        String msgText = "我在湘大二手街上看到了一个没人要的东西 -「"
+                +goods.title
+                +"」,给你看看。\n"
+                +"http://buy.sky31.com/show.html?gid="
+                +goods.id
+                +"\n分享来自「湘大二手街APP」";
         intent.putExtra(Intent.EXTRA_TEXT, msgText);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
