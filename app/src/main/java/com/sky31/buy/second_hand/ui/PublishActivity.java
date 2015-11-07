@@ -310,8 +310,18 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
      *  spinner选中的值在spinnerSelectListener中设置setParams
      * */
     private void publishGoods() {
-        showLoadingDialog();
-        if (params.has("file1")){
+        if (etGoodsTitle.getText().toString().equals("")) {
+            Toast.makeText(PublishActivity.this, "不写标题不给发！哼！", Toast.LENGTH_SHORT).show();
+        } else if (etGoodsDec.getText().toString().equals("")) {
+            Toast.makeText(PublishActivity.this, "写个描述介绍一下嘛", Toast.LENGTH_SHORT).show();
+        } else if (etGoodsPrice.getText().toString().equals("")) {
+            Toast.makeText(PublishActivity.this, "价格都不告诉我，怎么帮你卖嘛", Toast.LENGTH_SHORT).show();
+        } else if (etPhone.getText().toString().equals("") && etQq.getText().toString().equals("")) {
+            Toast.makeText(PublishActivity.this, "留个联系方式给我嘛，讨厌，还要人家这么主动", Toast.LENGTH_SHORT).show();
+        } else if (!params.has("file1")){
+            Toast.makeText(PublishActivity.this, "请选择一张图片", Toast.LENGTH_SHORT).show();
+        } else {
+            showLoadingDialog();
             setParams(Constants.Keys.KEY_TITLE,etGoodsTitle.getText()+"");//title
             setParams(Constants.Keys.KEY_DESCRIBE,etGoodsDec.getText()+"");//dec
             setParams(Constants.Keys.KEY_PRICE,etGoodsPrice.getText()+"");//price
@@ -324,8 +334,6 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
             HttpUtil.post(Constants.Apis.API_GOODS_APPINSERT_POST
                     , params
                     , mInsertHandler);
-        } else {
-            Toast.makeText(PublishActivity.this, "请选择一张图片", Toast.LENGTH_SHORT).show();
         }
 
     }
