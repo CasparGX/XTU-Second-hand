@@ -246,6 +246,7 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
         Intent intent=new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, "湘大二手街");
+        /* 分享文案 */
         String msgText = "我在湘大二手街上看到了一个没人要的东西 -「"
                 +goods.title
                 +"」,给你看看。\n"
