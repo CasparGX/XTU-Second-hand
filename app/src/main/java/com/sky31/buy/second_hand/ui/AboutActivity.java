@@ -30,6 +30,9 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
     private TableRow trCheckUpdate;
     private TableRow trDevelop;
     private TableRow trDesigner;
+    private TextView tvHeaderTitle;
+
+    private Intent mIntent;
 
     /*滑动返回*/
     private SwipeBackLayout mSwipeBackLayout;
@@ -39,6 +42,7 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+        mIntent = getIntent();
 
         //设置状态栏颜色
         BuyApp.setStatusBarColor(AboutActivity.this);
@@ -47,6 +51,8 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
 
         initWidget();
+        setTvHeaderTitle();
+
     }
 
     private void initWidget() {
@@ -60,6 +66,15 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
         trCheckUpdate.setOnClickListener(this);
         trDevelop.setOnClickListener(this);
         trDesigner.setOnClickListener(this);
+
+        tvHeaderTitle = (TextView) findViewById(R.id.tv_header_title);
+    }
+
+    /*修改header标题*/
+    private void setTvHeaderTitle() {
+        String title = mIntent.hasExtra("headerTitle")
+                ? mIntent.getStringExtra("headerTitle") : getResources().getString(R.string.app_title);
+        tvHeaderTitle.setText(title);
     }
 
     @Override

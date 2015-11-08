@@ -256,6 +256,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             case R.id.tr_about:
                 Intent intentAbout = new Intent();
                 intentAbout.setClass(getActivity(), AboutActivity.class);
+                intentAbout.putExtra("headerTitle", "关于");
                 startActivity(intentAbout);
                 getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
                 break;
