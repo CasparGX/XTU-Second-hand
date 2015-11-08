@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <!--<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="16" />-->
 
     <application
         android:name=".context.BuyApp"
@@ -35,9 +36,7 @@
             <intent-filter><!--
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />-->
-
                 <action android:name="com.sky31.buy.second_hand.ui.HomeActivity" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
