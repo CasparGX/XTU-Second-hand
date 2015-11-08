@@ -46,6 +46,7 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
     private SwipeBackLayout mSwipeBackLayout;
     private SwipeBackActivityHelper mHelper;
 
+    private TextView tvHeaderTitle;
     private ImageView imgPic;
     private TextView tvTitle;
     private TextView tvPrice;
@@ -64,6 +65,8 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
     private ImageView imgPic03;
     private ImageView imgPic02;
     private GoodsData goods;
+
+    private Intent mIntent;
 
     private LinearLayout llMinImage;
 
@@ -89,8 +92,8 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
         this.imageLoader = BuyApp.getInstance().getImageLoader();
         this.displayImageOptions = BuyApp.getInstance().getDisplayImageOptions();
 
-        Intent intent = this.getIntent();
-        goods = intent.getParcelableExtra("goodsInfo");
+        mIntent = this.getIntent();
+        goods = mIntent.getParcelableExtra("goodsInfo");
         //init ImageView btn
         ivBack = (ImageView) findViewById(R.id.iv_back_btn);
         ivBack.setOnClickListener(this);
@@ -99,6 +102,8 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
         ivShare.setVisibility(View.VISIBLE);
 
         //init TextView
+        tvHeaderTitle = (TextView) findViewById(R.id.tv_header_title);
+        setTvHeaderTitle();
         tvTitle = (TextView) findViewById(R.id.tv_title);
         tvTitle.setText(goods.title);
         tvPrice = (TextView) findViewById(R.id.tv_price);
@@ -197,6 +202,13 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
 
 
 
+    }
+
+    /*修改header标题*/
+    private void setTvHeaderTitle() {
+        String title = mIntent.hasExtra("headerTitle")
+                ? mIntent.getStringExtra("headerTitle") : getResources().getString(R.string.app_title);
+        tvHeaderTitle.setText(title);
     }
 
     @Override

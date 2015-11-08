@@ -190,6 +190,7 @@ public class SellingActivity extends SwipeBackActivity implements View.OnClickLi
                         Intent intentGoodsShow = new Intent();
                         intentGoodsShow.setClass(SellingActivity.this, GoodsShowActivity.class);
                         intentGoodsShow.putExtra("goodsInfo", adapter.getItem(i));
+                        intentGoodsShow.putExtra("headerTitle", "商品详情");
                         //intentGoodsShow.putExtra("goodsInfo", mListView.getAdapter().getItem(i));
                         startActivity(intentGoodsShow);
                         SellingActivity.this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);

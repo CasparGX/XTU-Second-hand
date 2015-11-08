@@ -191,6 +191,7 @@ public class HomeFragment extends Fragment {
                         intentGoodsShow.setClass(getActivity(), GoodsShowActivity.class);
                         //Bundle bundleGoodShow = new Bundle();
                         intentGoodsShow.putExtra("goodsInfo", adapter.getItem(i));
+                        intentGoodsShow.putExtra("headerTitle", "商品详情");
                         startActivity(intentGoodsShow);
                         getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
 
