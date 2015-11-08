@@ -6,18 +6,18 @@
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>
         <item name="android:windowIsTranslucent">true</item>
 
-        <!-- API 19 theme customizations can go here. --><!--
+        <!-- API 19 theme customizations can go here. -->
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
-        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>-->
+        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>
     </style>
     <style name="AppHomeTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>
         <item name="android:windowIsTranslucent">false</item>
 
-        <!-- API 19 theme customizations can go here. --><!--
+        <!-- API 19 theme customizations can go here. -->
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
-        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>-->
+        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>
     </style>
 
     <style name="AppBaseThemeMain"  parent="Theme.AppCompat.Light.DarkActionBar">
@@ -28,9 +28,9 @@
         <item name="android:windowBackground">@drawable/launch</item>//@null黑屏  @drawable/icon放一张启动图片
         <item name="android:windowNoTitle">false</item> //启动界面是否显示应用名称 true不显示 false显示
 
-        <!-- API 19 theme customizations can go here. --><!--
+        <!-- API 19 theme customizations can go here. -->
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
-        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>-->
+        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>
     </style>
 
     <style name="activityAnimation" parent="@android:style/Animation">
