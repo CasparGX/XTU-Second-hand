@@ -53,7 +53,7 @@
                 android:paddingTop="@dimen/table_row_paddingTop"
                 android:paddingBottom="@dimen/table_row_paddingTop"
                 android:layout_marginBottom="@dimen/table_row_marginBottom"
-                android:background="@color/white">
+                android:background="@drawable/item_bg_color">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
                 android:paddingRight="@dimen/table_row_paddingLeft"
                 android:paddingTop="@dimen/table_row_paddingTop"
                 android:paddingBottom="@dimen/table_row_paddingTop"
-                android:background="@color/white"
+                android:background="@drawable/item_bg_color"
                 android:layout_marginBottom="@dimen/table_row_marginBottom">
 
                 <TextView
@@ -101,7 +101,7 @@
                 android:paddingTop="@dimen/table_row_paddingTop"
                 android:paddingBottom="@dimen/table_row_paddingTop"
                 android:layout_marginBottom="@dimen/table_row_marginBottom"
-                android:background="@color/white">
+                android:background="@drawable/item_bg_color">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -125,7 +125,7 @@
                 android:paddingBottom="@dimen/table_row_paddingTop"
                 android:layout_marginBottom="30dp"
                 android:layout_marginTop="@dimen/table_row_marginTop"
-                android:background="@color/white">
+                android:background="@drawable/item_bg_color">
 
                 <TextView
                     android:layout_width="wrap_content"

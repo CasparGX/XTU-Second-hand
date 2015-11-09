@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
 
     /* Widget */
     private TextView tvTitle;
+    private ImageView iv_back_btn;
     private TableRow trCallMe;
     private TableRow trCheckUpdate;
     private TableRow trDevelop;
@@ -56,8 +58,10 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
     }
 
     private void initWidget() {
-        tvTitle = (TextView) findViewById(R.id.textView);
+        //tvTitle = (TextView) findViewById(R.id.textView);
         //tvTitle.setText("关于");
+        iv_back_btn = (ImageView) findViewById(R.id.iv_back_btn);
+        iv_back_btn.setOnClickListener(this);
         trCallMe = (TableRow) findViewById(R.id.tr_call_me);
         trCheckUpdate = (TableRow) findViewById(R.id.tr_update);
         trDevelop = (TableRow) findViewById(R.id.tr_develop);
@@ -82,6 +86,11 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
         Uri uri ;
         Intent it ;
         switch (v.getId()) {
+            /* back */
+            case R.id.iv_back_btn:
+                onBackPressed();
+                break;
+
             /* call us */
             case R.id.tr_call_me:
                 showDialog();

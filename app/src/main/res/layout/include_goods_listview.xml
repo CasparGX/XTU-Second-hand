@@ -11,7 +11,7 @@
         android:dividerHeight="0.5dp"
         android:scrollbarStyle="outsideOverlay"
         android:clipToPadding="false"
-        android:footerDividersEnabled="false">
+        android:footerDividersEnabled="true">
 
     </ListView>
 </LinearLayout>
