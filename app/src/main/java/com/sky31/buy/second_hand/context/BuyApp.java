@@ -1,18 +1,22 @@
 package com.sky31.buy.second_hand.context;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
+import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.util.DisplayMetrics;
-import android.view.Display;
+import android.nfc.Tag;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
 import com.nostra13.universalimageloader.cache.memory.impl.UsingFreqLimitedMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -26,7 +30,9 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.GoodsData;
+import com.sky31.buy.second_hand.util.HttpUtil;
 
+import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +45,8 @@ import java.util.List;
  * Created by Caspar on 2015/7/29.
  */
 public class BuyApp extends Application {
+
+    private static final String app_version="1.0.0";
 
     private static final String API_URL      = Constants.Apis.API_URL;
     private static final String KEY_PICNAME  = Constants.Keys.KEY_PICNAME;
@@ -224,10 +232,73 @@ public class BuyApp extends Application {
     }
 
     /*update*/
-    public static void update() {
-
+    public static void checkUpdate() {
+        HttpUtil.get(Constants.Apis.API_APP_UPDATE, null, checkUpdateHandler);
     }
 
+    static JsonHttpResponseHandler checkUpdateHandler = new JsonHttpResponseHandler() {
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
+            super.onSuccess(statusCode, headers, response);
+        }
+
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            super.onSuccess(statusCode, headers, response);
+            Log.i("buyapp", response.toString());
+            try {
+                String version = response.getString("version");
+                String [] version1 = version.split(".");    //获取版本
+                String [] version2 = app_version.split(".");//当前版本
+                boolean isNewVersion = false;
+                if (Integer.parseInt(version1[0])>Integer.parseInt(version2[0])) {
+                    isNewVersion = true;
+                } else if (Integer.parseInt(version1[0])==Integer.parseInt(version2[0])) {
+                    if (Integer.parseInt(version1[1])>Integer.parseInt(version2[1])) {
+                        isNewVersion = true;
+                    } else if (Integer.parseInt(version1[1])==Integer.parseInt(version2[1])) {
+                        if (Integer.parseInt(version1[2])>Integer.parseInt(version2[2])) {
+                            isNewVersion = true;
+                        }
+                    }
+                }
+                if (isNewVersion) {
+                    updateDialog();
+                } else {
+                    Toast.makeText(instance.getApplicationContext(),"已是最新版本",Toast.LENGTH_SHORT).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+            super.onFailure(statusCode, headers, responseString, throwable);
+            Log.e("GoodsApi", " onFailure" + responseString.toString());
+        }
+
+        public void onFinish() {
+            Log.i("GoodsApi", "onFinish");
+        }
+    };
+
+    /*显示dialog*/
+    private static void updateDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(instance.getApplicationContext());
+        builder.setTitle("联系我们")
+                .setMessage("请联系我们的官方QQ：1643787575")
+                .setPositiveButton("复制号码",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+
+                            }
+                        })
+                .setNegativeButton("确定", null).create()
+                .show();
+    }
 
 
 }

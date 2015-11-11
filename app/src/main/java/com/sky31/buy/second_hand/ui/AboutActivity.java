@@ -96,6 +96,11 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
                 showDialog();
                 break;
 
+            /*  check update*/
+            case R.id.tr_update:
+                BuyApp.checkUpdate();
+                break;
+
             /* develop*/
             case R.id.tr_develop:
                 uri = Uri.parse("http://github.com/CasparGX");
