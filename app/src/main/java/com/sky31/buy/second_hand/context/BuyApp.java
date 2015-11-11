@@ -30,6 +30,8 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.GoodsData;
+import com.sky31.buy.second_hand.ui.AboutActivity;
+import com.sky31.buy.second_hand.ui.HomeActivity;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
 import org.apache.http.Header;
@@ -46,7 +48,7 @@ import java.util.List;
  */
 public class BuyApp extends Application {
 
-    private static final String app_version="1.0.0";
+    private static final String app_version="0.0.0";
 
     private static final String API_URL      = Constants.Apis.API_URL;
     private static final String KEY_PICNAME  = Constants.Keys.KEY_PICNAME;
@@ -248,8 +250,9 @@ public class BuyApp extends Application {
             Log.i("buyapp", response.toString());
             try {
                 String version = response.getString("version");
-                String [] version1 = version.split(".");    //获取版本
-                String [] version2 = app_version.split(".");//当前版本
+                String [] version1 = version.split("\\.");    //获取版本
+                String [] version2 = app_version.split("\\.");//当前版本
+                Log.i("buyapp",version1.toString()+"   "+version2.toString());
                 boolean isNewVersion = false;
                 if (Integer.parseInt(version1[0])>Integer.parseInt(version2[0])) {
                     isNewVersion = true;
@@ -263,7 +266,7 @@ public class BuyApp extends Application {
                     }
                 }
                 if (isNewVersion) {
-                    updateDialog();
+                    AboutActivity.updateDialog();
                 } else {
                     Toast.makeText(instance.getApplicationContext(),"已是最新版本",Toast.LENGTH_SHORT).show();
                 }
@@ -283,22 +286,7 @@ public class BuyApp extends Application {
         }
     };
 
-    /*显示dialog*/
-    private static void updateDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(instance.getApplicationContext());
-        builder.setTitle("联系我们")
-                .setMessage("请联系我们的官方QQ：1643787575")
-                .setPositiveButton("复制号码",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which) {
 
-                            }
-                        })
-                .setNegativeButton("确定", null).create()
-                .show();
-    }
 
 
 }

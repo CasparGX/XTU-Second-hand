@@ -1,5 +1,8 @@
 package com.sky31.buy.second_hand.ui;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -43,6 +46,8 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     public static int screenWidth;
     public static int screenHeight;
 
+    private static Context context;
+
     private SwipeBackLayout mSwipeBackLayout;
 
     private ViewPager mViewPager;
@@ -68,7 +73,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        context = HomeActivity.this;
 
         //设置状态栏颜色
         BuyApp.setStatusBarColor(this);
@@ -254,4 +259,5 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
             }, 2000);
         }
     }
+
 }

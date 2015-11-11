@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
+import com.sky31.buy.second_hand.context.values.Constants;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
@@ -36,6 +37,8 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
 
     private Intent mIntent;
 
+    private static Context context;
+
     /*滑动返回*/
     private SwipeBackLayout mSwipeBackLayout;
 
@@ -43,7 +46,7 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
-
+        context = AboutActivity.this;
         mIntent = getIntent();
 
         //设置状态栏颜色
@@ -132,6 +135,24 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
                                 ClipboardManager cmb = (ClipboardManager)AboutActivity.this.getSystemService(Context.CLIPBOARD_SERVICE);
                                 cmb.setText("1643787575");
                                 Toast.makeText(AboutActivity.this, "已复制QQ号，可直接粘贴", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                .setNegativeButton("确定", null).create()
+                .show();
+    }
+
+
+    /*显示upadte dialog*/
+    public static void updateDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setTitle("检查更新")
+                .setMessage("有新版本，是否更新？")
+                .setPositiveButton("取消",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which) {
+
                             }
                         })
                 .setNegativeButton("确定", null).create()
