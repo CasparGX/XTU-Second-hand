@@ -21,9 +21,15 @@ import com.loopj.android.http.BinaryHttpResponseHandler;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
+import com.sky31.buy.second_hand.util.FileUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
 import org.apache.http.Header;
+
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
@@ -151,7 +157,7 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("检查更新")
                 .setMessage("有新版本，是否更新？")
-                .setPositiveButton("取消",
+                .setPositiveButton("确定",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog,
@@ -159,19 +165,58 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
                                 downloadApp(url);
                             }
                         })
-                .setNegativeButton("确定", null).create()
+                .setNegativeButton("取消", null).create()
                 .show();
     }
 
     private static void downloadApp(String url) {
+        Log.i("downloadApp","----------downloadApp----------");
         // 指定文件类型
         String[] allowedContentTypes = new String[] { ".*" };
         // 获取二进制数据如图片和其他文件
         HttpUtil.get(url, new BinaryHttpResponseHandler(
                 allowedContentTypes) {
+            @Override
+            public void onProgress(long bytesWritten, long totalSize) {
+                super.onProgress(bytesWritten, totalSize);
+                Log.i("downloadApp", bytesWritten + "");
+            }
 
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
+                // 文件夹地址
+                String tempPath = "/Download";
+                // 文件地址
+                String filePath = tempPath + "/" + "second-hand.apk";
+                // 下载成功后需要做的工作
+                Log.e("binaryData:", "共下载了：" + bytes.length);
+
+
+                FileUtil fileutils = new FileUtil();
+
+
+                // 判断sd卡上的文件夹是否存在
+                if (!fileutils.isFileExist(tempPath)) {
+                    fileutils.createSDDir(tempPath);
+                }
+
+
+                // 删除已下载的apk
+                if (fileutils.isFileExist(filePath)) {
+                    fileutils.deleteFile(filePath);
+                }
+
+
+                InputStream inputstream = new ByteArrayInputStream(bytes);
+                if (inputstream != null) {
+                    fileutils.write2SDFromInput(filePath, inputstream);
+                    try {
+                        inputstream.close();
+                        installApk(new File(filePath));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
 
             }
 
@@ -180,6 +225,16 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
 
             }
         });
+    }
+
+    /**
+     * 安装APK
+     */
+    private static void installApk(File file) {
+        Log.i("installApk",file.getName());
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+        context.startActivity(intent);
     }
 
 }
