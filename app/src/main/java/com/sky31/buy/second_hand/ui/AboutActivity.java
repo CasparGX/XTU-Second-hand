@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -111,6 +112,7 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
 
             /*  check update*/
             case R.id.tr_update:
+                BuyApp.getVersionName(this);
                 BuyApp.checkUpdate();
                 break;
 
@@ -185,11 +187,12 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
             @Override
             public void onSuccess(int i, Header[] headers, byte[] bytes) {
                 // 文件夹地址
-                String tempPath = "/Download";
+                String tempPath = Environment.getDownloadCacheDirectory().toString();
+                String apkName = "Second-hand.apk";
                 // 文件地址
-                String filePath = tempPath + "/" + "second-hand.apk";
+                String filePath = tempPath + "/" + apkName;
                 // 下载成功后需要做的工作
-                Log.e("binaryData:", "共下载了：" + bytes.length);
+                Log.i("binaryData:", "共下载了：" + bytes.length);
 
 
                 FileUtil fileutils = new FileUtil();
@@ -209,10 +212,10 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
 
                 InputStream inputstream = new ByteArrayInputStream(bytes);
                 if (inputstream != null) {
-                    fileutils.write2SDFromInput(filePath, inputstream);
+                    File apk = fileutils.write2SDFromInput(filePath, inputstream);
                     try {
                         inputstream.close();
-                        installApk(new File(filePath));
+                        installApk(apk);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -231,9 +234,13 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
      * 安装APK
      */
     private static void installApk(File file) {
-        Log.i("installApk",file.getName());
+        Log.i("installApk",file.toString());
+        if (!file.exists()) {
+            return;
+        }
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setDataAndType(Uri.parse("file://" + file.toString()), "application/vnd.android.package-archive");
         context.startActivity(intent);
     }
 

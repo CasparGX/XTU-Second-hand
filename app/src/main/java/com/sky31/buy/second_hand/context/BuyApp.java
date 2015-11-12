@@ -6,6 +6,7 @@ import android.app.Application;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.nfc.Tag;
 import android.util.Log;
@@ -48,7 +49,7 @@ import java.util.List;
  */
 public class BuyApp extends Application {
 
-    private static final String app_version="0.0.0";
+    private static String app_version = "0.0.0";
 
     private static final String API_URL      = Constants.Apis.API_URL;
     private static final String KEY_PICNAME  = Constants.Keys.KEY_PICNAME;
@@ -285,6 +286,15 @@ public class BuyApp extends Application {
             Log.i("GoodsApi", "onFinish");
         }
     };
+
+    public static String getVersionName(Context context) {
+        try {
+            app_version = context.getPackageManager().getPackageInfo("com.sky31.buy.second_hand",0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return app_version;
+    }
 
 
 
