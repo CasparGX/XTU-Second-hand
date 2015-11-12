@@ -17,9 +17,13 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.loopj.android.http.BinaryHttpResponseHandler;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
+import com.sky31.buy.second_hand.util.HttpUtil;
+
+import org.apache.http.Header;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
@@ -143,7 +147,7 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
 
 
     /*显示upadte dialog*/
-    public static void updateDialog() {
+    public static void updateDialog(final String url) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("检查更新")
                 .setMessage("有新版本，是否更新？")
@@ -152,11 +156,30 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
                             @Override
                             public void onClick(DialogInterface dialog,
                                                 int which) {
-
+                                downloadApp(url);
                             }
                         })
                 .setNegativeButton("确定", null).create()
                 .show();
+    }
+
+    private static void downloadApp(String url) {
+        // 指定文件类型
+        String[] allowedContentTypes = new String[] { ".*" };
+        // 获取二进制数据如图片和其他文件
+        HttpUtil.get(url, new BinaryHttpResponseHandler(
+                allowedContentTypes) {
+
+            @Override
+            public void onSuccess(int i, Header[] headers, byte[] bytes) {
+
+            }
+
+            @Override
+            public void onFailure(int i, Header[] headers, byte[] bytes, Throwable throwable) {
+
+            }
+        });
     }
 
 }

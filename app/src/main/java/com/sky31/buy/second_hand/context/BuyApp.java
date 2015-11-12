@@ -266,7 +266,7 @@ public class BuyApp extends Application {
                     }
                 }
                 if (isNewVersion) {
-                    AboutActivity.updateDialog();
+                    AboutActivity.updateDialog(Constants.Apis.API_URL+response.getString("url"));
                 } else {
                     Toast.makeText(instance.getApplicationContext(),"已是最新版本",Toast.LENGTH_SHORT).show();
                 }
