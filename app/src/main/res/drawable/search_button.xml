@@ -5,16 +5,16 @@
         <shape>
             <solid android:color="#ccc" />
 
-            <corners android:bottomRightRadius="15dp"
-                android:topRightRadius="15dp"/>
+            <corners android:bottomRightRadius="4dp"
+                android:topRightRadius="4dp"/>
         </shape>
     </item>
     <!-- 主体背景颜色值 -->
     <item android:left="1dp">
         <shape>
             <solid android:color="#65c4ff" />
-            <corners android:bottomRightRadius="15dp"
-                android:topRightRadius="15dp"/>
+            <corners android:bottomRightRadius="4dp"
+                android:topRightRadius="4dp"/>
         </shape>
     </item>
 </layer-list>
