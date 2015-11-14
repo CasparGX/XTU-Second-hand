@@ -12,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -242,11 +243,20 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         }
     }
 
+    /*@Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            moveTaskToBack(true);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }*/
+
     /*close app*/
     @Override
     public void onBackPressed() {
         if (canExit) {
-            super.onBackPressed();
+            moveTaskToBack(true);
             //super.onDestroy();
         } else {
             canExit = true;
@@ -259,5 +269,14 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
             }, 2000);
         }
     }
+    
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
 }
