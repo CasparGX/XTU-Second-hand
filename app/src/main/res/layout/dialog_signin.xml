@@ -2,10 +2,24 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/table_row_margin"
     android:stretchColumns="1">
 
-    <TableRow android:layout_marginTop="@dimen/table_row_margin">
+    <TableRow
+        android:background="@drawable/dialog_title"
+        android:layout_height="60dp"
+        >
+        <TextView
+            android:id="@+id/tv_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:text="@string/login"
+            />
+    </TableRow>
+
+    <TableRow android:layout_margin="@dimen/table_row_margin">
 
         <TextView
             android:gravity="right"
@@ -15,6 +29,7 @@
 
         <EditText
             android:id="@+id/username"
+            android:layout_weight="1"
             android:background="@drawable/editview_border"
             android:hint="@string/username"
             android:inputType="textEmailAddress"
@@ -22,7 +37,7 @@
             android:textSize="18sp" />
     </TableRow>
 
-    <TableRow android:layout_marginTop="@dimen/table_row_margin">
+    <TableRow android:layout_margin="@dimen/table_row_margin">
 
         <TextView
             android:gravity="right"
@@ -32,6 +47,7 @@
 
         <EditText
             android:id="@+id/password"
+            android:layout_weight="1"
             android:background="@drawable/editview_border"
             android:fontFamily="sans-serif"
             android:hint="@string/password"

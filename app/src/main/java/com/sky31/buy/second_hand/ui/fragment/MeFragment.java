@@ -380,8 +380,10 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     public void showLoginDialog() {
         LayoutInflater inflater = getActivity().getLayoutInflater();
         final View dialogView = inflater.inflate(R.layout.dialog_signin, null);
-        builderLogin
-                .setTitle(R.string.login)
+        TextView tvDialogTitle = (TextView) dialogView.findViewById(R.id.tv_dialog_title);
+        tvDialogTitle.setText(R.string.login);
+                builderLogin
+                //.setTitle(R.string.login)
                 .setView(dialogView)
                 .setPositiveButton("确定",
                         new DialogInterface.OnClickListener() {
@@ -397,7 +399,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
                             }
                         }).setNegativeButton("取消", null).create()
-                .show();
+                        .show();
     }
 
     public void login(String username, String password) {
