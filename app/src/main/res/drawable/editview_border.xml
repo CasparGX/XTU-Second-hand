@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape
-    android:shape="rectangle"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#fff" />
-    <corners android:radius="5dp" />
-    <stroke android:width="0.8dp"
-        android:color="#ccc"/>
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_focused="true"
+        android:drawable="@drawable/editview_border_focus">
+    </item>
+    <item>
+        <shape
+            android:shape="rectangle"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+            <solid android:color="@color/themeBgColor" />
+            <corners android:radius="@dimen/editview_radius" />
+            <stroke android:width="@dimen/editview_width"
+                android:color="#ccc"/>
+        </shape>
+    </item>
+</selector>

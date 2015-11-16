@@ -137,7 +137,7 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
     public void showDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("联系我们")
-                .setMessage("请联系我们的官方QQ：1643787575")
+                .setMessage("湘大二手街官方QQ：1643787575")
                 .setPositiveButton("复制号码",
                         new DialogInterface.OnClickListener() {
                             @Override

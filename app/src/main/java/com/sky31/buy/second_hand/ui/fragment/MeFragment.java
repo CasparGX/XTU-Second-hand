@@ -1,7 +1,6 @@
 package com.sky31.buy.second_hand.ui.fragment;
 
 
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -111,7 +110,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
         /*自动登录*/
         if (mCacheUserName != null && mCachePassWord != null) {
-            login(mCacheUserName,mCachePassWord);
+            login(mCacheUserName, mCachePassWord);
         }
 
         //TODO 将用户信息存入缓存或每次启动进行一次登录
@@ -124,7 +123,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
             super.onSuccess(statusCode, headers, response);
             Log.i(TAG, "-----------------开始: 接受到JSONArray数据-----------------");
-            Log.i(TAG,response+"");
+            Log.i(TAG, response + "");
             System.out.println(headers.toString());
 
             Log.i(TAG, "-----------------结束: 接受到JSONArray数据-----------------");
@@ -137,13 +136,13 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             Log.i(TAG, response + "");
             try {
                 if (response.get("result").equals("error")) {
-                    Toast.makeText(getActivity(),"登录失败:"+response.get("msg")+"",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "登录失败:" + response.get("msg") + "", Toast.LENGTH_SHORT).show();
                 } else if (response.get("result").equals("success")) {
                     //Toast.makeText(getActivity(),"登录成功",Toast.LENGTH_SHORT).show();
                     response = (JSONObject) response.get("msg");
                     logInSuccess(response);
-                } else{
-                    Toast.makeText(getActivity(),"服务器无响应",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), "服务器无响应", Toast.LENGTH_SHORT).show();
                 }
 
             } catch (JSONException e) {
@@ -172,13 +171,14 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             isLogin = true;
             userInfo = response;
             tvLoginLink.setText(getActivity().getResources().getString(R.string.logOut));
-            tvNickname.setText(response.get("nickname")+"");
+            tvNickname.setText(response.get("nickname") + "");
             mCache.put(Constants.Keys.KEY_CACHE_USERNAME, mCacheUserName);
             mCache.put(Constants.Keys.KEY_CACHE_PASSWORD, mCachePassWord);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
+
     /*退出账号成功*/
     private void logOutSuccess() {
         isLogin = false;
@@ -265,7 +265,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             case R.id.tv_login_link:
                 if (isLogin) {
                     logOutSuccess();
-                }else {
+                } else {
                     showLoginDialog();
                 }
                 break;
@@ -296,13 +296,13 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             Log.i(TAG, response + "");
             try {
                 if (response.get("result").equals("error")) {
-                    Toast.makeText(getActivity(),"修改失败:"+response.get("msg")+"",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "修改失败:" + response.get("msg") + "", Toast.LENGTH_SHORT).show();
                 } else if (response.get("result").equals("success")) {
                     HttpUtil.post(Constants.Apis.API_USER_LOGIN_POST
                             , null
                             , mLogInHandler);
-                } else{
-                    Toast.makeText(getActivity(),Constants.Values.VALUE_SERVICE_NO_RESPONSE,Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getActivity(), Constants.Values.VALUE_SERVICE_NO_RESPONSE, Toast.LENGTH_SHORT).show();
                 }
 
             } catch (JSONException e) {
@@ -332,15 +332,18 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             LayoutInflater inflater = getActivity().getLayoutInflater();
             final View dialogView = inflater.inflate(R.layout.dialog_edit_info, null);
 
-            etNickName  = (EditText) dialogView.findViewById(R.id.et_nickname);
-            etPhoneNum  = (EditText) dialogView.findViewById(R.id.et_phone_num);
-            etQq        = (EditText) dialogView.findViewById(R.id.et_qq);
+            TextView tvDialogTitle = (TextView) dialogView.findViewById(R.id.tv_dialog_title);
+            tvDialogTitle.setText(R.string.editInfo);
+
+            etNickName = (EditText) dialogView.findViewById(R.id.et_nickname);
+            etPhoneNum = (EditText) dialogView.findViewById(R.id.et_phone_num);
+            etQq = (EditText) dialogView.findViewById(R.id.et_qq);
             etNickName.setText(userInfo.getString("nickname"));
             etPhoneNum.setText(userInfo.getString("phone"));
             etQq.setText(userInfo.getString("qq"));
 
             builderEditInfo
-                    .setTitle(R.string.editInfo)
+                    //.setTitle(R.string.editInfo)
                     .setView(dialogView)
                     .setPositiveButton("确认修改",
                             new DialogInterface.OnClickListener() {
@@ -382,7 +385,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         final View dialogView = inflater.inflate(R.layout.dialog_signin, null);
         TextView tvDialogTitle = (TextView) dialogView.findViewById(R.id.tv_dialog_title);
         tvDialogTitle.setText(R.string.login);
-                builderLogin
+            builderLogin
                 //.setTitle(R.string.login)
                 .setView(dialogView)
                 .setPositiveButton("确定",
@@ -392,14 +395,14 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                                                 int which) {
                                 mEtUserName = (EditText) dialogView.findViewById(R.id.username);
                                 mEtPassWord = (EditText) dialogView.findViewById(R.id.password);
-                                login(mEtUserName.getText().toString(),mEtPassWord.getText().toString());
+                                login(mEtUserName.getText().toString(), mEtPassWord.getText().toString());
 
                                 Log.i(TAG, String.valueOf(mEtUserName.getText().toString().equals("630248976@qq.com")));
                                 Log.i(TAG, params + "");
 
                             }
                         }).setNegativeButton("取消", null).create()
-                        .show();
+                .show();
     }
 
     public void login(String username, String password) {

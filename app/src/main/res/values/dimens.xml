@@ -15,4 +15,7 @@
     <dimen name="table_row_editview_padding">5dp</dimen>
 
     <dimen name="usericon_layout_margin">10dp</dimen>
+
+    <dimen name="editview_radius">5dp</dimen>
+    <dimen name="editview_width">0.8dp</dimen>
 </resources>

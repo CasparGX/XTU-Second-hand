@@ -10,11 +10,11 @@
         </shape>
     </item>
     <!-- 主体背景颜色值 -->
-    <item android:left="1dp">
+    <item android:left="0dp">
         <shape>
-            <solid android:color="#65c4ff" />
-            <corners android:bottomRightRadius="4dp"
-                android:topRightRadius="4dp"/>
+            <solid android:color="@color/themeColor" />
+            <corners android:bottomRightRadius="@dimen/editview_radius"
+                android:topRightRadius="@dimen/editview_radius"/>
         </shape>
     </item>
 </layer-list>
