@@ -60,7 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="15sp"
+                android:textSize="13sp"
                 android:text="元"
                 android:id="@+id/yuan"
                 android:textColor="#66cccc" />
