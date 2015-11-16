@@ -37,9 +37,9 @@ public class HomeFragmentListViewAdapter extends BaseAdapter {
     private TextView dec;
     private ImageView icon;
 
-
-
-
+    private class ViewHolder {
+        public ImageView image;
+    }
 
     public ArrayList<GoodsData> getmGoodsData() {
         return mGoodsData;
@@ -71,10 +71,14 @@ public class HomeFragmentListViewAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         GoodsData data;
         data = getItem(i);
+        final ViewHolder holder;
         if (view == null) {
-            view = inflater.inflate(R.layout.item_home_goods,viewGroup,false);
+            view = inflater.inflate(R.layout.item_home_goods, viewGroup, false);
 
-            icon = (ImageView) view.findViewById(R.id.icon);
+            //icon = (ImageView) view.findViewById(R.id.icon);
+            holder = new ViewHolder();
+            holder.image = (ImageView) view.findViewById(R.id.icon);
+            view.setTag(holder);
             /*final LayoutParams iconParams = icon.getLayoutParams();
             ViewTreeObserver vto2 = icon.getViewTreeObserver();
             vto2.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
@@ -86,6 +90,8 @@ public class HomeFragmentListViewAdapter extends BaseAdapter {
             });
             icon.setLayoutParams(iconParams);*/
 
+        } else {
+            holder = (ViewHolder) view.getTag(); // 把数据取出来
         }
         title = (TextView) view.findViewById(R.id.title);
         price = (TextView) view.findViewById(R.id.price);
@@ -96,13 +102,14 @@ public class HomeFragmentListViewAdapter extends BaseAdapter {
         imageLoader.displayImage(data.imgUrl
                 + Constants.Values.VALUE_MIN_SIZE_PRE
                 + data.imgUrlArray.get(0)
-                , icon
+                , holder.image
                 , this.displayImageOptions);
+
 
         dec.setText(data.dec);
         title.setText(data.title);
 //        title.setText(Build.VERSION.RELEASE);
-        price.setText(data.price+"");
+        price.setText(data.price + "");
 //        price.setText(Build.VERSION.SDK);
         seller.setText(data.seller);
 //        seller.setText(Build.MODEL);

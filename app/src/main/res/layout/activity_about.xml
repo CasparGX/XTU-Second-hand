@@ -1,5 +1,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/themeBgColor"
     android:clipToPadding="false"
@@ -11,33 +12,45 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@color/white"
                 android:layout_margin="@dimen/usericon_layout_margin"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
                 android:padding="20dp">
 
                 <ImageView
                     android:id="@+id/iv_icon"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/icon"/>
+                    android:src="@drawable/icon" />
+
                 <TextView
                     android:id="@+id/tv_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
                     android:layout_marginTop="10dp"
-                    android:text="湘大二手街" />
+                    android:text="湘大二手街"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="v1.0.0"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -45,12 +58,12 @@
                 android:id="@+id/tr_call_me"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/table_row_marginBottom"
+                android:background="@drawable/item_bg_color"
+                android:paddingBottom="@dimen/table_row_paddingTop"
                 android:paddingLeft="@dimen/table_row_paddingLeft"
                 android:paddingRight="@dimen/table_row_paddingLeft"
-                android:paddingTop="@dimen/table_row_paddingTop"
-                android:paddingBottom="@dimen/table_row_paddingTop"
-                android:layout_marginBottom="@dimen/table_row_marginBottom"
-                android:background="@drawable/item_bg_color">
+                android:paddingTop="@dimen/table_row_paddingTop">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -60,20 +73,20 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=">"
-                    android:gravity="right"/>
+                    android:gravity="right"
+                    android:text=">" />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr_update"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/table_row_marginBottom"
+                android:background="@drawable/item_bg_color"
+                android:paddingBottom="@dimen/table_row_paddingTop"
                 android:paddingLeft="@dimen/table_row_paddingLeft"
                 android:paddingRight="@dimen/table_row_paddingLeft"
-                android:paddingTop="@dimen/table_row_paddingTop"
-                android:paddingBottom="@dimen/table_row_paddingTop"
-                android:background="@drawable/item_bg_color"
-                android:layout_marginBottom="@dimen/table_row_marginBottom">
+                android:paddingTop="@dimen/table_row_paddingTop">
 
                 <TextView
                     android:id="@+id/tv_checkUpdate"
@@ -84,61 +97,28 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=">"
-                    android:gravity="right"/>
+                    android:gravity="right"
+                    android:text=">" />
 
-            </TableRow>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/usericon_layout_margin"
-                android:layout_marginTop="10dp"
-                android:text="开发者"
-                />
-
-            <TableRow
-                android:id="@+id/tr_develop"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/table_row_paddingLeft"
-                android:paddingRight="@dimen/table_row_paddingLeft"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_marginBottom="@dimen/table_row_marginBottom"
-                android:background="@drawable/item_bg_color">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="CasparGX(周恩旭)" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=">"
-                    android:gravity="right"/>
             </TableRow>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/usericon_layout_margin"
                 android:layout_marginTop="10dp"
-                android:text="感谢蠢萌设计师"
-                />
+                android:paddingLeft="@dimen/usericon_layout_margin"
+                android:text="感谢蠢萌设计师" />
 
             <TableRow
                 android:id="@+id/tr_design"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/table_row_marginBottom"
+                android:background="@drawable/item_bg_color"
+                android:paddingBottom="10dp"
                 android:paddingLeft="@dimen/table_row_paddingLeft"
                 android:paddingRight="@dimen/table_row_paddingLeft"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_marginBottom="@dimen/table_row_marginBottom"
-                android:background="@drawable/item_bg_color">
+                android:paddingTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -148,18 +128,49 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=">"
-                    android:gravity="right"/>
+                    android:gravity="right"
+                    android:text=">" />
             </TableRow>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="@dimen/usericon_layout_margin"
+                android:text="开发者" />
+
+            <TableRow
+                android:id="@+id/tr_develop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/table_row_marginBottom"
+                android:background="@drawable/item_bg_color"
+                android:paddingBottom="10dp"
+                android:paddingLeft="@dimen/table_row_paddingLeft"
+                android:paddingRight="@dimen/table_row_paddingLeft"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CasparGX(周恩旭)" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:text=">" />
+            </TableRow>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:layout_gravity="bottom"
-                android:textColor="#999"
-                android:text="\@翼工坊"/>
+                android:text="\@翼工坊"
+                android:textColor="#999" />
 
         </LinearLayout>
     </ScrollView>

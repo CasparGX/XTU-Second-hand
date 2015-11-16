@@ -39,6 +39,7 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
 
     /* Widget */
     private TextView tvTitle;
+    private TextView tvVersion;
     private ImageView iv_back_btn;
     private TableRow trCallMe;
     private TableRow trCheckUpdate;
@@ -74,6 +75,8 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
     private void initWidget() {
         //tvTitle = (TextView) findViewById(R.id.textView);
         //tvTitle.setText("关于");
+        tvVersion = (TextView) findViewById(R.id.tv_version);
+        tvVersion.setText("v"+BuyApp.getVersionName(this));
         iv_back_btn = (ImageView) findViewById(R.id.iv_back_btn);
         iv_back_btn.setOnClickListener(this);
         trCallMe = (TableRow) findViewById(R.id.tr_call_me);

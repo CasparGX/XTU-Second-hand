@@ -3,16 +3,9 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="20dp"
     android:background="@color/white">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        android:textSize="20sp"
-        android:text="标题啊 "
-        android:textColor="@color/themeColor"
-        android:id="@+id/tv_title" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,25 +14,42 @@
         android:layout_margin="4dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center"
+            android:layout_gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="30sp"
                 android:text="￥"
                 android:textColor="@color/themeColor" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="30sp"
                 android:text="钱啊!! "
                 android:textColor="@color/themeColor"
                 android:id="@+id/tv_price" />
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:textSize="20sp"
+            android:text="标题啊 "
+            android:textColor="@color/themeColor"
+            android:id="@+id/tv_title" />
 
         <TextView
             android:layout_width="match_parent"
@@ -51,6 +61,11 @@
             android:textColor="#666"
             android:id="@+id/tv_seller" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/themeBgColor"/>
 
     <LinearLayout
         android:layout_width="match_parent"
