@@ -7,35 +7,7 @@
     android:layout_marginBottom="20dp"
     android:background="@color/white">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="4dp">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:text="￥"
-                android:textColor="@color/themeColor" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:text="钱啊!! "
-                android:textColor="@color/themeColor"
-                android:id="@+id/tv_price" />
-        </LinearLayout>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,8 +23,37 @@
             android:textColor="@color/themeColor"
             android:id="@+id/tv_title" />
 
+
+    </LinearLayout>
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
         <TextView
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="￥"
+            android:textColor="@color/red" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:text="钱啊!! "
+            android:textColor="@color/red"
+            android:id="@+id/tv_price" />
+
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
             android:textAppearance="?android:attr/textAppearanceMedium"
@@ -61,6 +62,8 @@
             android:textColor="#666"
             android:id="@+id/tv_seller" />
     </LinearLayout>
+
+</LinearLayout>
 
     <View
         android:layout_width="match_parent"
