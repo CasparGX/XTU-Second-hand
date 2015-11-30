@@ -25,12 +25,20 @@ public class MainActivity extends Activity {
     private ArrayList<GoodsData> mGoodsData = app.getGoodsData();
     private JSONArray mGoodsArray = null;
 
+    private long delayTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
 
         setContentView(R.layout.activity_main);
+
+        if (BuyApp.getInstance().isOpen()) {
+            delayTime = 0;
+        } else {
+            delayTime = 2000;
+        }
 
         /*splashscreen*/
         new Handler().postDelayed(new Runnable() {
@@ -41,7 +49,7 @@ public class MainActivity extends Activity {
                 MainActivity.this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
                 MainActivity.this.finish();    // 结束启动动画界面
             }
-        }, 2000);    //启动动画持续3秒钟
+        }, delayTime);    //启动动画持续3秒钟
 
         /*
         GoodsApi goodsApi = new GoodsApi();

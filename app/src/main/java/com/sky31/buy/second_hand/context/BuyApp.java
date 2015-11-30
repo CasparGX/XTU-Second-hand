@@ -51,6 +51,8 @@ public class BuyApp extends Application {
 
     private static String app_version = "0.0.0";
 
+    private boolean isOpen = false;
+
     private static final String API_URL      = Constants.Apis.API_URL;
     private static final String KEY_PICNAME  = Constants.Keys.KEY_PICNAME;
     private static final String KEY_PICSRC   = Constants.Keys.KEY_PICSRC;
@@ -297,6 +299,13 @@ public class BuyApp extends Application {
     }
 
 
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public void setIsOpen(boolean isOpen) {
+        this.isOpen = isOpen;
+    }
 
 
 }

@@ -27,7 +27,6 @@
             android:theme="@style/AppBaseThemeMain" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -39,7 +38,8 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />-->
                 <action android:name="com.sky31.buy.second_hand.ui.HomeActivity" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.VIEW" />
+                <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
