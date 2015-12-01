@@ -49,7 +49,7 @@ public class MainActivity extends Activity {
                 MainActivity.this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
                 MainActivity.this.finish();    // 结束启动动画界面
             }
-        }, delayTime);    //启动动画持续3秒钟
+        }, delayTime);    //启动动画
 
         /*
         GoodsApi goodsApi = new GoodsApi();
