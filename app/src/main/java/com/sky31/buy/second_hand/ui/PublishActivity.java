@@ -1,6 +1,7 @@
 package com.sky31.buy.second_hand.ui;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -46,12 +47,14 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
 
     /*网络参数*/
     RequestParams params = new RequestParams();
+    boolean isOnUpLoad = false;
 
     private static int RESULT_LOAD_IMAGE = 1;
 
     /*diaLog*/
     private AlertDialog.Builder builderLoading;
     private AlertDialog dialog;
+    private ProgressDialog mProgressDialog;
 
     /*Intent*/
     private Intent mIntent;
@@ -203,8 +206,13 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
     /*返回键*/
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        overridePendingTransition(R.anim.slide_right_out, R.anim.slide_right_out);
+        if (isOnUpLoad) {
+            cancleUpLoad();
+        } else {
+            super.onBackPressed();
+            overridePendingTransition(R.anim.slide_right_out, R.anim.slide_right_out);
+        }
+
     }
 
     /*修改header标题*/
@@ -306,11 +314,19 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
 
     }
 
+    /* cancle upload and publish goods*/
+    private void cancleUpLoad() {
+        HttpUtil.getClient().cancelAllRequests(true);
+        isOnUpLoad = false;
+    }
+
     /** 发布商品
      *  spinner选中的值在spinnerSelectListener中设置setParams
      * */
     private void publishGoods() {
-        if (etGoodsTitle.getText().toString().equals("")) {
+        isOnUpLoad = true;
+        showLoadingDialog();
+        /*if (etGoodsTitle.getText().toString().equals("")) {
             Toast.makeText(PublishActivity.this, "不写标题不给发！哼！", Toast.LENGTH_SHORT).show();
         } else if (etGoodsDec.getText().toString().equals("")) {
             Toast.makeText(PublishActivity.this, "写个描述介绍一下嘛", Toast.LENGTH_SHORT).show();
@@ -334,7 +350,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
             HttpUtil.post(Constants.Apis.API_GOODS_APPINSERT_POST
                     , params
                     , mInsertHandler);
-        }
+        }*/
 
     }
 
@@ -476,11 +492,17 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
 
     /*显示加载dialog*/
     private void showLoadingDialog() {
-        builderLoading = new AlertDialog.Builder(this);
+        /*builderLoading = new AlertDialog.Builder(this);
         builderLoading.setMessage("请稍后...")
                 .setCancelable(false)
                 .create();
-        dialog = builderLoading.show();
+        dialog = builderLoading.show();*/
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("请稍后...");
+        //mProgressDialog.setCancelable(false);
+        mProgressDialog.show();
     }
+
+
 }
 
