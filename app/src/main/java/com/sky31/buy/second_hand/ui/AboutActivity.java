@@ -22,6 +22,7 @@ import com.loopj.android.http.BinaryHttpResponseHandler;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
+import com.sky31.buy.second_hand.ui.activity.BaseSwipeBackActivity;
 import com.sky31.buy.second_hand.util.FileUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
@@ -35,7 +36,7 @@ import java.io.InputStream;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
-public class AboutActivity extends SwipeBackActivity implements View.OnClickListener {
+public class AboutActivity extends BaseSwipeBackActivity implements View.OnClickListener {
 
     /* Widget */
     private TextView tvTitle;
@@ -64,8 +65,8 @@ public class AboutActivity extends SwipeBackActivity implements View.OnClickList
         //设置状态栏颜色
         BuyApp.setStatusBarColor(AboutActivity.this);
         /*滑动返回*/
-        mSwipeBackLayout = getSwipeBackLayout();
-        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        /*mSwipeBackLayout = getSwipeBackLayout();
+        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);*/
 
         initWidget();
         setTvHeaderTitle();

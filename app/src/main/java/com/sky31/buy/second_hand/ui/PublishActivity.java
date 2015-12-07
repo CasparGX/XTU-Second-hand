@@ -26,6 +26,7 @@ import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.ClassifyInfo;
+import com.sky31.buy.second_hand.ui.activity.BaseSwipeBackActivity;
 import com.sky31.buy.second_hand.ui.fragment.ClassifyFragment;
 import com.sky31.buy.second_hand.util.CompImageUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
@@ -39,9 +40,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
-public class PublishActivity extends SwipeBackActivity implements View.OnClickListener {
+public class PublishActivity extends BaseSwipeBackActivity implements View.OnClickListener {
     /*TAG*/
     private String TAG = PublishActivity.class.getName();
 
@@ -103,8 +103,8 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         BuyApp.setStatusBarColor(PublishActivity.this);
 
         /*滑动返回*/
-        mSwipeBackLayout = getSwipeBackLayout();
-        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        /*mSwipeBackLayout = getSwipeBackLayout();
+        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);*/
 
         /*header*/
         ivBackBtn = (ImageView) findViewById(R.id.iv_back_btn);

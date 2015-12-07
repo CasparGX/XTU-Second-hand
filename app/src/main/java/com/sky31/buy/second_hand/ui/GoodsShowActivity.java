@@ -12,6 +12,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -28,6 +29,8 @@ import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.GoodsData;
+import com.sky31.buy.second_hand.ui.activity.BaseSwipeBackActivity;
+import com.sky31.buy.second_hand.ui.view.ImgViewPager;
 
 import java.util.ArrayList;
 
@@ -41,7 +44,7 @@ import static com.sky31.buy.second_hand.R.id.iv_share;
 /**
  * Created by Caspar on 2015/7/21.
  */
-public class GoodsShowActivity extends SwipeBackActivity implements View.OnClickListener {
+public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnClickListener {
 
     private SwipeBackLayout mSwipeBackLayout;
     private SwipeBackActivityHelper mHelper;
@@ -58,7 +61,7 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
     private ImageView ivBack;
     private ImageView ivShare;
 
-    private ViewPager imgPicViewPager;
+    private ImgViewPager imgPicViewPager;
     private ArrayList<ImageView> imgList;
     private PagerAdapter imgListAdapter;
     private ImageView imgPic01;
@@ -86,8 +89,8 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
         mSwipeBackLayout.setEdgeSize(200);
         //设定滑动关闭的方向，SwipeBackLayout.EDGE_ALL表示向下、左、右滑动均可。EDGE_LEFT，EDGE_RIGHT，EDGE_BOTTOM
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_ALL);*/
-        mSwipeBackLayout = getSwipeBackLayout();
-        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        /*mSwipeBackLayout = getSwipeBackLayout();
+        mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);*/
 
         this.imageLoader = BuyApp.getInstance().getImageLoader();
         this.displayImageOptions = BuyApp.getInstance().getDisplayImageOptions();
@@ -133,7 +136,7 @@ public class GoodsShowActivity extends SwipeBackActivity implements View.OnClick
         int windowWidth = displayMetrics.widthPixels;
         //end-> get window's width && height
 
-        imgPicViewPager = (ViewPager) findViewById(R.id.imgPicViewPager);
+        imgPicViewPager = (ImgViewPager) findViewById(R.id.imgPicViewPager);
         final LayoutParams linearParams = imgPicViewPager.getLayoutParams();
         linearParams.height = windowWidth;
         linearParams.width = windowWidth;
