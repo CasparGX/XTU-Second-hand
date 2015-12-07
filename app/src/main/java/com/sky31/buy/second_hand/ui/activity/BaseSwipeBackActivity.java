@@ -2,6 +2,9 @@ package com.sky31.buy.second_hand.ui.activity;
 
 import android.os.Bundle;
 
+import com.sky31.buy.second_hand.context.BuyApp;
+import com.sky31.buy.second_hand.ui.HomeActivity;
+
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
@@ -19,5 +22,6 @@ public class BaseSwipeBackActivity extends SwipeBackActivity {
         /*滑动返回*/
         mSwipeBackLayout = getSwipeBackLayout();
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
+        mSwipeBackLayout.setEdgeSize(HomeActivity.screenWidth);
     }
 }
