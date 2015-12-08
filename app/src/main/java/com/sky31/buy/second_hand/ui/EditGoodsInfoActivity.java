@@ -34,7 +34,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 public class EditGoodsInfoActivity extends BaseSwipeBackActivity implements View.OnClickListener {
     /*TAG*/
@@ -246,7 +245,7 @@ public class EditGoodsInfoActivity extends BaseSwipeBackActivity implements View
         spnBargain.setSelection(Integer.parseInt(bargain));
         spnTrading.setSelection(Integer.parseInt(trading) - 1);
         //spnTime.setSelection(30 % Integer.parseInt(interval) - 1);
-        for (int i=0; mClassifyData.size()>i; i++) {
+        for (int i = 0; mClassifyData.size() > i; i++) {
             if (mClassifyData.get(i).getTitle().equals(type)) {
                 spnClassify.setSelection(Integer.parseInt(mClassifyData.get(i).getId()));
                 break;
@@ -343,18 +342,18 @@ public class EditGoodsInfoActivity extends BaseSwipeBackActivity implements View
      */
     private void publishGoods() {
         showLoadingDialog();
-            setParams(Constants.Keys.KEY_TITLE, etGoodsTitle.getText() + "");//title
-            setParams(Constants.Keys.KEY_DESCRIBE, etGoodsDec.getText() + "");//dec
-            setParams(Constants.Keys.KEY_PRICE, etGoodsPrice.getText() + "");//price
+        setParams(Constants.Keys.KEY_TITLE, etGoodsTitle.getText() + "");//title
+        setParams(Constants.Keys.KEY_DESCRIBE, etGoodsDec.getText() + "");//dec
+        setParams(Constants.Keys.KEY_PRICE, etGoodsPrice.getText() + "");//price
 
-            setParams(Constants.Keys.KEY_SELLER, etNickname.getText() + "");//seller
-            setParams(Constants.Keys.KEY_PHONE, etPhone.getText() + "");//phone
-            setParams(Constants.Keys.KEY_QQ, etQq.getText() + "");//qq
+        setParams(Constants.Keys.KEY_SELLER, etNickname.getText() + "");//seller
+        setParams(Constants.Keys.KEY_PHONE, etPhone.getText() + "");//phone
+        setParams(Constants.Keys.KEY_QQ, etQq.getText() + "");//qq
 
-            params.setForceMultipartEntityContentType(true);
-            HttpUtil.post(Constants.Apis.API_USER_CHANGE_INFO_POST
-                    , params
-                    , mInsertHandler);
+        params.setForceMultipartEntityContentType(true);
+        HttpUtil.post(Constants.Apis.API_USER_CHANGE_INFO_POST
+                , params
+                , mInsertHandler);
 
     }
 

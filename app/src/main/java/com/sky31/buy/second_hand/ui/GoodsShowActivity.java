@@ -1,23 +1,17 @@
 package com.sky31.buy.second_hand.ui;
 
-import android.annotation.TargetApi;
 import android.content.ClipboardManager;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -35,10 +29,7 @@ import com.sky31.buy.second_hand.ui.view.ImgViewPager;
 import java.util.ArrayList;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivityHelper;
-
-import static com.sky31.buy.second_hand.R.id.iv_share;
 
 
 /**
@@ -75,6 +66,7 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
 
     private ImageLoader imageLoader;
     private DisplayImageOptions displayImageOptions;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +102,7 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
         tvTitle = (TextView) findViewById(R.id.tv_title);
         tvTitle.setText(goods.title);
         tvPrice = (TextView) findViewById(R.id.tv_price);
-        tvPrice.setText(goods.price+"");
+        tvPrice.setText(goods.price + "");
         tvDec = (TextView) findViewById(R.id.tv_dec);
         tvDec.setText(goods.dec);
         tvPhone = (TextView) findViewById(R.id.tv_phone);
@@ -163,15 +155,15 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
                 ImageView imageViewMin = new ImageView(GoodsShowActivity.this);
                 llMinImage = (LinearLayout) findViewById(R.id.ll_minImage);
 
-                LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(30,30);
+                LinearLayout.LayoutParams linearParams = new LinearLayout.LayoutParams(30, 30);
                 float densityMargin = getResources().getDisplayMetrics().density;
-                int finalDimensMargin = (int)(30 * densityMargin);
+                int finalDimensMargin = (int) (30 * densityMargin);
 
                 linearParams.width = finalDimensMargin;
                 linearParams.height = finalDimensMargin;
 
-                finalDimensMargin = (int)(10 * densityMargin);
-                linearParams.setMargins(finalDimensMargin,finalDimensMargin,finalDimensMargin,finalDimensMargin);
+                finalDimensMargin = (int) (10 * densityMargin);
+                linearParams.setMargins(finalDimensMargin, finalDimensMargin, finalDimensMargin, finalDimensMargin);
 
 
                 imageViewMin.setLayoutParams(linearParams);
@@ -204,7 +196,6 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
         imgPicViewPager.setAdapter(imgListAdapter);
 
 
-
     }
 
     /*修改header标题*/
@@ -234,23 +225,22 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
 
             case R.id.tv_qq:
                 String qq = (String) tvQq.getText();
-                ClipboardManager cmb = (ClipboardManager)this.getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipboardManager cmb = (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
                 cmb.setText(qq.trim());
-                Toast.makeText(GoodsShowActivity.this,"已复制QQ号，可直接粘贴",Toast.LENGTH_SHORT).show();
+                Toast.makeText(GoodsShowActivity.this, "已复制QQ号，可直接粘贴", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.tv_phone:
                 //取得电话号码串
                 String phone = tvPhone.getText().toString();
                 //如果输入不为空创建打电话的Intent
-                if(phone.trim().length()>=5)
-                {
+                if (phone.trim().length() >= 5) {
                     Intent phoneIntent = new Intent("android.intent.action.DIAL",
                             Uri.parse("tel:" + phone));
                     //启动
                     startActivity(phoneIntent);
                 } else {
-                    Toast.makeText(GoodsShowActivity.this,"号码为空不能拨号",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GoodsShowActivity.this, "号码为空不能拨号", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
@@ -258,16 +248,16 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
     }
 
     private void share() {
-        Intent intent=new Intent(Intent.ACTION_SEND);
+        Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, "湘大二手街");
         /* 分享文案 */
         String msgText = "我在湘大二手街上看到了一个没人要的东西 -「"
-                +goods.title
-                +"」,给你看看。\n"
-                +"http://buy.sky31.com/show.html?gid="
-                +goods.id
-                +"\n分享来自「湘大二手街APP」";
+                + goods.title
+                + "」,给你看看。\n"
+                + "http://buy.sky31.com/show.html?gid="
+                + goods.id
+                + "\n分享来自「湘大二手街APP」";
         intent.putExtra(Intent.EXTRA_TEXT, msgText);
 
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

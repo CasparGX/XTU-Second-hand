@@ -2,7 +2,6 @@ package com.sky31.buy.second_hand.ui.activity;
 
 import android.os.Bundle;
 
-import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.ui.HomeActivity;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;

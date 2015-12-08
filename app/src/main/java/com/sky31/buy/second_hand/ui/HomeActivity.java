@@ -1,9 +1,6 @@
 package com.sky31.buy.second_hand.ui;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -12,7 +9,6 @@ import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -21,15 +17,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.readystatesoftware.systembartint.SystemBarTintManager;
-import com.sky31.buy.second_hand.MainActivity;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.ui.adapter.HomeViewPagerAdapter;
 import com.sky31.buy.second_hand.ui.fragment.ClassifyFragment;
 import com.sky31.buy.second_hand.ui.fragment.HomeFragment;
 import com.sky31.buy.second_hand.ui.fragment.MeFragment;
-import com.sky31.buy.second_hand.ui.fragment.SearchFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +72,6 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         //设置状态栏颜色
         BuyApp.setStatusBarColor(this);
         BuyApp.getInstance().setIsOpen(true);
-
 
 
         //get screen's width 1/4
@@ -162,16 +154,16 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
                 RelativeLayout.LayoutParams lp = (RelativeLayout.LayoutParams) mTabLine.getLayoutParams();
                 RelativeLayout.LayoutParams lp2 = (RelativeLayout.LayoutParams) ivFooterBg.getLayoutParams();
 
-                if(mCurrentPageIndex == 0 && position ==0 ){ //0->1
+                if (mCurrentPageIndex == 0 && position == 0) { //0->1
                     lp.leftMargin = (int) (positionOffset * mScreen1_3
                             + mCurrentPageIndex * mScreen1_3);
                     lp2.leftMargin = (int) (positionOffset * mScreen1_3
                             + mCurrentPageIndex * mScreen1_3);
-                } else if(mCurrentPageIndex == 1 && position == 0) {    //1->0
+                } else if (mCurrentPageIndex == 1 && position == 0) {    //1->0
                     lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
-                            + (positionOffset-1) * mScreen1_3);
+                            + (positionOffset - 1) * mScreen1_3);
                     lp2.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
-                            + (positionOffset-1) * mScreen1_3);
+                            + (positionOffset - 1) * mScreen1_3);
                 } else if (mCurrentPageIndex == 1 && position == 1) { //1->2
                     lp.leftMargin = (int) (mCurrentPageIndex * mScreen1_3
                             + positionOffset * mScreen1_3);
@@ -228,17 +220,17 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_shouye :
-                mViewPager.setCurrentItem(0,true);
+            case R.id.tv_shouye:
+                mViewPager.setCurrentItem(0, true);
                 break;
-            case R.id.tv_fenlei :
-                mViewPager.setCurrentItem(1,true);
+            case R.id.tv_fenlei:
+                mViewPager.setCurrentItem(1, true);
                 break;
             /*case R.id.tv_sousuo :
                 mViewPager.setCurrentItem(2,true);
                 break;*/
-            case R.id.tv_wo :
-                mViewPager.setCurrentItem(3,true);
+            case R.id.tv_wo:
+                mViewPager.setCurrentItem(3, true);
                 break;
 
         }
@@ -261,7 +253,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
             //super.onDestroy();
         } else {
             canExit = true;
-            Toast.makeText(HomeActivity.this,"再按一次退出",Toast.LENGTH_SHORT).show();
+            Toast.makeText(HomeActivity.this, "再按一次退出", Toast.LENGTH_SHORT).show();
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -270,7 +262,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
             }, 2000);
         }
     }
-    
+
     @Override
     protected void onPause() {
         super.onPause();

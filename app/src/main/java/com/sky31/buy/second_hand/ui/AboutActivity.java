@@ -9,10 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -21,7 +18,6 @@ import android.widget.Toast;
 import com.loopj.android.http.BinaryHttpResponseHandler;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
-import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.ui.activity.BaseSwipeBackActivity;
 import com.sky31.buy.second_hand.util.FileUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
@@ -34,7 +30,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 public class AboutActivity extends BaseSwipeBackActivity implements View.OnClickListener {
 
@@ -77,7 +72,7 @@ public class AboutActivity extends BaseSwipeBackActivity implements View.OnClick
         //tvTitle = (TextView) findViewById(R.id.textView);
         //tvTitle.setText("关于");
         tvVersion = (TextView) findViewById(R.id.tv_version);
-        tvVersion.setText("v"+BuyApp.getVersionName(this));
+        tvVersion.setText("v" + BuyApp.getVersionName(this));
         iv_back_btn = (ImageView) findViewById(R.id.iv_back_btn);
         iv_back_btn.setOnClickListener(this);
         trCallMe = (TableRow) findViewById(R.id.tr_call_me);
@@ -101,8 +96,8 @@ public class AboutActivity extends BaseSwipeBackActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        Uri uri ;
-        Intent it ;
+        Uri uri;
+        Intent it;
         switch (v.getId()) {
             /* back */
             case R.id.iv_back_btn:
@@ -148,7 +143,7 @@ public class AboutActivity extends BaseSwipeBackActivity implements View.OnClick
                             public void onClick(DialogInterface dialog,
                                                 int which) {
 
-                                ClipboardManager cmb = (ClipboardManager)AboutActivity.this.getSystemService(Context.CLIPBOARD_SERVICE);
+                                ClipboardManager cmb = (ClipboardManager) AboutActivity.this.getSystemService(Context.CLIPBOARD_SERVICE);
                                 cmb.setText("1643787575");
                                 Toast.makeText(AboutActivity.this, "已复制QQ号，可直接粘贴", Toast.LENGTH_SHORT).show();
                             }
@@ -176,9 +171,9 @@ public class AboutActivity extends BaseSwipeBackActivity implements View.OnClick
     }
 
     private static void downloadApp(String url) {
-        Log.i("downloadApp","----------downloadApp----------");
+        Log.i("downloadApp", "----------downloadApp----------");
         // 指定文件类型
-        String[] allowedContentTypes = new String[] { ".*" };
+        String[] allowedContentTypes = new String[]{".*"};
         // 获取二进制数据如图片和其他文件
         HttpUtil.get(url, new BinaryHttpResponseHandler(
                 allowedContentTypes) {
@@ -238,7 +233,7 @@ public class AboutActivity extends BaseSwipeBackActivity implements View.OnClick
      * 安装APK
      */
     private static void installApk(File file) {
-        Log.i("installApk",file.toString());
+        Log.i("installApk", file.toString());
         if (!file.exists()) {
             return;
         }
