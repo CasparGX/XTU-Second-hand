@@ -1576,7 +1576,7 @@ public class ViewDragHelper {
             result = EDGE_BOTTOM;
 
         //为了解决全屏滑动无反应，修改了ViewDragHelper 的getEdgeTouched 的返回值为 EDGE_LEFT
-        result = EDGE_LEFT;
+        //result = EDGE_LEFT;
 
         return result;
     }
