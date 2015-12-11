@@ -17,6 +17,9 @@ public class BaseSwipeBackActivity extends SwipeBackActivity {
     private long time = 0;
     private int flag = 0;
 
+    private int maxSwipeY = 180;
+    private double swipeCoefficient = 2.5;
+
     /*滑动返回*/
     private SwipeBackLayout mSwipeBackLayout;
 
@@ -41,7 +44,7 @@ public class BaseSwipeBackActivity extends SwipeBackActivity {
             y = Math.abs(event.getY() - y);
             time = event.getEventTime()-event.getDownTime();
             Log.i("ontouch",time/x+"");
-            if (y<180 && x>0 && (time/x)<3 && flag==0) {
+            if (y<maxSwipeY && x>0 && (time/x)<swipeCoefficient && flag==0) {
                 onBackPressed();
             }
         }
