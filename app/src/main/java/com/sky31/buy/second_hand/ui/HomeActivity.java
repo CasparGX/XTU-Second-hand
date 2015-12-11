@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -272,4 +273,5 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
     protected void onStop() {
         super.onStop();
     }
+
 }

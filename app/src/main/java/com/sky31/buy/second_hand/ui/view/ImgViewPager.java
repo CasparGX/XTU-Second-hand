@@ -17,7 +17,7 @@ public class ImgViewPager extends ViewPager {
         super(context, attrs);
     }
 
-    @Override
+    /*@Override
     public boolean onInterceptTouchEvent(MotionEvent arg0) {
         // 当拦截触摸事件到达此位置的时候，返回true，
         // 说明将onTouch拦截在此控件，进而执行此控件的onTouchEvent
@@ -48,5 +48,5 @@ public class ImgViewPager extends ViewPager {
         }
 
         return super.onTouchEvent(arg0);
-    }
+    }*/
 }

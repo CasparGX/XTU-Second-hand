@@ -9,6 +9,7 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -53,6 +54,7 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
     private ImageView ivShare;
 
     private ImgViewPager imgPicViewPager;
+    private int imgPicViewPagerNum;
     private ArrayList<ImageView> imgList;
     private PagerAdapter imgListAdapter;
     private ImageView imgPic01;
@@ -134,7 +136,22 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
         linearParams.width = windowWidth;
         imgPicViewPager.setLayoutParams(linearParams);
         imgPicViewPager.requestLayout();
+        imgPicViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+            }
 
+            @Override
+            public void onPageSelected(int i) {
+                //imgPicViewPagerNum = i;
+                GoodsShowActivity.super.setFlag(i);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
         imgPicViewPager.setOffscreenPageLimit(3);
 
         imgListAdapter = new PagerAdapter() {
@@ -276,4 +293,5 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
         shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
         startActivity(Intent.createChooser(shareIntent, getTitle()));*/
     }
+
 }

@@ -11,6 +11,12 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
  * Created by root on 15-12-7.
  */
 public class BaseSwipeBackActivity extends SwipeBackActivity {
+
+    private float x = 0;
+    private float y = 0;
+    private long time = 0;
+    private int flag = 0;
+
     /*滑动返回*/
     private SwipeBackLayout mSwipeBackLayout;
 
@@ -24,38 +30,25 @@ public class BaseSwipeBackActivity extends SwipeBackActivity {
         //mSwipeBackLayout.setEdgeSize(HomeActivity.screenWidth);
     }
 
-
     @Override
-    public boolean onTouchEvent(MotionEvent arg0) {
-        float x = 0;
-        float y = 0;
-
-        if (arg0.getAction() == MotionEvent.ACTION_DOWN) {
-            x = arg0.getX();
-            y = arg0.getY();
-            Log.i("onTouchEvent","down x:"+arg0.getX()+" y:"+arg0.getY());
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            x = event.getX();
+            y = event.getY();
         }
-
-        if (arg0.getAction() == MotionEvent.ACTION_MOVE) {
-
-            Log.i("onTouchEvent","move x:"+arg0.getX()+" y:"+arg0.getY());
-        }
-
-        if (arg0.getAction() == MotionEvent.ACTION_UP) {
-
-            Log.i("onTouchEvent","up x:"+arg0.getX()+" y:"+arg0.getY());
-            x -= arg0.getX();
-            if (x>0) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            x = event.getX() - x;
+            y = Math.abs(event.getY() - y);
+            time = event.getEventTime()-event.getDownTime();
+            Log.i("ontouch",time/x+"");
+            if (y<180 && x>0 && (time/x)<3 && flag==0) {
                 onBackPressed();
             }
         }
+        return super.dispatchTouchEvent(event);
+    }
 
-        if (arg0.getAction() == MotionEvent.ACTION_CANCEL) {
-
-            Log.i("onTouchEvent","cancel x:"+arg0.getX()+" y:"+arg0.getY());
-        }
-
-        Log.i("onTouchEvent","default x:"+arg0.getX()+" y:"+arg0.getY());
-        return super.onTouchEvent(arg0);
+    public void setFlag(int flag) {
+        this.flag = flag;
     }
 }
