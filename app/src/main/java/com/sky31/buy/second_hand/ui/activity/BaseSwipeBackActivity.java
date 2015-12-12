@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import com.sky31.buy.second_hand.R;
+
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
@@ -19,8 +21,8 @@ public class BaseSwipeBackActivity extends SwipeBackActivity {
     private int flag = 0;
 
     private int maxSwipeY = 180;
-    private int maxStartX = 180;
-    private double swipeCoefficient = 2.5;
+    private int maxStartX = 150;
+    private double swipeCoefficient = 2.2;
 
     /*滑动返回*/
     private SwipeBackLayout mSwipeBackLayout;
@@ -33,6 +35,8 @@ public class BaseSwipeBackActivity extends SwipeBackActivity {
         mSwipeBackLayout = getSwipeBackLayout();
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
         //mSwipeBackLayout.setEdgeSize(HomeActivity.screenWidth);
+
+        this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
     }
 
     @Override

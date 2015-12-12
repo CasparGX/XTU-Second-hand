@@ -14,8 +14,7 @@
         <ImageView
             android:id="@+id/iv_footer_bg"
             android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:background="#fff"/>
+            android:layout_height="30dp"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:orientation="horizontal"
@@ -31,7 +30,6 @@
                 android:layout_weight="1"
                 android:text="二手街"
                 android:gravity="center"
-                android:background="#00ffa32e"
                 android:textColor="@color/homePageDefault" />
 
             <TextView
@@ -42,7 +40,6 @@
                 android:layout_weight="1"
                 android:text="发现"
                 android:gravity="center"
-                android:background="#00ffa32e"
                 android:textColor="@color/homePageDefault" />
 
 
@@ -65,7 +62,6 @@
                 android:layout_weight="1"
                 android:text="我"
                 android:gravity="center"
-                android:background="#00000000"
                 android:textColor="@color/homePageDefault" />
 
 

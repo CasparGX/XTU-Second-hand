@@ -70,6 +70,7 @@ public class HomeActivity extends FragmentActivity implements View.OnClickListen
         setContentView(R.layout.activity_home);
         context = HomeActivity.this;
 
+
         //设置状态栏颜色
         BuyApp.setStatusBarColor(this);
         BuyApp.getInstance().setIsOpen(true);
