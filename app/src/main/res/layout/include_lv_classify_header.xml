@@ -28,7 +28,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center"
                 android:layout_weight="1"
-                android:background="#fff"
+                android:background="@null"
                 android:gravity="center_vertical|right"
                 android:hint="输入想要搜索的商品名"
                 android:imeOptions="actionSearch"
