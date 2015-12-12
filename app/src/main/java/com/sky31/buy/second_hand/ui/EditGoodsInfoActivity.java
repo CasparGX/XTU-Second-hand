@@ -42,6 +42,7 @@ public class EditGoodsInfoActivity extends BaseSwipeBackActivity implements View
 
     /*网络参数*/
     RequestParams params = new RequestParams();
+    private int gid;
 
     private static int RESULT_LOAD_IMAGE = 1;
 
@@ -232,6 +233,7 @@ public class EditGoodsInfoActivity extends BaseSwipeBackActivity implements View
         //String interval = goods.interval;
         String dec = goods.dec;
         String type = goods.type;
+        gid = goods.id;
 
         ArrayList<ClassifyInfo> mClassifyData = new ArrayList<ClassifyInfo>();
         mClassifyData = ClassifyFragment.mClassifyInfo;
@@ -351,9 +353,11 @@ public class EditGoodsInfoActivity extends BaseSwipeBackActivity implements View
         setParams(Constants.Keys.KEY_PHONE, etPhone.getText() + "");//phone
         setParams(Constants.Keys.KEY_QQ, etQq.getText() + "");//qq
 
+        //setParams(Constants.Keys.KEY_GID, gid + "");//gid
+
         params.setForceMultipartEntityContentType(false);
         Log.i(TAG,params+"");
-        HttpUtil.post(Constants.Apis.API_GOODS_EDIT_POST
+        HttpUtil.post(Constants.Apis.API_GOODS_EDIT_POST+"?gid="+gid
                 , params
                 , mInsertHandler);
 

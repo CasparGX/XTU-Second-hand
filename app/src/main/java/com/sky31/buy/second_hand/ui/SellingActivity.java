@@ -1,6 +1,7 @@
 package com.sky31.buy.second_hand.ui;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -23,7 +24,6 @@ import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.GoodsData;
-import com.sky31.buy.second_hand.ui.activity.BaseSwipeBackActivity;
 import com.sky31.buy.second_hand.ui.adapter.HomeFragmentListViewAdapter;
 import com.sky31.buy.second_hand.util.ACacheUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
@@ -52,7 +52,7 @@ public class SellingActivity extends SwipeBackActivity implements View.OnClickLi
 
     /*diaLog*/
     private AlertDialog.Builder builderLoading;
-    private AlertDialog dialog;
+    private ProgressDialog mProgressDialog;
 
     /*网络参数*/
     private RequestParams params = new RequestParams();
@@ -428,17 +428,21 @@ public class SellingActivity extends SwipeBackActivity implements View.OnClickLi
 
     /*隐藏加载dialog*/
     private void hideLoadingDialog() {
-        dialog.dismiss();
+        mProgressDialog.dismiss();
     }
-
 
     /*显示加载dialog*/
     private void showLoadingDialog() {
-        builderLoading = new AlertDialog.Builder(this);
+        /*builderLoading = new AlertDialog.Builder(this);
         builderLoading.setMessage("请稍后...")
                 .setCancelable(false)
                 .create();
-        dialog = builderLoading.show();
+        dialog = builderLoading.show();*/
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("请稍后...");
+        //mProgressDialog.setCancelable(false);
+        mProgressDialog.setCanceledOnTouchOutside(false);
+        mProgressDialog.show();
     }
 
 
