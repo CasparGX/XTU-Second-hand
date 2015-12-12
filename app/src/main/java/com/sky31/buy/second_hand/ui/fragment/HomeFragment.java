@@ -275,8 +275,10 @@ public class HomeFragment extends Fragment {
             adapter.notifyDataSetChanged();
 
             //改变缓存
-            mCache.put(Constants.Keys.KEY_CACHE_HOME_FIRST_CONTENT, response);
-            mCache.put(Constants.Keys.KEY_CACHE_HOME_CHECK, "hasCache");
+            if (limitID==0){
+                mCache.put(Constants.Keys.KEY_CACHE_HOME_FIRST_CONTENT, response);
+                mCache.put(Constants.Keys.KEY_CACHE_HOME_CHECK, "hasCache");
+            }
 
             //改变footer状态
             if (response.length()<getActivity().getResources().getInteger(R.integer.defaultGoodsLoadCount)) {

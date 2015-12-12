@@ -327,7 +327,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
     private void publishGoods() {
         isOnUpLoad = true;
         showLoadingDialog();
-        /*if (etGoodsTitle.getText().toString().equals("")) {
+        if (etGoodsTitle.getText().toString().equals("")) {
             Toast.makeText(PublishActivity.this, "不写标题不给发！哼！", Toast.LENGTH_SHORT).show();
         } else if (etGoodsDec.getText().toString().equals("")) {
             Toast.makeText(PublishActivity.this, "写个描述介绍一下嘛", Toast.LENGTH_SHORT).show();
@@ -351,7 +351,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
             HttpUtil.post(Constants.Apis.API_GOODS_APPINSERT_POST
                     , params
                     , mInsertHandler);
-        }*/
+        }
 
     }
 
@@ -416,6 +416,12 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+
+        @Override
+        public void onProgress(long bytesWritten, long totalSize) {
+            super.onProgress(bytesWritten, totalSize);
+            mProgressDialog.setMessage("正在发布信息 "+(bytesWritten/totalSize)+"%");
         }
 
         @Override
@@ -500,7 +506,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         dialog = builderLoading.show();*/
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage("请稍后...");
-        //mProgressDialog.setCancelable(false);
+        mProgressDialog.setCancelable(false);
         mProgressDialog.show();
     }
 

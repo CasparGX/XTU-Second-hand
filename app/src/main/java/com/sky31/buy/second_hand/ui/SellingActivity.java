@@ -113,12 +113,12 @@ public class SellingActivity extends BaseSwipeBackActivity implements View.OnCli
         setSwipeMenu();
 
         //缓存
-        mCache = ACacheUtil.get(this);
+        /*mCache = ACacheUtil.get(this);
         mCheckCache = mCache.getAsString(Constants.Keys.KEY_CACHE_HOME_CHECK);
         //判断是否有缓存
         if (mCheckCache != null) {
             getCacheData();
-        }
+        }*/
 
         //加载数据
         getUserGoods();
