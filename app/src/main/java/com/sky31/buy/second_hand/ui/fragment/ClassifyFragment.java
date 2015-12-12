@@ -148,6 +148,8 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                 isAll = false;
                 isNew = true;
                 //params.add("limitID", String.valueOf(limitID));
+                mGoodsData.clear();
+                mListViewAdapter.notifyDataSetChanged();
                 getGoodsData(null, i);
                 /*Toast.makeText(getActivity()
                         ,"正在搜索: "+mClassifyInfo.get(i).getTitle()
