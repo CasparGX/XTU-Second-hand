@@ -13,11 +13,13 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 public class BaseSwipeBackActivity extends SwipeBackActivity {
 
     private float x = 0;
+    private float startX = 0;
     private float y = 0;
     private long time = 0;
     private int flag = 0;
 
     private int maxSwipeY = 180;
+    private int maxStartX = 180;
     private double swipeCoefficient = 2.5;
 
     /*滑动返回*/
@@ -36,7 +38,7 @@ public class BaseSwipeBackActivity extends SwipeBackActivity {
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            x = event.getX();
+            startX = x = event.getX();
             y = event.getY();
         }
         if (event.getAction() == MotionEvent.ACTION_UP) {
@@ -44,7 +46,7 @@ public class BaseSwipeBackActivity extends SwipeBackActivity {
             y = Math.abs(event.getY() - y);
             time = event.getEventTime()-event.getDownTime();
             Log.i("ontouch",time/x+"");
-            if (y<maxSwipeY && x>0 && (time/x)<swipeCoefficient && flag==0) {
+            if (y<maxSwipeY && x>0 && (time/x)<swipeCoefficient && flag==0 && startX > maxStartX) {
                 onBackPressed();
             }
         }
