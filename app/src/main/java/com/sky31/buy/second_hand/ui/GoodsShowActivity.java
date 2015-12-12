@@ -9,7 +9,6 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -46,8 +45,8 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
     private TextView tvTitle;
     private TextView tvPrice;
     private TextView tvDec;
-    private TextView tvPhone;
-    private TextView tvQq;
+    private ImageView ivPhone;
+    private ImageView ivQq;
     private TextView tvSeller;
 
     private ImageView ivBack;
@@ -107,19 +106,19 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
         tvPrice.setText(goods.price + "");
         tvDec = (TextView) findViewById(R.id.tv_dec);
         tvDec.setText(goods.dec);
-        tvPhone = (TextView) findViewById(R.id.tv_phone);
+        ivPhone = (ImageView) findViewById(R.id.iv_phone);
         if (goods.phone.equals("0")) {
-            tvPhone.setVisibility(View.GONE);
+            ivPhone.setVisibility(View.GONE);
         } else {
-            tvPhone.setText(goods.phone);
-            tvPhone.setOnClickListener(this);
+            ivPhone.setTag(goods.phone);
+            ivPhone.setOnClickListener(this);
         }
-        tvQq = (TextView) findViewById(R.id.tv_qq);
+        ivQq = (ImageView) findViewById(R.id.iv_qq);
         if (goods.qq.equals("0")) {
-            tvQq.setVisibility(View.GONE);
+            ivQq.setVisibility(View.GONE);
         } else {
-            tvQq.setText(goods.qq);
-            tvQq.setOnClickListener(this);
+            ivQq.setTag(goods.qq);
+            ivQq.setOnClickListener(this);
         }
         tvSeller = (TextView) findViewById(R.id.tv_seller);
         tvSeller.setText(goods.seller);
@@ -240,16 +239,16 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
                 share();
                 break;
 
-            case R.id.tv_qq:
-                String qq = (String) tvQq.getText();
+            case R.id.iv_qq:
+                String qq = ivQq.getTag().toString();
                 ClipboardManager cmb = (ClipboardManager) this.getSystemService(Context.CLIPBOARD_SERVICE);
                 cmb.setText(qq.trim());
                 Toast.makeText(GoodsShowActivity.this, "已复制QQ号，可直接粘贴", Toast.LENGTH_SHORT).show();
                 break;
 
-            case R.id.tv_phone:
+            case R.id.iv_phone:
                 //取得电话号码串
-                String phone = tvPhone.getText().toString();
+                String phone = ivPhone.getTag().toString();
                 //如果输入不为空创建打电话的Intent
                 if (phone.trim().length() >= 5) {
                     Intent phoneIntent = new Intent("android.intent.action.DIAL",

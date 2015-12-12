@@ -14,13 +14,31 @@
         android:orientation="horizontal">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥"
+            android:textColor="@color/red"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="钱啊!! "
+            android:textColor="@color/red"
+            android:textSize="18sp" />
+
+        <TextView
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:gravity="right"
             android:layout_margin="4dp"
             android:text="标题啊 "
             android:textColor="@color/themeColor"
-            android:textSize="20sp" />
+            android:textSize="14sp" />
 
 
     </LinearLayout>
@@ -31,37 +49,15 @@
         android:layout_margin="4dp"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="￥"
-                android:textColor="@color/red"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/tv_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="钱啊!! "
-                android:textColor="@color/red"
-                android:textSize="24sp" />
-
             <TextView
                 android:id="@+id/tv_seller"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:gravity="right"
+                android:gravity="left"
                 android:text="seller "
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="#666" />
-        </LinearLayout>
+                android:textSize="14sp"
+                android:textColor="@color/gray_font" />
 
     </LinearLayout>
 
@@ -78,29 +74,15 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_marginTop="4dp"
-            android:text="商品信息"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#666"
-            android:textSize="15sp" />
-
-        <TextView
             android:id="@+id/tv_dec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
-            android:layout_marginLeft="18dp"
-            android:layout_marginRight="4dp"
             android:layout_marginTop="0dp"
             android:text="描述!! "
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#666"
-            android:textSize="13sp" />
+            android:textColor="@color/gray_font"
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -115,25 +97,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/tv_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="phone"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#212121" />
 
-        <TextView
-            android:id="@+id/tv_qq"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/iv_phone"
+            android:layout_margin="5dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="qq"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#212121" />
+            android:src="@drawable/phone"/>
+
+        <ImageView
+            android:id="@+id/iv_qq"
+            android:layout_margin="5dp"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/qq"/>
+
     </LinearLayout>
 
 </LinearLayout>

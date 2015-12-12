@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:state_focused="true"
-        android:drawable="@drawable/editview_border_focus">
-    </item>
+    <item android:drawable="@drawable/editview_border_focus"
+        android:state_pressed="true"
+        android:state_focused="true"></item>
     <item>
-        <shape
-            android:shape="rectangle"
-            xmlns:android="http://schemas.android.com/apk/res/android">
-            <solid android:color="@color/themeBgColor" />
+        <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle">
+            <solid android:color="@color/white" />
             <corners android:radius="@dimen/editview_radius" />
             <stroke android:width="@dimen/editview_width"
-                android:color="#ccc"/>
+                android:color="@color/themeColor2" />
         </shape>
     </item>
 </selector>

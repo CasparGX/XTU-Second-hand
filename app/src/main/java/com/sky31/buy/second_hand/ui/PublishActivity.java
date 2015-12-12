@@ -330,7 +330,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
      */
     private void publishGoods() {
         isOnUpLoad = true;
-        showLoadingDialog();
+        //showLoadingDialog();
         if (etGoodsTitle.getText().toString().equals("")) {
             Toast.makeText(PublishActivity.this, "不写标题不给发！哼！", Toast.LENGTH_SHORT).show();
         } else if (etGoodsDec.getText().toString().equals("")) {
