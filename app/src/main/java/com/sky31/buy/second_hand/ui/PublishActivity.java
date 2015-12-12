@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.loopj.android.http.ResponseHandlerInterface;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
@@ -31,6 +32,7 @@ import com.sky31.buy.second_hand.util.CompImageUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
 import org.apache.http.Header;
+import org.apache.http.HttpResponse;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -58,6 +60,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
 
     /*Intent*/
     private Intent mIntent;
+    private String uid = null;
 
     /*header*/
     private ImageView ivBackBtn;
@@ -224,6 +227,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
 
     /*填充卖家信息*/
     private void setSellerInfo() {
+        uid = mIntent.getStringExtra("id");
         String seller = mIntent.getStringExtra("seller");
         String phone = mIntent.getStringExtra("phone");
         String qq = mIntent.getStringExtra("qq");
@@ -339,11 +343,12 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
             Toast.makeText(PublishActivity.this, "请选择一张图片", Toast.LENGTH_SHORT).show();
         } else {
             showLoadingDialog();
-            setParams(Constants.Keys.KEY_TITLE,etGoodsTitle.getText()+"");//title
+            setParams(Constants.Keys.KEY_TITLE, etGoodsTitle.getText() + "");//title
             setParams(Constants.Keys.KEY_DESCRIBE,etGoodsDec.getText()+"");//dec
             setParams(Constants.Keys.KEY_PRICE,etGoodsPrice.getText()+"");//price
 
             setParams(Constants.Keys.KEY_SELLER,etNickname.getText()+"");//seller
+            setParams(Constants.Keys.KEY_UID,uid);//uid
             setParams(Constants.Keys.KEY_PHONE,etPhone.getText()+"");//phone
             setParams(Constants.Keys.KEY_QQ,etQq.getText()+"");//qq
 
@@ -410,6 +415,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
                 } else if (response.getString("result").equals("success")) {
                     //上传成功
                     Toast.makeText(PublishActivity.this, response.getString("msg"), Toast.LENGTH_SHORT).show();
+                    isOnUpLoad = false;
                     onBackPressed();
                 }
 
@@ -421,7 +427,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         @Override
         public void onProgress(long bytesWritten, long totalSize) {
             super.onProgress(bytesWritten, totalSize);
-            mProgressDialog.setMessage("正在发布信息 "+(bytesWritten/totalSize)+"%");
+            mProgressDialog.setMessage("正在发布信息 "+Math.floor(bytesWritten * 1.0 / totalSize * 100)+"%");
         }
 
         @Override
@@ -433,6 +439,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         @Override
         public void onFinish() {
             super.onFinish();
+            isOnUpLoad = false;
             hideLoadingDialog();
         }
     };
@@ -494,7 +501,7 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
 
     /*隐藏加载dialog*/
     private void hideLoadingDialog() {
-        dialog.dismiss();
+        mProgressDialog.dismiss();
     }
 
     /*显示加载dialog*/
@@ -506,7 +513,8 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         dialog = builderLoading.show();*/
         mProgressDialog = new ProgressDialog(this);
         mProgressDialog.setMessage("请稍后...");
-        mProgressDialog.setCancelable(false);
+        //mProgressDialog.setCancelable(false);
+        mProgressDialog.setCanceledOnTouchOutside(false);
         mProgressDialog.show();
     }
 

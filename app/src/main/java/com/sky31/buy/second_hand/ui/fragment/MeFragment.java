@@ -236,6 +236,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         Intent intentGoodsShow = new Intent();
                         intentGoodsShow.setClass(getActivity(), PublishActivity.class);
                         intentGoodsShow.putExtra("seller", userInfo.getString(Constants.Keys.KEY_NICKNAME));
+                        intentGoodsShow.putExtra("uid", userInfo.getString("id"));
                         intentGoodsShow.putExtra("phone", userInfo.getString(Constants.Keys.KEY_PHONE));
                         intentGoodsShow.putExtra("qq", userInfo.getString(Constants.Keys.KEY_QQ));
                         intentGoodsShow.putExtra("headerTitle", "发布商品");

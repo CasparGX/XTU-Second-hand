@@ -13,16 +13,18 @@ public class Constants {
                 API_GOODS_SOLDOUT_GET = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/soldOut?";
         public static final String
                 API_GOODS_CLASSIFY_GET = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/getClassify";
+        public static final String
+                API_GOODS_APPINSERT_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/appInsert";
+        public static final String
+                API_GOODS_TESTINSERT_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/testInsert";
+        public static final String
+                API_GOODS_EDIT_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/edit";
 
 
         public static final String
                 API_USER_LOGIN_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/User/login";
         public static final String
                 API_USER_CHANGE_INFO_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/User/changeInfo";
-        public static final String
-                API_GOODS_APPINSERT_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/appInsert";
-        public static final String
-                API_GOODS_TESTINSERT_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/testInsert";
 
         public static final String
                 API_APP_UPDATE = "http://buy.sky31.com/fleaapi/index.php/Admin/Goods/appCheckUpdate";

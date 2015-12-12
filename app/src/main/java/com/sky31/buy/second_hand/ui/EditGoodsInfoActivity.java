@@ -1,6 +1,7 @@
 package com.sky31.buy.second_hand.ui;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -45,8 +46,8 @@ public class EditGoodsInfoActivity extends BaseSwipeBackActivity implements View
     private static int RESULT_LOAD_IMAGE = 1;
 
     /*diaLog*/
-    private AlertDialog.Builder builderLoading;
-    private AlertDialog dialog;
+    private ProgressDialog.Builder builderLoading;
+    private ProgressDialog mProgressDialog;
 
     /*Intent*/
     private Intent mIntent;
@@ -350,8 +351,9 @@ public class EditGoodsInfoActivity extends BaseSwipeBackActivity implements View
         setParams(Constants.Keys.KEY_PHONE, etPhone.getText() + "");//phone
         setParams(Constants.Keys.KEY_QQ, etQq.getText() + "");//qq
 
-        params.setForceMultipartEntityContentType(true);
-        HttpUtil.post(Constants.Apis.API_USER_CHANGE_INFO_POST
+        params.setForceMultipartEntityContentType(false);
+        Log.i(TAG,params+"");
+        HttpUtil.post(Constants.Apis.API_GOODS_EDIT_POST
                 , params
                 , mInsertHandler);
 
@@ -467,16 +469,21 @@ public class EditGoodsInfoActivity extends BaseSwipeBackActivity implements View
 
     /*隐藏加载dialog*/
     private void hideLoadingDialog() {
-        dialog.dismiss();
+        mProgressDialog.dismiss();
     }
 
     /*显示加载dialog*/
     private void showLoadingDialog() {
-        builderLoading = new AlertDialog.Builder(this);
+        /*builderLoading = new AlertDialog.Builder(this);
         builderLoading.setMessage("请稍后...")
                 .setCancelable(false)
                 .create();
-        dialog = builderLoading.show();
+        dialog = builderLoading.show();*/
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("请稍后...");
+        //mProgressDialog.setCancelable(false);
+        mProgressDialog.setCanceledOnTouchOutside(false);
+        mProgressDialog.show();
     }
 }
 

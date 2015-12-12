@@ -40,7 +40,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 import static in.srain.cube.views.ptr.util.PtrLocalDisplay.dp2px;
 
-public class SellingActivity extends BaseSwipeBackActivity implements View.OnClickListener {
+public class SellingActivity extends SwipeBackActivity implements View.OnClickListener {
 
     private String TAG = SellingActivity.class.getName();
 
