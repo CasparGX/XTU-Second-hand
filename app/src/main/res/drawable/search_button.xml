@@ -3,8 +3,8 @@
     <!-- 连框颜色值 -->
     <item>
         <shape>
-            <corners android:bottomRightRadius="4dp"
-                android:topRightRadius="4dp"/>
+            <corners android:bottomRightRadius="@dimen/editview_radius"
+                android:topRightRadius="@dimen/editview_radius"/>
         </shape>
     </item>
     <!-- 主体背景颜色值 -->
