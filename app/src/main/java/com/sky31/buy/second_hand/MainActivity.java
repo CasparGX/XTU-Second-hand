@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.Window;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.sky31.buy.second_hand.context.BuyApp;

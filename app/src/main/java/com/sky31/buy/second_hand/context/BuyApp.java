@@ -292,13 +292,22 @@ public class BuyApp extends Application {
         }
     };
 
-    public static int getVersionName(Context context) {
+    public static int getVersionCode(Context context) {
         try {
             app_version = context.getPackageManager().getPackageInfo("com.sky31.buy.second_hand",0).versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         return app_version;
+    }
+
+    public static String getVersionName(Context context) {
+        try {
+            return context.getPackageManager().getPackageInfo("com.sky31.buy.second_hand",0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 

@@ -72,7 +72,7 @@ public class AboutActivity extends BaseSwipeBackActivity implements View.OnClick
         //tvTitle = (TextView) findViewById(R.id.textView);
         //tvTitle.setText("关于");
         tvVersion = (TextView) findViewById(R.id.tv_version);
-        tvVersion.setText("v" + BuyApp.getVersionName(this));
+        tvVersion.setText("" + BuyApp.getVersionName(this));
         iv_back_btn = (ImageView) findViewById(R.id.iv_back_btn);
         iv_back_btn.setOnClickListener(this);
         trCallMe = (TableRow) findViewById(R.id.tr_call_me);
@@ -111,7 +111,7 @@ public class AboutActivity extends BaseSwipeBackActivity implements View.OnClick
 
             /*  check update*/
             case R.id.tr_update:
-                BuyApp.getVersionName(this);
+                BuyApp.getVersionCode(this);
                 BuyApp.checkUpdate();
                 break;
 
