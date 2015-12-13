@@ -1,14 +1,10 @@
 package com.sky31.buy.second_hand.context;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Application;
-import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.nfc.Tag;
 import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -32,7 +28,6 @@ import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.GoodsData;
 import com.sky31.buy.second_hand.ui.AboutActivity;
-import com.sky31.buy.second_hand.ui.HomeActivity;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
 import org.apache.http.Header;
@@ -53,9 +48,9 @@ public class BuyApp extends Application {
 
     private boolean isOpen = false;
 
-    private static final String API_URL      = Constants.Apis.API_URL;
-    private static final String KEY_PICNAME  = Constants.Keys.KEY_PICNAME;
-    private static final String KEY_PICSRC   = Constants.Keys.KEY_PICSRC;
+    private static final String API_URL = Constants.Apis.API_URL;
+    private static final String KEY_PICNAME = Constants.Keys.KEY_PICNAME;
+    private static final String KEY_PICSRC = Constants.Keys.KEY_PICSRC;
 
 
     //GoodsData
@@ -116,10 +111,10 @@ public class BuyApp extends Application {
                 .considerExifParams(true)  //是否考虑JPEG图像EXIF参数（旋转，翻转）
                 .imageScaleType(ImageScaleType.EXACTLY_STRETCHED)//设置图片以如何的编码方式显示
                 .bitmapConfig(Bitmap.Config.RGB_565)//设置图片的解码类型//
-                        //.decodingOptions(android.graphics.BitmapFactory.Options decodingOptions)//设置图片的解码配置
-                        //.delayBeforeLoading(int delayInMillis)//int delayInMillis为你设置的下载前的延迟时间
-                        //设置图片加入缓存前，对bitmap进行设置
-                        //.preProcessor(BitmapProcessor preProcessor)
+                //.decodingOptions(android.graphics.BitmapFactory.Options decodingOptions)//设置图片的解码配置
+                //.delayBeforeLoading(int delayInMillis)//int delayInMillis为你设置的下载前的延迟时间
+                //设置图片加入缓存前，对bitmap进行设置
+                //.preProcessor(BitmapProcessor preProcessor)
                 .resetViewBeforeLoading(true)//设置图片在下载前是否重置，复位
                 .displayer(new RoundedBitmapDisplayer(20))//是否设置为圆角，弧度为多少
                 .displayer(new FadeInBitmapDisplayer(100))//是否图片加载好后渐入的动画时间
@@ -134,7 +129,6 @@ public class BuyApp extends Application {
     public ImageLoader getImageLoader() {
         return imageLoader;
     }
-
 
 
     public ArrayList<GoodsData> getGoodsData() {
@@ -257,7 +251,7 @@ public class BuyApp extends Application {
                 //String [] version2 = app_version.split("\\.");//当前版本
                 //Log.i("buyapp",version1.toString()+"   "+version2.toString());
                 boolean isNewVersion = false;
-                if (Integer.parseInt(version)>app_version){
+                if (Integer.parseInt(version) > app_version) {
                     isNewVersion = true;
                 }
                 /*if (Integer.parseInt(version1[0])>Integer.parseInt(version2[0])) {
@@ -272,9 +266,9 @@ public class BuyApp extends Application {
                     }
                 }*/
                 if (isNewVersion) {
-                    AboutActivity.updateDialog(Constants.Apis.API_URL+response.getString("url"));
+                    AboutActivity.updateDialog(Constants.Apis.API_URL + response.getString("url"));
                 } else {
-                    Toast.makeText(instance.getApplicationContext(),"已是最新版本",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(instance.getApplicationContext(), "已是最新版本", Toast.LENGTH_SHORT).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -294,7 +288,7 @@ public class BuyApp extends Application {
 
     public static int getVersionCode(Context context) {
         try {
-            app_version = context.getPackageManager().getPackageInfo("com.sky31.buy.second_hand",0).versionCode;
+            app_version = context.getPackageManager().getPackageInfo("com.sky31.buy.second_hand", 0).versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
@@ -303,7 +297,7 @@ public class BuyApp extends Application {
 
     public static String getVersionName(Context context) {
         try {
-            return context.getPackageManager().getPackageInfo("com.sky31.buy.second_hand",0).versionName;
+            return context.getPackageManager().getPackageInfo("com.sky31.buy.second_hand", 0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
             return null;
