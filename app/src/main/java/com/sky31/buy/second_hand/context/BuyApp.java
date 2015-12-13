@@ -49,7 +49,7 @@ import java.util.List;
  */
 public class BuyApp extends Application {
 
-    private static String app_version = "0.0.0";
+    private static int app_version = 0;
 
     private boolean isOpen = false;
 
@@ -253,11 +253,14 @@ public class BuyApp extends Application {
             Log.i("buyapp", response.toString());
             try {
                 String version = response.getString("version");
-                String [] version1 = version.split("\\.");    //获取版本
-                String [] version2 = app_version.split("\\.");//当前版本
-                Log.i("buyapp",version1.toString()+"   "+version2.toString());
+                //String [] version1 = version.split("\\.");    //获取版本
+                //String [] version2 = app_version.split("\\.");//当前版本
+                //Log.i("buyapp",version1.toString()+"   "+version2.toString());
                 boolean isNewVersion = false;
-                if (Integer.parseInt(version1[0])>Integer.parseInt(version2[0])) {
+                if (Integer.parseInt(version)>app_version){
+                    isNewVersion = true;
+                }
+                /*if (Integer.parseInt(version1[0])>Integer.parseInt(version2[0])) {
                     isNewVersion = true;
                 } else if (Integer.parseInt(version1[0])==Integer.parseInt(version2[0])) {
                     if (Integer.parseInt(version1[1])>Integer.parseInt(version2[1])) {
@@ -267,7 +270,7 @@ public class BuyApp extends Application {
                             isNewVersion = true;
                         }
                     }
-                }
+                }*/
                 if (isNewVersion) {
                     AboutActivity.updateDialog(Constants.Apis.API_URL+response.getString("url"));
                 } else {
@@ -289,9 +292,9 @@ public class BuyApp extends Application {
         }
     };
 
-    public static String getVersionName(Context context) {
+    public static int getVersionName(Context context) {
         try {
-            app_version = context.getPackageManager().getPackageInfo("com.sky31.buy.second_hand",0).versionName;
+            app_version = context.getPackageManager().getPackageInfo("com.sky31.buy.second_hand",0).versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
