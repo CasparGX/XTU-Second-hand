@@ -3,7 +3,6 @@ package com.sky31.buy.second_hand.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
 
 import org.json.JSONArray;
@@ -19,16 +18,9 @@ import java.util.List;
  */
 public class GoodsData implements Parcelable{
 
-    private BuyApp app;
-
-
     private static final String API_URL      = Constants.Apis.API_URL;
     private static final String KEY_PICNAME  = Constants.Keys.KEY_PICNAME;
     private static final String KEY_PICSRC   = Constants.Keys.KEY_PICSRC;
-    //GoodsData
-    //private ArrayList<GoodsData> data = app.getGoodsData();
-
-
 
     public int id,price,countImg;
     public String title,seller,dec,phone,qq,imgUrl,type,date;

@@ -77,7 +77,7 @@ public class ClassifyFragmentGridViewAdapter extends BaseAdapter {
                         ) - 1
                 )
         );
-        Log.i("ClassifyFragmentGridViewAdapter",data.get(i).getTitle() + " # " + i + " # " + getItem(i).getId() + " # " + getCount());
+        Log.i(TAG,data.get(i).getTitle() + " # " + i + " # " + getItem(i).getId() + " # " + getCount());
         return view;
     }
 }

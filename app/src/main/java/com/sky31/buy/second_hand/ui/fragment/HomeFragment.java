@@ -1,16 +1,13 @@
 package com.sky31.buy.second_hand.ui.fragment;
 
 
-import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.TranslateAnimation;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -43,7 +40,7 @@ import in.srain.cube.views.ptr.util.PtrLocalDisplay;
 
 public class HomeFragment extends Fragment {
 
-    private BuyApp app = new BuyApp();
+    //private BuyApp app = new BuyApp();
 
     private String TAG = HomeFragment.class.getName();
 
@@ -275,13 +272,13 @@ public class HomeFragment extends Fragment {
             adapter.notifyDataSetChanged();
 
             //改变缓存
-            if (limitID==0){
+            if (limitID == 0) {
                 mCache.put(Constants.Keys.KEY_CACHE_HOME_FIRST_CONTENT, response);
                 mCache.put(Constants.Keys.KEY_CACHE_HOME_CHECK, "hasCache");
             }
 
             //改变footer状态
-            if (response.length()<getActivity().getResources().getInteger(R.integer.defaultGoodsLoadCount)) {
+            if (response.length() < getActivity().getResources().getInteger(R.integer.defaultGoodsLoadCount)) {
                 //商品数量未达到默认加载数量,判断为加载完毕
                 BuyApp.setListViewFooter("isAll", ivTips, tvTips, getActivity());
             } else {

@@ -28,15 +28,15 @@ import java.util.ArrayList;
  */
 public class GoodsShowFragment extends Fragment {
 
-    private ImageView imgPic;
+    //private ImageView imgPic;
     private TextView tvTitle;
 
     private ViewPager imgPicViewPager;
-    private ArrayList<ImageView> imgList;
+    //private ArrayList<ImageView> imgList;
     private PagerAdapter imgListAdapter;
-    private ImageView imgPic01;
-    private ImageView imgPic03;
-    private ImageView imgPic02;
+    //private ImageView imgPic01;
+    //private ImageView imgPic03;
+    //private ImageView imgPic02;
     private GoodsData goods;
 
     private ImageLoader imageLoader;
@@ -103,8 +103,8 @@ public class GoodsShowFragment extends Fragment {
 
                 ImageView imageView = new ImageView(getActivity());
                 imageLoader.displayImage(goods.imgUrl
-                        + Constants.Values.VALUE_MIN_SIZE_PRE
-                        + goods.imgUrlArray.get(position)
+                                + Constants.Values.VALUE_MIN_SIZE_PRE
+                                + goods.imgUrlArray.get(position)
                         , imageView
                         , displayImageOptions);
 

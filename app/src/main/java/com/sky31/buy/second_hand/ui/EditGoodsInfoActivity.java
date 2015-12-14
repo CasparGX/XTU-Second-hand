@@ -58,7 +58,7 @@ public class EditGoodsInfoActivity extends BaseSwipeBackActivity implements View
     private TextView tvHeaderTitle;
 
     /*滑动返回*/
-    private SwipeBackLayout mSwipeBackLayout;
+    //private SwipeBackLayout mSwipeBackLayout;
 
     /*填写内容部分*/
     private Spinner spnClassify;

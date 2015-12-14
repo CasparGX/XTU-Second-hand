@@ -10,9 +10,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
-import android.view.animation.TranslateAnimation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -45,11 +42,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
-import in.srain.cube.views.ptr.PtrHandler;
-import in.srain.cube.views.ptr.header.MaterialHeader;
-import in.srain.cube.views.ptr.util.PtrLocalDisplay;
 
 public class ClassifyFragment extends Fragment implements View.OnClickListener {
 
@@ -111,7 +104,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         ivTips = (ImageView) listViewFooter.findViewById(R.id.iv_tips);
         tvTips = (TextView) listViewFooter.findViewById(R.id.tv_tips);
         isAll = false;
-        mListView.addFooterView(listViewFooter,null,false);
+        mListView.addFooterView(listViewFooter, null, false);
         //listView's adapter
         mListViewAdapter = new HomeFragmentListViewAdapter(inflater);
         mListViewAdapter.setmGoodsData(mGoodsData);
@@ -123,7 +116,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         mEtSearch.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int i, KeyEvent keyEvent) {
-                if(i == KeyEvent.KEYCODE_ENTER){
+                if (i == KeyEvent.KEYCODE_ENTER) {
                     onBtnSearchClick();
                     return true;
                 }
@@ -263,7 +256,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
             params.remove(Constants.Keys.KEY_LIMITID);
         }
 
-        if (title != null){
+        if (title != null) {
             params.add(Constants.Keys.KEY_TITLE, title);
         }
         if (id != -1) {
@@ -296,7 +289,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
             mGoodsArray = response;
             mGoodsData.addAll(GoodsData.JSONArrayToGoodsData(mGoodsArray));
             mListViewAdapter.notifyDataSetChanged();
-            if (response.length()<getActivity().getResources().getInteger(R.integer.defaultGoodsLoadCount)) {
+            if (response.length() < getActivity().getResources().getInteger(R.integer.defaultGoodsLoadCount)) {
                 //商品数量未达到默认加载数量,判断为加载完毕
                 BuyApp.setListViewFooter("isAll", ivTips, tvTips, getActivity());
             } else {
@@ -317,8 +310,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                 mListViewAdapter.notifyDataSetChanged();
                 isAll = true;
                 BuyApp.setListViewFooter("isNull", ivTips, tvTips, getActivity());
-            }
-            else {
+            } else {
 
                 isAll = true;
                 BuyApp.setListViewFooter("isAll", ivTips, tvTips, getActivity());
@@ -337,7 +329,6 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
             Log.i(TAG, "onFinish");
         }
     };
-
 
 
     /*获取分类信息*/
@@ -359,7 +350,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
     }
 
     /*获取分类信息的Handler*/
-    JsonHttpResponseHandler mClassifyJsonHttpResponseHandler = new JsonHttpResponseHandler() {
+    /*JsonHttpResponseHandler mClassifyJsonHttpResponseHandler = new JsonHttpResponseHandler() {
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
             super.onSuccess(statusCode, headers, response);
@@ -391,17 +382,18 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
             ptrFrame.refreshComplete();
             Log.i(TAG, "onFinish");
         }
-    };
+    };*/
 
     /**
      * 将获取的JSONObject转为自定义的ClassifyInfo对象
+     *
      * @param mJsonObject
      */
     public void JsonToClassifyInfo(JSONObject mJsonObject) {
         String key;
         int i = 0;
-        for (Iterator iter = mJsonObject.keys(); iter.hasNext();) { //先遍历整个 people 对象
-            key = (String)iter.next();
+        for (Iterator iter = mJsonObject.keys(); iter.hasNext(); ) { //先遍历整个 people 对象
+            key = (String) iter.next();
             try {
                 ClassifyInfo mObjClassifyInfo = new ClassifyInfo();
                 System.out.println(key + "#" + mJsonObject.getString(key));
@@ -429,7 +421,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.btn_search :
+            case R.id.btn_search:
                 onBtnSearchClick();
                 break;
         }
@@ -446,7 +438,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
             //隐藏输入法
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(mEtSearch.getWindowToken(), 0);
-            Toast.makeText(getActivity(), "正在搜索 : "+keyword,
+            Toast.makeText(getActivity(), "正在搜索 : " + keyword,
                     Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getActivity(), "请输入搜索内容",
@@ -462,7 +454,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         JsonToClassifyInfo(mCacheContent);
         adapter.notifyDataSetChanged();
 
-        Log.i(TAG,"--------onRefreshBegin : 获取到缓存信息, 显示缓存数据---------");
+        Log.i(TAG, "--------onRefreshBegin : 获取到缓存信息, 显示缓存数据---------");
 
     }
 
