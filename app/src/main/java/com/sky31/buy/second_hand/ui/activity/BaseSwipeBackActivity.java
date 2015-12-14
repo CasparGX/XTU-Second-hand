@@ -22,7 +22,7 @@ public class BaseSwipeBackActivity extends SwipeBackActivity {
 
     private int maxSwipeY = 180;
     private int maxStartX = 150;
-    private double swipeCoefficient = 2.2;
+    private double swipeCoefficient = 1.6;
 
     /*滑动返回*/
     private SwipeBackLayout mSwipeBackLayout;

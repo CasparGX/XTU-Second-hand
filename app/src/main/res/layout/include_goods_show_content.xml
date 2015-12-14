@@ -40,7 +40,7 @@
             android:layout_margin="4dp"
             android:text="标题啊 "
             android:textColor="@color/themeColor"
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
 
     </LinearLayout>
