@@ -6,19 +6,10 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.sky31.buy.second_hand.context.BuyApp;
-import com.sky31.buy.second_hand.model.GoodsData;
 import com.sky31.buy.second_hand.ui.HomeActivity;
-
-import org.json.JSONArray;
-
-import java.util.ArrayList;
 
 
 public class MainActivity extends Activity {
-
-    private BuyApp app = new BuyApp();
-    private ArrayList<GoodsData> mGoodsData = app.getGoodsData();
-    private JSONArray mGoodsArray = null;
 
     private long delayTime;
 
