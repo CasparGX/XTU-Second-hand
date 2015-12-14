@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,7 +21,6 @@ import com.loopj.android.http.RequestParams;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.ui.AboutActivity;
-import com.sky31.buy.second_hand.ui.GoodsShowActivity;
 import com.sky31.buy.second_hand.ui.PublishActivity;
 import com.sky31.buy.second_hand.ui.SellingActivity;
 import com.sky31.buy.second_hand.util.ACacheUtil;
@@ -33,8 +31,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.logging.Handler;
 
 public class MeFragment extends Fragment implements View.OnClickListener {
 
@@ -283,6 +280,12 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
             case 6:
                 ivUsericon.setImageResource(R.drawable.waiter_not_avatar_blank);
+                new android.os.Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        ivUsericon.setImageResource(R.drawable.waiter_default);
+                    }
+                }, 10000);
                 break;
         }
     }
