@@ -284,6 +284,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void run() {
                         ivUsericon.setImageResource(R.drawable.waiter_default);
+                        userIconClickNum = 0;
                     }
                 }, 10000);
                 break;
