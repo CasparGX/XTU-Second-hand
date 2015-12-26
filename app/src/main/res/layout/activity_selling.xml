@@ -10,6 +10,11 @@
 
     <include layout="@layout/include_header_with_button" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="向左滑动商品可修改哦"/>
 
     <com.baoyz.swipemenulistview.SwipeMenuListView
         android:id="@+id/smlv_selling_goods"
