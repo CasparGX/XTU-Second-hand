@@ -345,43 +345,45 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
     /*Register用户信息dialog*/
     private void showRegisterDialog() {
-        try {
 
-            LayoutInflater inflater = getActivity().getLayoutInflater();
-            final View dialogView = inflater.inflate(R.layout.dialog_register, null);
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.dialog_register, null);
 
-            TextView tvDialogTitle = (TextView) dialogView.findViewById(R.id.tv_dialog_title);
-            tvDialogTitle.setText(R.string.register);
+        TextView tvDialogTitle = (TextView) dialogView.findViewById(R.id.tv_dialog_title);
+        tvDialogTitle.setText(R.string.register);
 
-            etEmail = (EditText) dialogView.findViewById(R.id.et_email);
-            etPassword = (EditText) dialogView.findViewById(R.id.et_password);
-            etConfirmPassword = (EditText) dialogView.findViewById(R.id.et_confirm_password);
-            etNickName = (EditText) dialogView.findViewById(R.id.et_nickname);
-            etPhoneNum = (EditText) dialogView.findViewById(R.id.et_phone_num);
-            etQq = (EditText) dialogView.findViewById(R.id.et_qq);
-            etNickName.setText(userInfo.getString("nickname"));
-            etPhoneNum.setText(userInfo.getString("phone"));
-            etQq.setText(userInfo.getString("qq"));
+        etEmail = (EditText) dialogView.findViewById(R.id.et_email);
+        etPassword = (EditText) dialogView.findViewById(R.id.et_password);
+        etConfirmPassword = (EditText) dialogView.findViewById(R.id.et_confirm_password);
+        etNickName = (EditText) dialogView.findViewById(R.id.et_nickname);
+        etPhoneNum = (EditText) dialogView.findViewById(R.id.et_phone_num);
+        etQq = (EditText) dialogView.findViewById(R.id.et_qq);
 
-            builderEditInfo
-                    //.setTitle(R.string.editInfo)
-                    .setView(dialogView)
-                    .setPositiveButton(R.string.register,
-                            new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    editInfo();
-                                }
-                            })
-                    .setNegativeButton("取消", null)
-                    .create()
-                    .show();
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        builderEditInfo
+                //.setTitle(R.string.editInfo)
+                .setView(dialogView)
+                .setPositiveButton(R.string.register,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                register(etEmail.getText().toString()
+                                        ,etPassword.getText().toString()
+                                        ,etConfirmPassword.getText().toString()
+                                        ,etNickName.getText().toString()
+                                        ,etPhoneNum.getText().toString()
+                                        ,etQq.getText().toString());
+                            }
+                        })
+                .setNegativeButton("取消", null)
+                .create()
+                .show();
 
     }
+
+    private void register(String email, String password, String confirmPassword, String nickName, String phoneNum, String qq) {
+        RequestParams params = new RequestParams();
+    }
+
     /*显示修改用户信息dialog*/
     private void showEditInfoDialog() {
         try {
