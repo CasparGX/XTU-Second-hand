@@ -207,7 +207,7 @@ public class BuyApp extends Application {
                                 Animation.RELATIVE_TO_SELF, -0.05f,
                                 Animation.RELATIVE_TO_SELF, 0.05f);
                 translateAnimation.setDuration(800);
-                translateAnimation.setRepeatCount(30);
+                translateAnimation.setRepeatCount(0);
                 animationSet.addAnimation(translateAnimation);
                 ivTips.startAnimation(animationSet);
                 tvTips.setText(context.getResources().getString(R.string.loadingTips));
