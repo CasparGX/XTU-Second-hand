@@ -61,6 +61,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private EditText etNickName;
     private EditText etPhoneNum;
     private EditText etQq;
+    private EditText etEmail;
+    private EditText etPassword;
+    private EditText etConfirmPassword;
 
     private AlertDialog.Builder builderLogin;
     private EditText mEtPassWord;
@@ -350,6 +353,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             TextView tvDialogTitle = (TextView) dialogView.findViewById(R.id.tv_dialog_title);
             tvDialogTitle.setText(R.string.register);
 
+            etEmail = (EditText) dialogView.findViewById(R.id.et_email);
+            etPassword = (EditText) dialogView.findViewById(R.id.et_password);
+            etConfirmPassword = (EditText) dialogView.findViewById(R.id.et_confirm_password);
             etNickName = (EditText) dialogView.findViewById(R.id.et_nickname);
             etPhoneNum = (EditText) dialogView.findViewById(R.id.et_phone_num);
             etQq = (EditText) dialogView.findViewById(R.id.et_qq);
@@ -360,7 +366,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             builderEditInfo
                     //.setTitle(R.string.editInfo)
                     .setView(dialogView)
-                    .setPositiveButton("确认修改",
+                    .setPositiveButton(R.string.register,
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {

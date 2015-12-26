@@ -44,6 +44,24 @@
         <TextView
             android:gravity="right"
             android:padding="3dip"
+            android:text="邮箱:"
+            android:textColor="@color/themeColor"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_weight="1"
+            android:background="@drawable/editview_border"
+            android:padding="@dimen/table_row_editview_padding"
+            android:scrollHorizontally="true"
+            android:textSize="18sp" />
+    </TableRow>
+
+    <TableRow android:layout_margin="@dimen/table_row_margin">
+
+        <TextView
+            android:gravity="right"
+            android:padding="3dip"
             android:text="密码:"
             android:textColor="@color/themeColor"
             android:textSize="20sp" />
@@ -75,38 +93,21 @@
             android:padding="@dimen/table_row_editview_padding"
             android:scrollHorizontally="true"
             android:textSize="18sp" />
-    </TableRow>
 
-    <TableRow android:layout_margin="@dimen/table_row_margin">
-
-        <TextView
-            android:gravity="right"
-            android:padding="3dip"
-            android:text="邮箱:"
-            android:textColor="@color/themeColor"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/et_email"
-            android:layout_weight="1"
-            android:background="@drawable/editview_border"
-            android:padding="@dimen/table_row_editview_padding"
-            android:scrollHorizontally="true"
-            android:textSize="18sp" />
     </TableRow>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="---- 以下至少填一项 ----"/>
+            android:gravity="center"
+            android:text="---- 以下至少填一项 ----" />
     </LinearLayout>
 
     <TableRow android:layout_margin="@dimen/table_row_margin">
