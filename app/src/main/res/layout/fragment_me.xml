@@ -8,6 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -16,31 +17,49 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@color/white"
                 android:layout_margin="@dimen/usericon_layout_margin"
+                android:background="@color/white"
+                android:gravity="center"
+                android:orientation="vertical"
                 android:padding="20dp">
 
                 <ImageView
                     android:id="@+id/iv_usericon"
-                    android:layout_marginLeft="35dp"
                     android:layout_width="175dp"
                     android:layout_height="140dp"
-                    android:src="@drawable/waiter_default"/>
+                    android:layout_marginLeft="35dp"
+                    android:src="@drawable/waiter_default" />
+
                 <TextView
                     android:id="@+id/tv_nickname"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:text="未登录" />
-                <TextView
-                    android:id="@+id/tv_login_link"
+                    android:text="未登录"
+                    android:textSize="18sp" />
+
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="12sp"
-                    android:textColor="@color/material_deep_teal_200"
-                    android:text="点击登录"/>
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_login_link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/login"
+                        android:textColor="@color/material_deep_teal_200"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_register_link"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="注册"
+                        android:textColor="@color/material_deep_teal_200"
+                        android:textSize="12sp" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -48,12 +67,12 @@
                 android:id="@+id/tr_edit_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/table_row_marginBottom"
+                android:background="@drawable/item_bg_color"
+                android:paddingBottom="@dimen/table_row_paddingTop"
                 android:paddingLeft="@dimen/table_row_paddingLeft"
                 android:paddingRight="@dimen/table_row_paddingLeft"
-                android:paddingTop="@dimen/table_row_paddingTop"
-                android:paddingBottom="@dimen/table_row_paddingTop"
-                android:layout_marginBottom="@dimen/table_row_marginBottom"
-                android:background="@drawable/item_bg_color">
+                android:paddingTop="@dimen/table_row_paddingTop">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -63,20 +82,20 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=">"
-                    android:gravity="right"/>
+                    android:gravity="right"
+                    android:text=">" />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr_publish"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/table_row_marginBottom"
+                android:background="@drawable/item_bg_color"
+                android:paddingBottom="@dimen/table_row_paddingTop"
                 android:paddingLeft="@dimen/table_row_paddingLeft"
                 android:paddingRight="@dimen/table_row_paddingLeft"
-                android:paddingTop="@dimen/table_row_paddingTop"
-                android:paddingBottom="@dimen/table_row_paddingTop"
-                android:background="@drawable/item_bg_color"
-                android:layout_marginBottom="@dimen/table_row_marginBottom">
+                android:paddingTop="@dimen/table_row_paddingTop">
 
                 <TextView
                     android:id="@+id/tv_publish"
@@ -87,8 +106,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=">"
-                    android:gravity="right"/>
+                    android:gravity="right"
+                    android:text=">" />
 
             </TableRow>
 
@@ -96,12 +115,12 @@
                 android:id="@+id/tr_selling"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/table_row_marginBottom"
+                android:background="@drawable/item_bg_color"
+                android:paddingBottom="@dimen/table_row_paddingTop"
                 android:paddingLeft="@dimen/table_row_paddingLeft"
                 android:paddingRight="@dimen/table_row_paddingLeft"
-                android:paddingTop="@dimen/table_row_paddingTop"
-                android:paddingBottom="@dimen/table_row_paddingTop"
-                android:layout_marginBottom="@dimen/table_row_marginBottom"
-                android:background="@drawable/item_bg_color">
+                android:paddingTop="@dimen/table_row_paddingTop">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -111,21 +130,21 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=">"
-                    android:gravity="right"/>
+                    android:gravity="right"
+                    android:text=">" />
             </TableRow>
 
             <TableRow
                 android:id="@+id/tr_about"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/table_row_paddingLeft"
-                android:paddingRight="@dimen/table_row_paddingLeft"
-                android:paddingTop="@dimen/table_row_paddingTop"
-                android:paddingBottom="@dimen/table_row_paddingTop"
                 android:layout_marginBottom="30dp"
                 android:layout_marginTop="@dimen/table_row_marginTop"
-                android:background="@drawable/item_bg_color">
+                android:background="@drawable/item_bg_color"
+                android:paddingBottom="@dimen/table_row_paddingTop"
+                android:paddingLeft="@dimen/table_row_paddingLeft"
+                android:paddingRight="@dimen/table_row_paddingLeft"
+                android:paddingTop="@dimen/table_row_paddingTop">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -135,8 +154,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=">"
-                    android:gravity="right"/>
+                    android:gravity="right"
+                    android:text=">" />
             </TableRow>
 
         </LinearLayout>

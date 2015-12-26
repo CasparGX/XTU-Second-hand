@@ -55,6 +55,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private TextView tvEmail;
     private ImageView ivUsericon;
     private TextView tvLoginLink;
+    private TextView tvRegisterLink;
 
     private AlertDialog.Builder builderEditInfo;
     private EditText etNickName;
@@ -91,6 +92,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         /*userinfo*/
         tvLoginLink = (TextView) view.findViewById(R.id.tv_login_link);
         tvLoginLink.setOnClickListener(this);
+        tvRegisterLink = (TextView) view.findViewById(R.id.tv_register_link);
+        tvRegisterLink.setOnClickListener(this);
         ivUsericon = (ImageView) view.findViewById(R.id.iv_usericon);
         ivUsericon.setOnClickListener(this);
         tvNickname = (TextView) view.findViewById(R.id.tv_nickname);
@@ -168,6 +171,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
             isLogin = true;
             userInfo = response;
             tvLoginLink.setText(getActivity().getResources().getString(R.string.logOut));
+            tvRegisterLink.setVisibility(View.GONE);
             tvNickname.setText(response.get("nickname") + "");
             mCache.put(Constants.Keys.KEY_CACHE_USERNAME, mCacheUserName);
             mCache.put(Constants.Keys.KEY_CACHE_PASSWORD, mCachePassWord);
@@ -179,7 +183,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     /*退出账号成功*/
     private void logOutSuccess() {
         isLogin = false;
-        tvLoginLink.setText(getActivity().getResources().getString(R.string.clickLogin));
+        tvLoginLink.setText(getActivity().getResources().getString(R.string.login));
+        tvRegisterLink.setVisibility(View.VISIBLE);
         tvNickname.setText(getActivity().getResources().getString(R.string.isNotLogin));
     }
 
@@ -203,6 +208,11 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                     //未登录
                     showLoginDialog();
                 }
+                break;
+
+            /* Register */
+            case R.id.tv_register_link:
+                showRegisterDialog();
                 break;
 
             /*正在出售商品*/
@@ -330,6 +340,42 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         }
     };
 
+    /*Register用户信息dialog*/
+    private void showRegisterDialog() {
+        try {
+
+            LayoutInflater inflater = getActivity().getLayoutInflater();
+            final View dialogView = inflater.inflate(R.layout.dialog_edit_info, null);
+
+            TextView tvDialogTitle = (TextView) dialogView.findViewById(R.id.tv_dialog_title);
+            tvDialogTitle.setText(R.string.register);
+
+            etNickName = (EditText) dialogView.findViewById(R.id.et_nickname);
+            etPhoneNum = (EditText) dialogView.findViewById(R.id.et_phone_num);
+            etQq = (EditText) dialogView.findViewById(R.id.et_qq);
+            etNickName.setText(userInfo.getString("nickname"));
+            etPhoneNum.setText(userInfo.getString("phone"));
+            etQq.setText(userInfo.getString("qq"));
+
+            builderEditInfo
+                    //.setTitle(R.string.editInfo)
+                    .setView(dialogView)
+                    .setPositiveButton("确认修改",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    editInfo();
+                                }
+                            })
+                    .setNegativeButton("取消", null)
+                    .create()
+                    .show();
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
     /*显示修改用户信息dialog*/
     private void showEditInfoDialog() {
         try {
