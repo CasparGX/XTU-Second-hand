@@ -182,9 +182,9 @@ public class PublishActivity extends SwipeBackActivity implements View.OnClickLi
         /* end - bargain spinner */
 
         /* start - time spinner */
+        mTime.add("90");
+        mTime.add("60");
         mTime.add("30");
-        mTime.add("15");
-        mTime.add("7");
         spnTime = (Spinner) findViewById(R.id.spn_goods_time);
         //将可选内容与ArrayAdapter连接起来
         ArrayAdapter<String> timeSpnAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mTime);
