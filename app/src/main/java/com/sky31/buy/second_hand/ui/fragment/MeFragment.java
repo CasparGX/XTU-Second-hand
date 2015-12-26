@@ -345,7 +345,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         try {
 
             LayoutInflater inflater = getActivity().getLayoutInflater();
-            final View dialogView = inflater.inflate(R.layout.dialog_edit_info, null);
+            final View dialogView = inflater.inflate(R.layout.dialog_register, null);
 
             TextView tvDialogTitle = (TextView) dialogView.findViewById(R.id.tv_dialog_title);
             tvDialogTitle.setText(R.string.register);
