@@ -38,6 +38,8 @@ public class Constants {
         public static final String KEY_PICSRC= "picsrc";
         public static final String KEY_LIMITID= "limitID";
 
+        public static final String KEY_EMAIL= "email";
+
         public static final String KEY_TITLE= "title";
         public static final String KEY_DESCRIBE= "describe";
         public static final String KEY_PRICE= "price";

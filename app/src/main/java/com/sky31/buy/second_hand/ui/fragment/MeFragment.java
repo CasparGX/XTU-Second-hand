@@ -382,6 +382,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
     private void register(String email, String password, String confirmPassword, String nickName, String phoneNum, String qq) {
         RequestParams params = new RequestParams();
+        params.add(Constants.Keys.KEY_EMAIL,email);
     }
 
     /*显示修改用户信息dialog*/
