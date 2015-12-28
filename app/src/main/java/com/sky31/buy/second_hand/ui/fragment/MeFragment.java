@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestHandle;
 import com.loopj.android.http.RequestParams;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
@@ -31,8 +30,6 @@ import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.logging.Handler;
 
 public class MeFragment extends Fragment implements View.OnClickListener {
 
@@ -348,7 +345,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     private void showRegisterDialog() {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.dialog_register, null);
+        final View dialogView = inflater.inflate(R.layout.activity_register, null);
 
         TextView tvDialogTitle = (TextView) dialogView.findViewById(R.id.tv_dialog_title);
         tvDialogTitle.setText(R.string.register);
@@ -402,20 +399,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
             super.onSuccess(statusCode, headers, response);
-            try {
-                if (response.get("result").equals("error")) {
-                    Toast.makeText(getActivity(), "注册失败:" + response.get("msg") + "", Toast.LENGTH_SHORT).show();
-                } else if (response.get("result").equals("success")) {
-                    HttpUtil.post(Constants.Apis.API_USER_LOGIN_POST
-                            , null
-                            , mLogInHandler);
-                } else {
-                    Toast.makeText(getActivity(), Constants.Values.VALUE_SERVICE_NO_RESPONSE, Toast.LENGTH_SHORT).show();
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
         }
     };
 

@@ -2,24 +2,10 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="1">
+    android:stretchColumns="1"
+    android:background="@color/themeBgColor">
 
-    <TableRow
-        android:layout_height="65dp"
-        android:layout_marginBottom="@dimen/table_row_margin"
-        android:background="@drawable/dialog_title">
-
-        <TextView
-            android:id="@+id/tv_dialog_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/login"
-            android:textColor="@color/white"
-            android:textSize="24sp" />
-    </TableRow>
+    <include layout="@layout/include_header_with_button" />
 
     <TableRow android:layout_margin="@dimen/table_row_margin">
 
@@ -149,5 +135,17 @@
             android:textSize="18sp" />
     </TableRow>
 
+    <Button
+        android:id="@+id/btn_publish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="15dp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_default"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="同意协议并发布" />
 
 </TableLayout>
