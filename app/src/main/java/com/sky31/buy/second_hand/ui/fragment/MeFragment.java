@@ -22,6 +22,7 @@ import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.ui.AboutActivity;
 import com.sky31.buy.second_hand.ui.PublishActivity;
+import com.sky31.buy.second_hand.ui.RegisterActivity;
 import com.sky31.buy.second_hand.ui.SellingActivity;
 import com.sky31.buy.second_hand.util.ACacheUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
@@ -213,7 +214,11 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
             /* Register */
             case R.id.tv_register_link:
-                showRegisterDialog();
+                Intent intentRegister = new Intent();
+                intentRegister.setClass(getActivity(), RegisterActivity.class);
+                intentRegister.putExtra("headerTitle", "注册");
+                startActivity(intentRegister);
+                getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
                 break;
 
             /*正在出售商品*/
@@ -338,67 +343,6 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
         public void onFinish() {
             Log.i(TAG, "onFinish");
-        }
-    };
-
-    /*Register用户信息dialog*/
-    private void showRegisterDialog() {
-
-        LayoutInflater inflater = getActivity().getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.activity_register, null);
-
-        TextView tvDialogTitle = (TextView) dialogView.findViewById(R.id.tv_dialog_title);
-        tvDialogTitle.setText(R.string.register);
-
-        etEmail = (EditText) dialogView.findViewById(R.id.et_email);
-        etPassword = (EditText) dialogView.findViewById(R.id.et_password);
-        etConfirmPassword = (EditText) dialogView.findViewById(R.id.et_confirm_password);
-        etNickName = (EditText) dialogView.findViewById(R.id.et_nickname);
-        etPhoneNum = (EditText) dialogView.findViewById(R.id.et_phone_num);
-        etQq = (EditText) dialogView.findViewById(R.id.et_qq);
-
-        builderEditInfo
-                //.setTitle(R.string.editInfo)
-                .setView(dialogView)
-                .setPositiveButton(R.string.register,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (!etPassword.getText().equals(etConfirmPassword.getText())) {
-                                    Toast.makeText(getActivity(), "两次输入的密码不一样", Toast.LENGTH_SHORT).show();
-                                } else if (etQq.getText().equals("")&&etPhoneNum.getText().equals("")){
-                                    Toast.makeText(getActivity(), "至少填一项联系方式", Toast.LENGTH_SHORT).show();
-                                }else{
-                                    register(etEmail.getText().toString()
-                                            , etPassword.getText().toString()
-                                            , etNickName.getText().toString()
-                                            , etPhoneNum.getText().toString()
-                                            , etQq.getText().toString());
-                                }
-                            }
-                        })
-                .setNegativeButton("取消", null)
-                .create()
-                .show();
-
-    }
-
-    private void register(String email, String password, String nickName, String phoneNum, String qq) {
-        RequestParams params = new RequestParams();
-        params.add(Constants.Keys.KEY_EMAIL, email);
-        params.add(Constants.Keys.KEY_PASSWORD, password);
-        params.add(Constants.Keys.KEY_NICKNAME, nickName);
-        params.add(Constants.Keys.KEY_PHONE, phoneNum);
-        params.add(Constants.Keys.KEY_QQ, qq);
-        HttpUtil.post(Constants.Apis.API_USER_REGISTER
-                , params
-                , mRegisterHandler);
-    }
-
-    JsonHttpResponseHandler mRegisterHandler = new JsonHttpResponseHandler() {
-        @Override
-        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-            super.onSuccess(statusCode, headers, response);
         }
     };
 
