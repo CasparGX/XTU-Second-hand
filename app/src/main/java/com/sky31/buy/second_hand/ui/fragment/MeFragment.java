@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestHandle;
 import com.loopj.android.http.RequestParams;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.values.Constants;
@@ -366,12 +367,17 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                register(etEmail.getText().toString()
-                                        ,etPassword.getText().toString()
-                                        ,etConfirmPassword.getText().toString()
-                                        ,etNickName.getText().toString()
-                                        ,etPhoneNum.getText().toString()
-                                        ,etQq.getText().toString());
+                                if (!etPassword.getText().equals(etConfirmPassword.getText())) {
+                                    Toast.makeText(getActivity(), "两次输入的密码不一样", Toast.LENGTH_SHORT).show();
+                                } else if (etQq.getText().equals("")&&etPhoneNum.getText().equals("")){
+                                    Toast.makeText(getActivity(), "至少填一项联系方式", Toast.LENGTH_SHORT).show();
+                                }else{
+                                    register(etEmail.getText().toString()
+                                            , etPassword.getText().toString()
+                                            , etNickName.getText().toString()
+                                            , etPhoneNum.getText().toString()
+                                            , etQq.getText().toString());
+                                }
                             }
                         })
                 .setNegativeButton("取消", null)
@@ -380,10 +386,38 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    private void register(String email, String password, String confirmPassword, String nickName, String phoneNum, String qq) {
+    private void register(String email, String password, String nickName, String phoneNum, String qq) {
         RequestParams params = new RequestParams();
-        params.add(Constants.Keys.KEY_EMAIL,email);
+        params.add(Constants.Keys.KEY_EMAIL, email);
+        params.add(Constants.Keys.KEY_PASSWORD, password);
+        params.add(Constants.Keys.KEY_NICKNAME, nickName);
+        params.add(Constants.Keys.KEY_PHONE, phoneNum);
+        params.add(Constants.Keys.KEY_QQ, qq);
+        HttpUtil.post(Constants.Apis.API_USER_REGISTER
+                , params
+                , mRegisterHandler);
     }
+
+    JsonHttpResponseHandler mRegisterHandler = new JsonHttpResponseHandler() {
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+            super.onSuccess(statusCode, headers, response);
+            try {
+                if (response.get("result").equals("error")) {
+                    Toast.makeText(getActivity(), "注册失败:" + response.get("msg") + "", Toast.LENGTH_SHORT).show();
+                } else if (response.get("result").equals("success")) {
+                    HttpUtil.post(Constants.Apis.API_USER_LOGIN_POST
+                            , null
+                            , mLogInHandler);
+                } else {
+                    Toast.makeText(getActivity(), Constants.Values.VALUE_SERVICE_NO_RESPONSE, Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    };
 
     /*显示修改用户信息dialog*/
     private void showEditInfoDialog() {
@@ -445,7 +479,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
         final View dialogView = inflater.inflate(R.layout.dialog_signin, null);
         TextView tvDialogTitle = (TextView) dialogView.findViewById(R.id.tv_dialog_title);
         tvDialogTitle.setText(R.string.login);
-            builderLogin
+        builderLogin
                 //.setTitle(R.string.login)
                 .setView(dialogView)
                 .setPositiveButton("确定",

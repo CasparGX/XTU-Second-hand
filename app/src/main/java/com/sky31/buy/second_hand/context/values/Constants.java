@@ -22,6 +22,8 @@ public class Constants {
 
 
         public static final String
+                API_USER_REGISTER = "http://buy.sky31.com/fleaapi/index.php/Admin/User/register";
+        public static final String
                 API_USER_LOGIN_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/User/login";
         public static final String
                 API_USER_CHANGE_INFO_POST = "http://buy.sky31.com/fleaapi/index.php/Admin/User/changeInfo";
@@ -38,7 +40,6 @@ public class Constants {
         public static final String KEY_PICSRC= "picsrc";
         public static final String KEY_LIMITID= "limitID";
 
-        public static final String KEY_EMAIL= "email";
 
         public static final String KEY_TITLE= "title";
         public static final String KEY_DESCRIBE= "describe";
@@ -65,6 +66,7 @@ public class Constants {
         public static final String KEY_QQ = "qq";
         public static final String KEY_PHONE = "phone";
         public static final String KEY_UID = "uid";
+        public static final String KEY_EMAIL= "email";
 
     }
 
