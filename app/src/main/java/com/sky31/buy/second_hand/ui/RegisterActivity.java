@@ -126,10 +126,13 @@ public class RegisterActivity extends BaseSwipeBackActivity implements View.OnCl
 
             try {
                 if (response.get("result").equals("error")) {
-                    Toast.makeText(RegisterActivity.this, "修改失败:" + response.get("msg") + "", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "注册失败:" + response.get("msg") + "", Toast.LENGTH_SHORT).show();
                 } else if (response.get("result").equals("success")) {
                     //register success
-
+                    Intent in = new Intent();
+                    in.putExtra(Constants.Keys.KEY_USERNAME,etEmail.getText().toString());
+                    setResult(Constants.Values.RESULT_REGISTER,in);
+                    finish();
                 } else {
                     Toast.makeText(RegisterActivity.this, Constants.Values.VALUE_SERVICE_NO_RESPONSE, Toast.LENGTH_SHORT).show();
                 }
