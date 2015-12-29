@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +19,7 @@ import com.sky31.buy.second_hand.ui.activity.BaseSwipeBackActivity;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
 import org.apache.http.Header;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class RegisterActivity extends BaseSwipeBackActivity implements View.OnClickListener {
@@ -123,6 +123,20 @@ public class RegisterActivity extends BaseSwipeBackActivity implements View.OnCl
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
             super.onSuccess(statusCode, headers, response);
+
+            try {
+                if (response.get("result").equals("error")) {
+                    Toast.makeText(RegisterActivity.this, "修改失败:" + response.get("msg") + "", Toast.LENGTH_SHORT).show();
+                } else if (response.get("result").equals("success")) {
+                    //register success
+
+                } else {
+                    Toast.makeText(RegisterActivity.this, Constants.Values.VALUE_SERVICE_NO_RESPONSE, Toast.LENGTH_SHORT).show();
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     };
 }

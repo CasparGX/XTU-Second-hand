@@ -217,7 +217,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 Intent intentRegister = new Intent();
                 intentRegister.setClass(getActivity(), RegisterActivity.class);
                 intentRegister.putExtra("headerTitle", "注册");
-                startActivity(intentRegister);
+                startActivityForResult(intentRegister,0);
                 getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
                 break;
 
@@ -441,5 +441,12 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 , mLogInHandler);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode){
+            case Constants.Values.RESULT_REGISTER:
 
+                break;
+        }
+    }
 }

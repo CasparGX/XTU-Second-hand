@@ -85,5 +85,7 @@ public class Constants {
                 "\"7\":\"\\u79df\\u8d41\"," +
                 "\"8\":\"\\u5176\\u4ed6\"}";
 
+        public static final int RESULT_REGISTER = 10;
+
     }
 }
