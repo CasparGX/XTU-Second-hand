@@ -131,6 +131,7 @@ public class RegisterActivity extends BaseSwipeBackActivity implements View.OnCl
                     //register success
                     Intent in = new Intent();
                     in.putExtra(Constants.Keys.KEY_USERNAME,etEmail.getText().toString());
+                    in.putExtra(Constants.Keys.KEY_PASSWORD,etPassword.getText().toString());
                     setResult(Constants.Values.RESULT_REGISTER,in);
                     finish();
                 } else {

@@ -445,7 +445,9 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (resultCode){
             case Constants.Values.RESULT_REGISTER:
-
+                String username = data.getStringExtra(Constants.Keys.KEY_USERNAME);
+                String password = data.getStringExtra(Constants.Keys.KEY_PASSWORD);
+                login(username,password);
                 break;
         }
     }
