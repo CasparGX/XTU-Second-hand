@@ -37,19 +37,19 @@ public class Constants {
     public final class Keys {
         //商品
         public static final String KEY_PICNAME = "picname";
-        public static final String KEY_PICSRC= "picsrc";
-        public static final String KEY_LIMITID= "limitID";
+        public static final String KEY_PICSRC = "picsrc";
+        public static final String KEY_LIMITID = "limitID";
 
 
-        public static final String KEY_TITLE= "title";
-        public static final String KEY_DESCRIBE= "describe";
-        public static final String KEY_PRICE= "price";
-        public static final String KEY_TYPE= "type";
-        public static final String KEY_INTERVAL= "interval";
-        public static final String KEY_TRADING= "trading";
-        public static final String KEY_SELLER= "seller";
-        public static final String KEY_BARGAIN= "bargain";
-        public static final String KEY_GID= "gid";
+        public static final String KEY_TITLE = "title";
+        public static final String KEY_DESCRIBE = "describe";
+        public static final String KEY_PRICE = "price";
+        public static final String KEY_TYPE = "type";
+        public static final String KEY_INTERVAL = "interval";
+        public static final String KEY_TRADING = "trading";
+        public static final String KEY_SELLER = "seller";
+        public static final String KEY_BARGAIN = "bargain";
+        public static final String KEY_GID = "gid";
 
         //缓存
         public static final String KEY_CACHE_HOME_CHECK = "checkCacheHome";
@@ -66,7 +66,7 @@ public class Constants {
         public static final String KEY_QQ = "qq";
         public static final String KEY_PHONE = "phone";
         public static final String KEY_UID = "uid";
-        public static final String KEY_EMAIL= "email";
+        public static final String KEY_EMAIL = "email";
 
     }
 

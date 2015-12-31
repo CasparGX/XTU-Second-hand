@@ -77,6 +77,8 @@ public class SellingActivity extends SwipeBackActivity implements View.OnClickLi
     private JSONArray mGoodsArray = new JSONArray();
     private int itemPosition;
 
+    private TextView tvTipsLeftSwipe;
+
     //Cache
     private ACacheUtil mCache;
     private String mCheckCache;
@@ -133,6 +135,8 @@ public class SellingActivity extends SwipeBackActivity implements View.OnClickLi
 
     /*初始化控件*/
     private void initView() {
+        //tips
+        tvTipsLeftSwipe = (TextView) findViewById(R.id.tv_tips_leftswipe);
         //listView
         listView = (SwipeMenuListView) findViewById(R.id.smlv_selling_goods);
         //listView's footer
