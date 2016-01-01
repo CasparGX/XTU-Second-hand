@@ -34,6 +34,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.logging.Handler;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
@@ -137,6 +138,12 @@ public class SellingActivity extends SwipeBackActivity implements View.OnClickLi
     private void initView() {
         //tips
         tvTipsLeftSwipe = (TextView) findViewById(R.id.tv_tips_leftswipe);
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                tvTipsLeftSwipe.setVisibility(View.GONE);
+            }
+        },10000);
         //listView
         listView = (SwipeMenuListView) findViewById(R.id.smlv_selling_goods);
         //listView's footer
