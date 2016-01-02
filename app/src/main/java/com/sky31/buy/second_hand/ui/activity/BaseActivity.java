@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
+
 /**
  * Created by root on 16-1-2.
  */
-public class BaseActivity extends Activity {
+public class BaseActivity extends SwipeBackActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

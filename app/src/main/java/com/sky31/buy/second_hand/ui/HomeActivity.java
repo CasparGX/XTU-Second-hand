@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
+import com.sky31.buy.second_hand.ui.activity.BaseActivity;
 import com.sky31.buy.second_hand.ui.adapter.HomeViewPagerAdapter;
 import com.sky31.buy.second_hand.ui.fragment.ClassifyFragment;
 import com.sky31.buy.second_hand.ui.fragment.HomeFragment;
@@ -34,7 +35,7 @@ import me.imid.swipebacklayout.lib.SwipeBackLayout;
 /**
  * Created by Caspar on 2015/7/30.
  */
-public class HomeActivity extends FragmentActivity implements View.OnClickListener {
+public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
 
     /*屏幕宽度和高度*/

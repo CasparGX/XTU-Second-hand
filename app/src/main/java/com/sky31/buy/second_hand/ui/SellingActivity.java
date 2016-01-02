@@ -24,6 +24,7 @@ import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.GoodsData;
+import com.sky31.buy.second_hand.ui.activity.BaseActivity;
 import com.sky31.buy.second_hand.ui.adapter.HomeFragmentListViewAdapter;
 import com.sky31.buy.second_hand.util.ACacheUtil;
 import com.sky31.buy.second_hand.util.HttpUtil;
@@ -41,7 +42,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
 import static in.srain.cube.views.ptr.util.PtrLocalDisplay.dp2px;
 
-public class SellingActivity extends SwipeBackActivity implements View.OnClickListener {
+public class SellingActivity extends BaseActivity implements View.OnClickListener {
 
     private String TAG = SellingActivity.class.getName();
 

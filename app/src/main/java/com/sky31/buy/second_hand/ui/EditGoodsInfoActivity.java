@@ -22,6 +22,7 @@ import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.ClassifyInfo;
 import com.sky31.buy.second_hand.model.GoodsData;
+import com.sky31.buy.second_hand.ui.activity.BaseActivity;
 import com.sky31.buy.second_hand.ui.activity.BaseSwipeBackActivity;
 import com.sky31.buy.second_hand.ui.fragment.ClassifyFragment;
 import com.sky31.buy.second_hand.util.HttpUtil;
@@ -36,7 +37,7 @@ import java.util.ArrayList;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 
-public class EditGoodsInfoActivity extends BaseSwipeBackActivity implements View.OnClickListener {
+public class EditGoodsInfoActivity extends BaseActivity implements View.OnClickListener {
     /*TAG*/
     private String TAG = EditGoodsInfoActivity.class.getName();
 

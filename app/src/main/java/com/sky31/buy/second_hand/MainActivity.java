@@ -7,9 +7,10 @@ import android.os.Handler;
 
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.ui.HomeActivity;
+import com.sky31.buy.second_hand.ui.activity.BaseActivity;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     private long delayTime;
 
