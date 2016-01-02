@@ -187,14 +187,14 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
                 llMinImage.addView(imageViewMin);
 
                 imageLoader.displayImage(goods.imgUrl
-                        + Constants.Values.VALUE_MIDDLE_SIZE_PRE
-                        + goods.imgUrlArray.get(position)
+                                + Constants.Values.VALUE_MIDDLE_SIZE_PRE
+                                + goods.imgUrlArray.get(position)
                         , imageView
                         , displayImageOptions);
 
                 imageLoader.displayImage(goods.imgUrl
-                        + Constants.Values.VALUE_MIN_SIZE_PRE
-                        + goods.imgUrlArray.get(position)
+                                + Constants.Values.VALUE_MIN_SIZE_PRE
+                                + goods.imgUrlArray.get(position)
                         , imageViewMin
                         , displayImageOptions);
 
@@ -224,7 +224,7 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.slide_right_out, R.anim.slide_right_out);
+        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_right_out);
     }
 
 

@@ -73,7 +73,8 @@
             android:name=".ui.AboutActivity"
             android:label="@string/title_activity_about"
             android:theme="@style/AppTheme"></activity>
-        <activity android:name=".ui.RegisterActivity"></activity>
+        <activity android:name=".ui.RegisterActivity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

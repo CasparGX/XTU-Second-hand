@@ -218,7 +218,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 intentRegister.setClass(getActivity(), RegisterActivity.class);
                 intentRegister.putExtra("headerTitle", "注册");
                 startActivityForResult(intentRegister,0);
-                getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+                this.getActivity().overridePendingTransition(0, R.anim.slide_right_in);
                 break;
 
             /*正在出售商品*/
@@ -443,6 +443,8 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        this.getActivity().overridePendingTransition(0, R.anim.slide_right_in);
         switch (resultCode){
             case Constants.Values.RESULT_REGISTER:
                 String username = data.getStringExtra(Constants.Keys.KEY_USERNAME);

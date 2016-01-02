@@ -190,7 +190,7 @@ public class HomeFragment extends Fragment {
                         intentGoodsShow.putExtra("goodsInfo", adapter.getItem(i));
                         intentGoodsShow.putExtra("headerTitle", "商品详情");
                         startActivity(intentGoodsShow);
-                        getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+                        getActivity().overridePendingTransition(R.anim.slide_left_out, R.anim.slide_right_in);
 
 
                     }
