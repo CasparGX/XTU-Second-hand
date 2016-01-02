@@ -15,14 +15,14 @@ import com.loopj.android.http.RequestParams;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
-import com.sky31.buy.second_hand.ui.activity.BaseSwipeBackActivity;
+import com.sky31.buy.second_hand.ui.activity.SwipeBackActivity2;
 import com.sky31.buy.second_hand.util.HttpUtil;
 
 import org.apache.http.Header;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class RegisterActivity extends BaseSwipeBackActivity implements View.OnClickListener {
+public class RegisterActivity extends SwipeBackActivity2 implements View.OnClickListener {
 
     private Intent mIntent;
 

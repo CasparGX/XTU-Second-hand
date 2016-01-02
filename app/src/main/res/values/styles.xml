@@ -3,9 +3,11 @@
     <!-- Base application theme. -->
     <style name="BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:fitsSystemWindows">true</item>
+        <item name="android:clipToPadding">false</item>
+
     </style>
 
-    <style name="AppTheme" parent="BaseTheme">
+    <style name="AppTheme" parent="@style/BaseTheme">
         <!-- Customize your theme here. -->
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>
         <item name="android:windowIsTranslucent">true</item>

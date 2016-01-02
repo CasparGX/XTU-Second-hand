@@ -15,7 +15,7 @@ import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 /**
  * Created by root on 15-12-7.
  */
-public class BaseSwipeBackActivity extends BaseActivity {
+public class BaseSwipeBackActivity extends SwipeBackActivity2 {
 
     private float x = 0;
     private float startX = 0;
