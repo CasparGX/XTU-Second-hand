@@ -7,10 +7,12 @@
 
     </style>
 
-    <style name="AppTheme" parent="BaseTheme">
+    <style name="BaseTheme.AppTheme">
         <!-- Customize your theme here. -->
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>
         <item name="android:windowIsTranslucent">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:clipToPadding">false</item>
 
         <!-- API 19 theme customizations can go here. --><!--
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
