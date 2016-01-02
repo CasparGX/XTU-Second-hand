@@ -1,7 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="AppTheme" parent="BaseTheme">
         <!-- Customize your theme here. -->
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>
         <item name="android:windowIsTranslucent">true</item>
@@ -10,7 +14,7 @@
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
         <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>-->
     </style>
-    <style name="AppHomeTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppHomeTheme" parent="BaseTheme">
         <!-- Customize your theme here. -->
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>
         <item name="android:windowIsTranslucent">false</item>
@@ -20,7 +24,7 @@
         <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>-->
     </style>
 
-    <style name="AppBaseThemeMain"  parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppBaseThemeMain"  parent="BaseTheme">
         <!-- Customize your theme here. -->
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>
         <item name="android:windowIsTranslucent">false</item>

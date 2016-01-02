@@ -38,6 +38,7 @@ public class RegisterActivity extends BaseSwipeBackActivity implements View.OnCl
     private EditText etPassword;
     private EditText etConfirmPassword;
     private Button btnRegister;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,11 +86,14 @@ public class RegisterActivity extends BaseSwipeBackActivity implements View.OnCl
 
             /* register */
             case R.id.btn_register:
-                if (!etPassword.getText().equals(etConfirmPassword.getText())) {
+                if (etNickName.getText().equals("") || etPassword.getText().equals("")
+                        || etEmail.getText().equals("") || (etPhoneNum.getText().equals("") || etQq.getText().equals(""))) {
+                    Toast.makeText(this, "信息填写不完整", Toast.LENGTH_SHORT).show();
+                } else if (!etPassword.getText().equals(etConfirmPassword.getText())) {
                     Toast.makeText(this, "两次输入的密码不一样", Toast.LENGTH_SHORT).show();
-                } else if (etQq.getText().equals("")&&etPhoneNum.getText().equals("")){
+                } else if (etQq.getText().equals("") && etPhoneNum.getText().equals("")) {
                     Toast.makeText(this, "至少填一项联系方式", Toast.LENGTH_SHORT).show();
-                }else{
+                } else {
                     register(etEmail.getText().toString()
                             , etPassword.getText().toString()
                             , etNickName.getText().toString()
@@ -104,7 +108,6 @@ public class RegisterActivity extends BaseSwipeBackActivity implements View.OnCl
                 break;
         }
     }
-
 
 
     private void register(String email, String password, String nickName, String phoneNum, String qq) {
@@ -130,9 +133,9 @@ public class RegisterActivity extends BaseSwipeBackActivity implements View.OnCl
                 } else if (response.get("result").equals("success")) {
                     //register success
                     Intent in = new Intent();
-                    in.putExtra(Constants.Keys.KEY_USERNAME,etEmail.getText().toString());
-                    in.putExtra(Constants.Keys.KEY_PASSWORD,etPassword.getText().toString());
-                    setResult(Constants.Values.RESULT_REGISTER,in);
+                    in.putExtra(Constants.Keys.KEY_USERNAME, etEmail.getText().toString());
+                    in.putExtra(Constants.Keys.KEY_PASSWORD, etPassword.getText().toString());
+                    setResult(Constants.Values.RESULT_REGISTER, in);
                     finish();
                 } else {
                     Toast.makeText(RegisterActivity.this, Constants.Values.VALUE_SERVICE_NO_RESPONSE, Toast.LENGTH_SHORT).show();
