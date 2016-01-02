@@ -86,12 +86,12 @@ public class RegisterActivity extends SwipeBackActivity2 implements View.OnClick
 
             /* register */
             case R.id.btn_register:
-                if (etNickName.getText().equals("") || etPassword.getText().equals("")
-                        || etEmail.getText().equals("") || (etPhoneNum.getText().equals("") || etQq.getText().equals(""))) {
+                if (etNickName.getText().toString().equals("") || etPassword.getText().toString().equals("")
+                        || etEmail.getText().toString().equals("") || (etPhoneNum.getText().toString().equals("") || etQq.getText().toString().equals(""))) {
                     Toast.makeText(this, "信息填写不完整", Toast.LENGTH_SHORT).show();
-                } else if (!etPassword.getText().equals(etConfirmPassword.getText())) {
+                } else if (!etPassword.getText().toString().equals(etConfirmPassword.getText().toString())) {
                     Toast.makeText(this, "两次输入的密码不一样", Toast.LENGTH_SHORT).show();
-                } else if (etQq.getText().equals("") && etPhoneNum.getText().equals("")) {
+                } else if (etQq.getText().toString().equals("") && etPhoneNum.getText().toString().equals("")) {
                     Toast.makeText(this, "至少填一项联系方式", Toast.LENGTH_SHORT).show();
                 } else {
                     register(etEmail.getText().toString()
