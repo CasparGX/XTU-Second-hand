@@ -332,6 +332,7 @@ public class SellingActivity extends SwipeBackActivity2 implements View.OnClickL
         }
         params.add(Constants.Keys.KEY_LIMITID, limitID + "");
         params.add(Constants.Keys.KEY_UID, uid);
+        Log.i(TAG,params+"");
         HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET, params, mUserGoodsJsonHandler);
         //HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET+"limitID=0", null, mUserGoodsJsonHandler);
     }
@@ -362,7 +363,6 @@ public class SellingActivity extends SwipeBackActivity2 implements View.OnClickL
                 BuyApp.setListViewFooter("end", ivTips, tvTips, SellingActivity.this);
             }
             limitID++;
-            Log.i(TAG, mGoodsData.get(0).imgUrl + "");
         }
 
         @Override
@@ -380,8 +380,6 @@ public class SellingActivity extends SwipeBackActivity2 implements View.OnClickL
                 isAll = true;
                 BuyApp.setListViewFooter("isAll", ivTips, tvTips, SellingActivity.this);
             }
-            Log.i(TAG, "---------------------- return JSONObject, it's have no data ------------------");
-            Log.i(TAG, response + "");
         }
 
         @Override

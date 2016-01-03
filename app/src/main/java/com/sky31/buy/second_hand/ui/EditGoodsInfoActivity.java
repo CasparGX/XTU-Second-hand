@@ -265,7 +265,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity2 implements View.On
 
             case R.id.btn_publish:
                 //发布按钮
-                publishGoods();
+                editGoods();
                 break;
 
             /*case R.id.iv_file1:
@@ -340,7 +340,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity2 implements View.On
      * 发布商品
      * spinner选中的值在spinnerSelectListener中设置setParams
      */
-    private void publishGoods() {
+    private void editGoods() {
         showLoadingDialog();
         setParams(Constants.Keys.KEY_TITLE, etGoodsTitle.getText() + "");//title
         setParams(Constants.Keys.KEY_DESCRIBE, etGoodsDec.getText() + "");//dec
@@ -350,13 +350,13 @@ public class EditGoodsInfoActivity extends SwipeBackActivity2 implements View.On
         setParams(Constants.Keys.KEY_PHONE, etPhone.getText() + "");//phone
         setParams(Constants.Keys.KEY_QQ, etQq.getText() + "");//qq
 
-        //setParams(Constants.Keys.KEY_GID, gid + "");//gid
+        setParams(Constants.Keys.KEY_GID, gid + "");//gid
 
-        params.setForceMultipartEntityContentType(false);
+        //params.setForceMultipartEntityContentType(false);
         Log.i(TAG,params+"");
-        HttpUtil.post(Constants.Apis.API_GOODS_EDIT_POST+"?gid="+gid
+        HttpUtil.post(Constants.Apis.API_GOODS_EDIT_POST/*+"/gid/"+gid*/
                 , params
-                , mInsertHandler);
+                , mEditHandler);
 
     }
 
@@ -381,7 +381,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity2 implements View.On
     }
 
     /*insert商品handler*/
-    JsonHttpResponseHandler mInsertHandler = new JsonHttpResponseHandler() {
+    JsonHttpResponseHandler mEditHandler = new JsonHttpResponseHandler() {
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
             super.onSuccess(statusCode, headers, response);
