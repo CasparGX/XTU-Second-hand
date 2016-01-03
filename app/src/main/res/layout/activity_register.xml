@@ -2,12 +2,16 @@
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:stretchColumns="1"
+    android:background="@color/white"
     android:clipToPadding="false"
     android:fitsSystemWindows="true"
-    android:background="@color/white">
+    android:stretchColumns="1">
 
     <include layout="@layout/include_header_with_button" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/table_row_margin" />
 
     <TableRow android:layout_margin="@dimen/table_row_margin">
 
@@ -143,11 +147,11 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="15dp"
-        android:textColor="@color/white"
         android:background="@drawable/button_default"
         android:gravity="center"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="@string/register" />
+        android:text="@string/register"
+        android:textColor="@color/white" />
 
 </TableLayout>
