@@ -25,11 +25,15 @@ import com.sky31.buy.second_hand.ui.adapter.HomeViewPagerAdapter;
 import com.sky31.buy.second_hand.ui.fragment.ClassifyFragment;
 import com.sky31.buy.second_hand.ui.fragment.HomeFragment;
 import com.sky31.buy.second_hand.ui.fragment.MeFragment;
+import com.sky31.buy.second_hand.util.FolderSizeUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
+
+import static com.sky31.buy.second_hand.util.FolderSizeUtil.getFolderSize;
 
 
 /**
@@ -70,6 +74,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         context = HomeActivity.this;
+
+        File cacheDir = new File(context.getCacheDir(), "ACache");
+        Log.i("cacheDir",getFolderSize(cacheDir.getAbsoluteFile())+"");
 
 
         //设置状态栏颜色

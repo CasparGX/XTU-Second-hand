@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
-    <style name="BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar"><!--
         <item name="android:fitsSystemWindows">true</item>
-        <item name="android:clipToPadding">false</item>
+        <item name="android:clipToPadding">false</item>-->
 
     </style>
 
@@ -11,8 +11,6 @@
         <!-- Customize your theme here. -->
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>
         <item name="android:windowIsTranslucent">true</item>
-        <item name="android:fitsSystemWindows">true</item>
-        <item name="android:clipToPadding">false</item>
 
         <!-- API 19 theme customizations can go here. --><!--
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
