@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
     private TextView tvTips;
     private HomeFragmentListViewAdapter adapter;
     private boolean isAll;
-    private String loadingFlag;
+    private boolean isLoadingMore;
 
     private ArrayList<GoodsData> mGoodsData = new ArrayList<>();
     private JSONArray mGoodsArray = new JSONArray();
@@ -81,6 +81,7 @@ public class HomeFragment extends Fragment {
         ivTips = (ImageView) listViewFooter.findViewById(R.id.iv_tips);
         tvTips = (TextView) listViewFooter.findViewById(R.id.tv_tips);
         isAll = false;
+        isLoadingMore = false;
 
         mListView = (ListView) view.findViewById(R.id.lv_goods);
         mListView.addFooterView(listViewFooter, null, false);
@@ -149,12 +150,13 @@ public class HomeFragment extends Fragment {
 
                     @Override
                     public void onScrollStateChanged(AbsListView absListView, int i) {
-                        if (isBottom && i == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && !isAll) {
+                        if (isBottom && i == AbsListView.OnScrollListener.SCROLL_STATE_IDLE && !isAll && !isLoadingMore) {
 
                             if (params.has(Constants.Keys.KEY_LIMITID)) {
                                 //params.remove(Constants.Keys.KEY_LIMITID);
                                 params.put(Constants.Keys.KEY_LIMITID, limitID);
                                 isNew = false;
+                                isLoadingMore = true;
                                 HttpUtil.get(Constants.Apis.API_GOODS_LIST_GET
                                         , params
                                         , mJsonHttpResponseHandler);
@@ -308,6 +310,7 @@ public class HomeFragment extends Fragment {
         }
 
         public void onFinish() {
+            isLoadingMore = false;
             ptrFrame.refreshComplete();
             Log.i(TAG, "onFinish");
         }
