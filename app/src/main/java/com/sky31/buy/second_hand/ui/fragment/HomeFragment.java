@@ -1,6 +1,7 @@
 package com.sky31.buy.second_hand.ui.fragment;
 
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -191,8 +192,9 @@ public class HomeFragment extends Fragment {
                         //Bundle bundleGoodShow = new Bundle();
                         intentGoodsShow.putExtra("goodsInfo", adapter.getItem(i));
                         intentGoodsShow.putExtra("headerTitle", "商品详情");
-                        startActivity(intentGoodsShow);
-                        getActivity().overridePendingTransition(R.anim.slide_left_out, R.anim.slide_right_in);
+                        Bundle bundle = ActivityOptions.makeCustomAnimation(getActivity(), R.anim.slide_right_in, R.anim.slide_left_out).toBundle();
+                        getActivity().startActivity(intentGoodsShow, bundle);
+                        //getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
 
 
                     }

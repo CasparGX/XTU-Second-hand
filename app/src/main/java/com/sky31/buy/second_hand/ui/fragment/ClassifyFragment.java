@@ -233,7 +233,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
                         intentGoodsShow.putExtra("headerTitle", "商品详情");
                         //intentGoodsShow.putExtra("goodsInfo", mListView.getAdapter().getItem(i));
                         startActivity(intentGoodsShow);
-                        getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+                        //getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
 
 
                     }

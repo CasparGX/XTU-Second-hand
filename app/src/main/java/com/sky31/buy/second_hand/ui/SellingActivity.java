@@ -88,7 +88,7 @@ public class SellingActivity extends SwipeBackActivity2 implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selling);
-
+        //overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
         //Intent
         mIntent = getIntent();
         //获取uid
@@ -204,7 +204,7 @@ public class SellingActivity extends SwipeBackActivity2 implements View.OnClickL
                         intentGoodsShow.putExtra("headerTitle", "商品详情");
                         //intentGoodsShow.putExtra("goodsInfo", mListView.getAdapter().getItem(i));
                         startActivity(intentGoodsShow);
-                        SellingActivity.this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+                        //SellingActivity.this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
 
 
                     }
@@ -284,7 +284,7 @@ public class SellingActivity extends SwipeBackActivity2 implements View.OnClickL
         intentEditGoodsInfo.putExtra("goodsInfo", adapter.getItem(i));
         intentEditGoodsInfo.putExtra("headerTitle", "修改商品信息");
         startActivity(intentEditGoodsInfo);
-        SellingActivity.this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+        //SellingActivity.this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
     }
 
     /*下架商品*/

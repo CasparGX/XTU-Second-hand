@@ -206,7 +206,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity2 implements View.On
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.slide_right_out, R.anim.slide_right_out);
+        //overridePendingTransition(R.anim.slide_right_out, R.anim.slide_right_out);
     }
 
     /*修改header标题*/

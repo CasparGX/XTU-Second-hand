@@ -12,6 +12,8 @@ import com.sky31.buy.second_hand.R;
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
+import static com.sky31.buy.second_hand.context.BuyApp.getAndroidSDKVersion;
+
 /**
  * Created by root on 15-12-7.
  */
@@ -34,7 +36,7 @@ public class BaseSwipeBackActivity extends SwipeBackActivity2 {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (getAndroidSDKVersion() >= Build.VERSION_CODES.KITKAT) {
             Window window = getWindow();
             // Translucent status bar
             window.setFlags(
@@ -51,7 +53,7 @@ public class BaseSwipeBackActivity extends SwipeBackActivity2 {
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
         //mSwipeBackLayout.setEdgeSize(HomeActivity.screenWidth);
 
-        this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+        //this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
     }
 
     @Override

@@ -218,7 +218,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 intentRegister.setClass(getActivity(), RegisterActivity.class);
                 intentRegister.putExtra("headerTitle", "注册");
                 startActivityForResult(intentRegister,0);
-                this.getActivity().overridePendingTransition(0, R.anim.slide_right_in);
+                //this.getActivity().overridePendingTransition(0, R.anim.slide_right_in);
                 break;
 
             /*正在出售商品*/
@@ -231,7 +231,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         intentGoodsShow.putExtra("uid", userInfo.getString("id"));
                         intentGoodsShow.putExtra("headerTitle", "我的正上架商品");
                         startActivity(intentGoodsShow);
-                        getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+                        //getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -254,7 +254,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                         intentGoodsShow.putExtra("qq", userInfo.getString(Constants.Keys.KEY_QQ));
                         intentGoodsShow.putExtra("headerTitle", "发布商品");
                         startActivity(intentGoodsShow);
-                        getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+                        //getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -272,7 +272,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
                 intentAbout.setClass(getActivity(), AboutActivity.class);
                 intentAbout.putExtra("headerTitle", "关于");
                 startActivity(intentAbout);
-                getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
+                //getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_right_out);
                 break;
 
             /*登录链接*/
@@ -444,7 +444,7 @@ public class MeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        this.getActivity().overridePendingTransition(0, R.anim.slide_right_in);
+        //this.getActivity().overridePendingTransition(0, R.anim.slide_right_in);
         switch (resultCode){
             case Constants.Values.RESULT_REGISTER:
                 String username = data.getStringExtra(Constants.Keys.KEY_USERNAME);

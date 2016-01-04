@@ -224,7 +224,8 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        overridePendingTransition(R.anim.slide_left_in, R.anim.slide_right_out);
+        //overridePendingTransition(R.anim.slide_left_in, R.anim.slide_right_out);
+        //overridePendingTransition(R.anim.slide_right_out, R.anim.slide_left_in);
     }
 
 

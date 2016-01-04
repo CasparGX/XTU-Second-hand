@@ -313,5 +313,15 @@ public class BuyApp extends Application {
         this.isOpen = isOpen;
     }
 
+    public static int getAndroidSDKVersion() {
+        int version = 0;
+        try {
+            version = Integer.valueOf(android.os.Build.VERSION.SDK);
+        } catch (NumberFormatException e) {
+            Log.e("getSDK", e.toString());
+        }
+        return version;
+    }
+
 
 }

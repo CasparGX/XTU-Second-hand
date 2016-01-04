@@ -32,7 +32,7 @@ public class MainActivity extends BaseActivity {
                 Intent intent = new Intent(MainActivity.this, HomeActivity.class);  //从启动动画ui跳转到主ui
                 startActivity(intent);
                 MainActivity.this.finish();    // 结束启动动画界面
-                MainActivity.this.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
+                MainActivity.this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         }, delayTime);    //启动动画
     }

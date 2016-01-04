@@ -210,7 +210,7 @@ public class PublishActivity extends SwipeBackActivity2 implements View.OnClickL
             cancleUpLoad();
         } else {
             super.onBackPressed();
-            overridePendingTransition(R.anim.slide_right_out, R.anim.slide_right_out);
+            //overridePendingTransition(R.anim.slide_right_out, R.anim.slide_right_out);
         }
 
     }

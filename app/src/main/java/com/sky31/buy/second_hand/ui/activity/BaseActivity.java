@@ -9,6 +9,8 @@ import android.view.WindowManager;
 
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 
+import static com.sky31.buy.second_hand.context.BuyApp.getAndroidSDKVersion;
+
 /**
  * Created by root on 16-1-2.
  */
@@ -16,7 +18,7 @@ public class BaseActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (getAndroidSDKVersion() >= Build.VERSION_CODES.KITKAT) {
             Window window = getWindow();
             // Translucent status bar
             window.setFlags(
