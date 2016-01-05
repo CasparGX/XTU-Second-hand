@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.ui.activity.BaseActivity;
@@ -45,6 +46,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     /*屏幕宽度和高度*/
     public static int screenWidth;
     public static int screenHeight;
+    public static int windowWidth;
 
     private static Context context;
 
@@ -75,7 +77,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.activity_home);
         context = HomeActivity.this;
 
-        File cacheDir = new File(context.getCacheDir(), "ACache");
+        //File cacheDir = new File(context.getCacheDir(), "ACache");
+        File cacheDir = StorageUtils.getCacheDirectory(getApplicationContext());
         Log.i("cacheDir",getFolderSize(cacheDir.getAbsoluteFile())+"");
 
 
@@ -91,6 +94,12 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         screenWidth = outMetris.widthPixels;
         screenHeight = outMetris.heightPixels;
         mScreen1_3 = screenWidth / 3;
+
+        //start-> get window's width && height
+        /*DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);*/
+        windowWidth = screenWidth;
+        //end-> get window's width && height
 
         initTabLine();
         initView();

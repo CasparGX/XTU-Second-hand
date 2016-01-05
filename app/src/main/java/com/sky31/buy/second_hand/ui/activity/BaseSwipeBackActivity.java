@@ -69,7 +69,7 @@ public class BaseSwipeBackActivity extends SwipeBackActivity2 {
             time = event.getEventTime()-event.getDownTime();
             Log.i("ontouch",time/x+"");
             if (y<maxSwipeY && x>0 && (time/x)<swipeCoefficient
-                    && (flag==0 || event.getY()>HomeActivity.screenWidth+R.dimen.header_height)
+                    && (flag==0 || event.getY()>HomeActivity.windowWidth+R.dimen.header_height)
                     && startX > maxStartX) {
                 onBackPressed();
             }

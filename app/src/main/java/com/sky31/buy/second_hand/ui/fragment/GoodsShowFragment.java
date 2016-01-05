@@ -20,6 +20,7 @@ import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.GoodsData;
+import com.sky31.buy.second_hand.ui.HomeActivity;
 
 import java.util.ArrayList;
 
@@ -27,6 +28,8 @@ import java.util.ArrayList;
  * A simple {@link Fragment} subclass.
  */
 public class GoodsShowFragment extends Fragment {
+
+    int windowWidth;
 
     //private ImageView imgPic;
     private TextView tvTitle;
@@ -74,11 +77,7 @@ public class GoodsShowFragment extends Fragment {
         tvTitle = (TextView) getActivity().findViewById(R.id.title);
         tvTitle.setText(goods.title);
 
-        //start-> get window's width && height
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int windowWidth = displayMetrics.widthPixels;
-        //end-> get window's width && height
+        this.windowWidth = HomeActivity.windowWidth;
 
         imgPicViewPager = (ViewPager) getActivity().findViewById(R.id.imgPicViewPager);
         LayoutParams linearParams = imgPicViewPager.getLayoutParams();
