@@ -8,6 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.sky31.buy.second_hand.R;
+import com.sky31.buy.second_hand.ui.HomeActivity;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
@@ -67,7 +68,9 @@ public class BaseSwipeBackActivity extends SwipeBackActivity2 {
             y = Math.abs(event.getY() - y);
             time = event.getEventTime()-event.getDownTime();
             Log.i("ontouch",time/x+"");
-            if (y<maxSwipeY && x>0 && (time/x)<swipeCoefficient && flag==0 && startX > maxStartX) {
+            if (y<maxSwipeY && x>0 && (time/x)<swipeCoefficient
+                    && (flag==0 || event.getY()>HomeActivity.screenWidth+R.dimen.header_height)
+                    && startX > maxStartX) {
                 onBackPressed();
             }
         }
