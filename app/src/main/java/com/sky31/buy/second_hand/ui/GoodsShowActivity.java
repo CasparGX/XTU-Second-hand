@@ -105,9 +105,9 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
         tvTitle.setText(goods.title);
         tvBargain = (TextView) findViewById(R.id.tv_bargain);
         if (goods.bargain.equals("1")) {
-            tvBargain.setText("("+R.string.bargain_true+")");
+            tvBargain.setText("("+getResources().getString(R.string.bargain_true)+")");
         } else {
-            tvBargain.setText("("+R.string.bargain_false+")");
+            tvBargain.setText("("+getResources().getString(R.string.bargain_false)+")");
         }
         tvPrice = (TextView) findViewById(R.id.tv_price);
         tvPrice.setText(goods.price + "");
