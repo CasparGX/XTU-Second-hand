@@ -276,9 +276,9 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_SUBJECT, "湘大二手街");
         /* 分享文案 */
-        String msgText = "我在湘大二手街上看到了一个没人要的东西 -「"
+        String msgText = "听说湘大二手街上上架了一个炒鸡棒的东东 -「"
                 + goods.title
-                + "」,给你看看。\n"
+                + "」,快来收割一下!\n"
                 + "http://buy.sky31.com/show.html?gid="
                 + goods.id
                 + "\n分享来自「湘大二手街APP」";
