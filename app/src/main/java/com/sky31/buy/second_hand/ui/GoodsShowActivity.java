@@ -43,6 +43,7 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
     private TextView tvHeaderTitle;
     private ImageView imgPic;
     private TextView tvTitle;
+    private TextView tvBargain;
     private TextView tvPrice;
     private TextView tvDec;
     private ImageView ivPhone;
@@ -102,6 +103,12 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
         setTvHeaderTitle();
         tvTitle = (TextView) findViewById(R.id.tv_title);
         tvTitle.setText(goods.title);
+        tvBargain = (TextView) findViewById(R.id.tv_bargain);
+        if (goods.bargain.equals("1")) {
+            tvBargain.setText("("+R.string.bargain_true+")");
+        } else {
+            tvBargain.setText("("+R.string.bargain_false+")");
+        }
         tvPrice = (TextView) findViewById(R.id.tv_price);
         tvPrice.setText(goods.price + "");
         tvDec = (TextView) findViewById(R.id.tv_dec);

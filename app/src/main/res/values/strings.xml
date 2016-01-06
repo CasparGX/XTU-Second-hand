@@ -8,6 +8,9 @@
 
     <string name="searchBtn">biu~</string>
 
+    <string name="bargain_true">可小刀</string>
+    <string name="bargain_false">一口价</string>
+
 
     <string name="username">邮箱</string>
     <string name="password">密码</string>
