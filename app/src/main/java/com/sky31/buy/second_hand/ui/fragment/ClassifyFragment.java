@@ -433,13 +433,14 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         if (!keyword.equals("")) {
             //limitID置0
             limitID = 0;
+            isNew = true;
             getGoodsData(keyword, -1);
             mEtSearch.clearFocus();
             //隐藏输入法
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(mEtSearch.getWindowToken(), 0);
-            Toast.makeText(getActivity(), "正在搜索 : " + keyword,
-                    Toast.LENGTH_SHORT).show();
+            /*Toast.makeText(getActivity(), "正在搜索 : " + keyword,
+                    Toast.LENGTH_SHORT).show();*/
         } else {
             Toast.makeText(getActivity(), "请输入搜索内容",
                     Toast.LENGTH_SHORT).show();
