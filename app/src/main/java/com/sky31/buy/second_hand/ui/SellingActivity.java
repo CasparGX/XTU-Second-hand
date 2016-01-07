@@ -374,6 +374,7 @@ public class SellingActivity extends SwipeBackActivity2 implements View.OnClickL
                 mGoodsData.clear();
                 adapter.notifyDataSetChanged();
                 isAll = true;
+                tvTipsLeftSwipe.setVisibility(View.GONE);
                 BuyApp.setListViewFooter("isNull", ivTips, tvTips, SellingActivity.this);
             } else {
 
