@@ -9,6 +9,7 @@ import android.view.WindowManager;
 
 import com.sky31.buy.second_hand.R;
 import com.sky31.buy.second_hand.ui.HomeActivity;
+import com.sky31.buy.second_hand.util.DensityUtil;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
@@ -23,6 +24,7 @@ public class BaseSwipeBackActivity extends SwipeBackActivity2 {
     private float x = 0;
     private float startX = 0;
     private float y = 0;
+    private float igoneY = 0;
     private long time = 0;
     private int flag = 0;
 
@@ -49,6 +51,9 @@ public class BaseSwipeBackActivity extends SwipeBackActivity2 {
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
         }
 
+        DensityUtil densityUtil = new DensityUtil();
+        igoneY = densityUtil.dip2px(this,HomeActivity.windowWidth+R.dimen.header_height);
+
         /*滑动返回*/
         mSwipeBackLayout = getSwipeBackLayout();
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);
@@ -67,9 +72,9 @@ public class BaseSwipeBackActivity extends SwipeBackActivity2 {
             x = event.getX() - x;
             y = Math.abs(event.getY() - y);
             time = event.getEventTime()-event.getDownTime();
-            Log.i("ontouch",time/x+"");
+            Log.i("ontouch",time/x+" " +igoneY+" "+event.getY());
             if (y<maxSwipeY && x>0 && (time/x)<swipeCoefficient
-                    && (flag==0 || event.getY()>HomeActivity.windowWidth+R.dimen.header_height)
+                    && (flag==0 || event.getY()>igoneY)
                     && startX > maxStartX) {
                 onBackPressed();
             }
