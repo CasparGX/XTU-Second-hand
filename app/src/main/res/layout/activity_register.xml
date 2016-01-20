@@ -11,9 +11,9 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/table_row_margin" />
+        android:layout_height="@dimen/margin_20dp" />
 
-    <TableRow android:layout_margin="@dimen/table_row_margin">
+    <TableRow          android:layout_marginBottom="@dimen/table_row_margin"         android:layout_marginLeft="@dimen/margin_20dp"         android:layout_marginRight="@dimen/margin_20dp"         android:layout_marginTop="@dimen/table_row_margin">
 
         <TextView
             android:gravity="right"
@@ -31,7 +31,7 @@
             android:textSize="18sp" />
     </TableRow>
 
-    <TableRow android:layout_margin="@dimen/table_row_margin">
+    <TableRow          android:layout_marginBottom="@dimen/table_row_margin"         android:layout_marginLeft="@dimen/margin_20dp"         android:layout_marginRight="@dimen/margin_20dp"         android:layout_marginTop="@dimen/table_row_margin">
 
         <TextView
             android:gravity="right"
@@ -49,7 +49,7 @@
             android:textSize="18sp" />
     </TableRow>
 
-    <TableRow android:layout_margin="@dimen/table_row_margin">
+    <TableRow          android:layout_marginBottom="@dimen/table_row_margin"         android:layout_marginLeft="@dimen/margin_20dp"         android:layout_marginRight="@dimen/margin_20dp"         android:layout_marginTop="@dimen/table_row_margin">
 
         <TextView
             android:gravity="right"
@@ -68,7 +68,7 @@
             android:textSize="18sp" />
     </TableRow>
 
-    <TableRow android:layout_margin="@dimen/table_row_margin">
+    <TableRow          android:layout_marginBottom="@dimen/table_row_margin"         android:layout_marginLeft="@dimen/margin_20dp"         android:layout_marginRight="@dimen/margin_20dp"         android:layout_marginTop="@dimen/table_row_margin">
 
         <TextView
             android:gravity="right"
@@ -102,7 +102,11 @@
             android:text="---- 以下至少填一项 ----" />
     </LinearLayout>
 
-    <TableRow android:layout_margin="@dimen/table_row_margin">
+    <TableRow
+        android:layout_marginBottom="@dimen/table_row_margin"
+        android:layout_marginLeft="@dimen/margin_20dp"
+        android:layout_marginRight="@dimen/margin_20dp"
+        android:layout_marginTop="@dimen/table_row_margin">
 
         <TextView
             android:gravity="right"
@@ -121,7 +125,11 @@
             android:textSize="18sp" />
     </TableRow>
 
-    <TableRow android:layout_margin="@dimen/table_row_margin">
+    <TableRow
+        android:layout_marginBottom="@dimen/table_row_margin"
+        android:layout_marginLeft="@dimen/margin_20dp"
+        android:layout_marginRight="@dimen/margin_20dp"
+        android:layout_marginTop="@dimen/table_row_margin">
 
         <TextView
             android:gravity="right"
@@ -146,7 +154,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="15dp"
+        android:layout_marginLeft="@dimen/margin_20dp"
+        android:layout_marginRight="@dimen/margin_20dp"
+        android:layout_marginTop="@dimen/table_row_margin"
         android:background="@drawable/button_default"
         android:gravity="center"
         android:paddingLeft="20dp"
