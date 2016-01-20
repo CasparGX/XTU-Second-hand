@@ -32,12 +32,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="15dp"
-                android:background="@drawable/editview_border"
+                android:layout_marginLeft="@dimen/margin_20dp"
+                android:layout_marginRight="@dimen/margin_20dp"
+                android:layout_marginTop="@dimen/table_row_margin"
+                android:layout_marginBottom="@dimen/table_row_margin"
+                android:background="@drawable/button_default"
                 android:gravity="center"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="同意协议并发布" />
+                android:text="@string/publish"
+                android:textColor="@color/white" />
 
             <TextView
                 android:layout_width="match_parent"
