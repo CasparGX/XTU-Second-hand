@@ -39,16 +39,15 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_seller"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="right"
-            android:layout_margin="4dp"
-            android:text="标题啊 "
-            android:textColor="@color/themeColor"
-            android:textSize="16sp" />
+            android:text="seller "
+            android:textSize="14sp"
+            android:textColor="@color/gray_font" />
 
 
     </LinearLayout>
@@ -59,15 +58,14 @@
         android:layout_margin="4dp"
         android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_seller"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="left"
-                android:text="seller "
-                android:textSize="14sp"
-                android:textColor="@color/gray_font" />
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="标题啊 "
+            android:textStyle="bold"
+            android:textColor="@color/themeColor"
+            android:textSize="16sp" />
 
     </LinearLayout>
 
