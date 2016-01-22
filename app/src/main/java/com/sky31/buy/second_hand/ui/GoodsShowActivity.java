@@ -172,7 +172,7 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
             }
 
             @Override
-            public Object instantiateItem(View container, int position) {
+            public Object instantiateItem(View container, final int position) {
 
                 ImageView imageView = new ImageView(GoodsShowActivity.this);
                 ImageView imageViewMin = new ImageView(GoodsShowActivity.this);
@@ -190,6 +190,13 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
 
 
                 imageViewMin.setLayoutParams(linearParams);
+
+                imageViewMin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        changeOverPage(position);
+                    }
+                });
 
                 llMinImage.addView(imageViewMin);
 
@@ -219,6 +226,10 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
         imgPicViewPager.setAdapter(imgListAdapter);
 
 
+    }
+
+    private void changeOverPage(int position) {
+        imgPicViewPager.setCurrentItem(position);
     }
 
     /*修改header标题*/
