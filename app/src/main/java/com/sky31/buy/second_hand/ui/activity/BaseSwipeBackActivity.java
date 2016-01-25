@@ -54,7 +54,7 @@ public class BaseSwipeBackActivity extends SwipeBackActivity2 {
         DensityUtil densityUtil = new DensityUtil();
         igoneY = densityUtil.dip2px(this,
                         densityUtil.px2dip(this,HomeActivity.windowWidth)
-                        + getResources().getDimension(R.dimen.header_height)
+                        /*+ getResources().getDimension(R.dimen.header_height)*/
                 );
 
         /*滑动返回*/
