@@ -52,6 +52,7 @@ public class Constants {
         public static final String KEY_GID = "gid";
 
         //缓存
+        public static final String KEY_CACHE_IS_FIRST_RUN = "isFirstRun";
         public static final String KEY_CACHE_HOME_CHECK = "checkCacheHome";
         public static final String KEY_CACHE_HOME_FIRST_CONTENT = "CacheHomeFirstContent";
         public static final String KEY_CACHE_CLASSIFY_CHECK = "checkCacheClassify";
