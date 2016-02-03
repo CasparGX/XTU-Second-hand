@@ -33,9 +33,5 @@
         <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">true</item>
     </style>
 
-    <style name="activityAnimation" parent="@android:style/Animation">
-        <item name="android:activityOpenEnterAnimation">@anim/slide_right_in</item>
-        <item name="android:activityCloseExitAnimation">@anim/slide_right_out</item>
-    </style>
 
 </resources>

@@ -285,6 +285,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onPause() {
         super.onPause();
+        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
     }
 
     @Override
