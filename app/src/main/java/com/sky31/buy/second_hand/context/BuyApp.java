@@ -179,7 +179,7 @@ public class BuyApp extends Application {
     }
 
     public static void setStatusBarColor(Activity activity) {
-        // 创建状态栏的管理实例
+        /*// 创建状态栏的管理实例
         SystemBarTintManager tintManager = new SystemBarTintManager(activity);
         // 激活状态栏设置
         tintManager.setStatusBarTintEnabled(true);
@@ -187,7 +187,7 @@ public class BuyApp extends Application {
         tintManager.setNavigationBarTintEnabled(true);
         // 设置一个颜色给系统栏
         tintManager.setTintColor(activity.getResources().getColor(R.color.themeColor));
-        //tintManager.setTintColor(Color.parseColor("#ff0000"));
+        //tintManager.setTintColor(Color.parseColor("#ff0000"));*/
     }
 
     //设置ListView底部状态

@@ -469,7 +469,7 @@ public class SwipeBackLayout extends FrameLayout {
         addView(decorChild);
         setContentView(decorChild);
         decor.addView(this);
-        // 创建状态栏的管理实例
+        /*// 创建状态栏的管理实例
         SystemBarTintManager tintManager = new SystemBarTintManager(activity);
         // 激活状态栏设置
         tintManager.setStatusBarTintEnabled(true);
@@ -477,7 +477,7 @@ public class SwipeBackLayout extends FrameLayout {
         tintManager.setNavigationBarTintEnabled(true);
         // 设置一个颜色给系统栏
         //tintManager.setTintColor(activity.getResources().getColor(R.color.themeColor));
-        tintManager.setTintColor(Color.parseColor("#5dac81"));
+        tintManager.setTintColor(Color.parseColor("#5dac81"));*/
     }
 
     @Override

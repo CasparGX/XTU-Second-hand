@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/themeBgColor"
+    android:background="@color/themeColor"
     android:clipToPadding="false"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
@@ -19,7 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:background="@color/themeBgColor">
 
             <LinearLayout
                 android:layout_width="match_parent"

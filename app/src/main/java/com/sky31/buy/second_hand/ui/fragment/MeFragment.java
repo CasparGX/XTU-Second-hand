@@ -1,8 +1,10 @@
 package com.sky31.buy.second_hand.ui.fragment;
 
 
+import android.app.Activity;
 import android.app.ActivityOptions;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -269,13 +271,14 @@ public class MeFragment extends Fragment implements View.OnClickListener {
 
             /*About*/
             case R.id.tr_about:
+                Activity mActivity = getActivity();
                 Intent intentAbout = new Intent();
-                intentAbout.setClass(getActivity(), AboutActivity.class);
+                intentAbout.setClass(mActivity, AboutActivity.class);
                 intentAbout.putExtra("headerTitle", "关于");
                 /*Bundle bundle = ActivityOptions.makeCustomAnimation(
                         getActivity(), R.anim.slide_right_in, R.anim.slide_left_out).toBundle();*/
-                getActivity().startActivity(intentAbout);
-                getActivity().overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
+                mActivity.startActivity(intentAbout);
+                mActivity.overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
                 break;
 
             /*登录链接*/

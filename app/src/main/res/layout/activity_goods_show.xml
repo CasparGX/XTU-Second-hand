@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/themeBgColor"
+    android:background="@color/themeColor"
     android:weightSum="1"
     android:fitsSystemWindows="true"
     android:clipToPadding="false">
@@ -12,7 +12,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/themeBgColor">
 
         <ScrollView
             android:layout_width="match_parent"
