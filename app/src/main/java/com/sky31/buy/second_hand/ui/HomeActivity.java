@@ -83,7 +83,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
 
         //设置状态栏颜色
-        BuyApp.setStatusBarColor(this);
+        //BuyApp.setStatusBarColor(this);
         BuyApp.getInstance().setIsOpen(true);
 
 

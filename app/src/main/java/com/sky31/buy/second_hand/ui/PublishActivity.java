@@ -100,7 +100,7 @@ public class PublishActivity extends SwipeBackActivity2 implements View.OnClickL
         mIntent = getIntent();
 
         //设置状态栏颜色
-        BuyApp.setStatusBarColor(PublishActivity.this);
+        //BuyApp.setStatusBarColor(PublishActivity.this);
 
         /*滑动返回*/
         /*mSwipeBackLayout = getSwipeBackLayout();

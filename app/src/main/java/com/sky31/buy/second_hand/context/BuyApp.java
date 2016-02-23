@@ -178,18 +178,6 @@ public class BuyApp extends Application {
         return mGoodsData;
     }
 
-    public static void setStatusBarColor(Activity activity) {
-        /*// 创建状态栏的管理实例
-        SystemBarTintManager tintManager = new SystemBarTintManager(activity);
-        // 激活状态栏设置
-        tintManager.setStatusBarTintEnabled(true);
-        // 激活导航栏设置
-        tintManager.setNavigationBarTintEnabled(true);
-        // 设置一个颜色给系统栏
-        tintManager.setTintColor(activity.getResources().getColor(R.color.themeColor));
-        //tintManager.setTintColor(Color.parseColor("#ff0000"));*/
-    }
-
     //设置ListView底部状态
     public static void setListViewFooter(String loadingFlag, ImageView ivTips, TextView tvTips, Context context) {
         switch (loadingFlag) {

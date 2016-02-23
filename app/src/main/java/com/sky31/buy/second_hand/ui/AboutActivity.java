@@ -58,7 +58,7 @@ public class AboutActivity extends BaseSwipeBackActivity implements View.OnClick
         mIntent = getIntent();
 
         //设置状态栏颜色
-        BuyApp.setStatusBarColor(AboutActivity.this);
+        //BuyApp.setStatusBarColor(AboutActivity.this);
         /*滑动返回*/
         /*mSwipeBackLayout = getSwipeBackLayout();
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);*/

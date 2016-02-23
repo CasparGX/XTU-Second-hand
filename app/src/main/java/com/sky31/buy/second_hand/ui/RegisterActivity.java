@@ -47,7 +47,7 @@ public class RegisterActivity extends SwipeBackActivity2 implements View.OnClick
         mIntent = getIntent();
 
         //设置状态栏颜色
-        BuyApp.setStatusBarColor(RegisterActivity.this);
+        //BuyApp.setStatusBarColor(RegisterActivity.this);
         /*滑动返回*/
         /*mSwipeBackLayout = getSwipeBackLayout();
         mSwipeBackLayout.setEdgeTrackingEnabled(SwipeBackLayout.EDGE_LEFT);*/

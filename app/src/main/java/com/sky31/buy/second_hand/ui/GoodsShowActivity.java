@@ -76,7 +76,7 @@ public class GoodsShowActivity extends BaseSwipeBackActivity implements View.OnC
 
         Log.i("goodsShowActivity", this.getPackageName().toString());
         //设置状态栏颜色
-        BuyApp.setStatusBarColor(GoodsShowActivity.this);
+        //BuyApp.setStatusBarColor(GoodsShowActivity.this);
 
         /*mSwipeBackLayout = getSwipeBackLayout();
         //设置可以滑动的区域，推荐用屏幕像素的一半来指定

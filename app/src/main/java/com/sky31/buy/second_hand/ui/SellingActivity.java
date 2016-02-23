@@ -96,7 +96,7 @@ public class SellingActivity extends SwipeBackActivity2 implements View.OnClickL
         limitID = 0;
 
         //设置状态栏颜色
-        BuyApp.setStatusBarColor(this);
+        //BuyApp.setStatusBarColor(this);
 
         /*滑动返回*/
         /*mSwipeBackLayout = getSwipeBackLayout();

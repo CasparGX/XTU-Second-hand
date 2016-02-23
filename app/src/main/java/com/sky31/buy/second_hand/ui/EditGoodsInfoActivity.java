@@ -91,7 +91,7 @@ public class EditGoodsInfoActivity extends SwipeBackActivity2 implements View.On
         mIntent = getIntent();
 
         //设置状态栏颜色
-        BuyApp.setStatusBarColor(EditGoodsInfoActivity.this);
+        //BuyApp.setStatusBarColor(EditGoodsInfoActivity.this);
 
         /*滑动返回*/
         /*mSwipeBackLayout = getSwipeBackLayout();
