@@ -8,8 +8,9 @@
     <color name="themeColor">#5dac81</color><!--主题颜色-->
     <color name="themeColor2">#50d989</color><!--主题颜色2-->
     <color name="themeBgColor">#f7f7f7</color><!--主题背景颜色-->
-    <color name="homePageSelect">#5DAC81</color><!--Tab页标题选中颜色-->
-    <color name="homePageDefault">#9BBFC3</color><!--Tab页标题一般颜色-->
+    <!--<color name="homePageSelect">#5DAC81</color>&lt;!&ndash;Tab页标题选中颜色&ndash;&gt;-->
+    <color name="homePageSelect">#FFF</color><!--Tab页标题选中颜色-->
+    <color name="homePageDefault">#99ffffff</color><!--Tab页标题一般颜色-->
     <color name="itemClick">#f7f7f7</color><!--listview gridview点击时颜色-->
 
 </resources>
