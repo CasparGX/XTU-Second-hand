@@ -42,6 +42,7 @@ public class AboutActivity extends BaseSwipeBackActivity implements View.OnClick
     private TableRow trDevelop;
     private TableRow trDesigner;
     private TextView tvHeaderTitle;
+    private TextView tvCheckUpdate;
 
     private Intent mIntent;
 
@@ -73,6 +74,7 @@ public class AboutActivity extends BaseSwipeBackActivity implements View.OnClick
         //tvTitle.setText("关于");
         tvVersion = (TextView) findViewById(R.id.tv_version);
         tvVersion.setText("版本：" + BuyApp.getVersionName(this));
+        tvCheckUpdate = (TextView) findViewById(R.id.tv_checkUpdate);
         iv_back_btn = (ImageView) findViewById(R.id.iv_back_btn);
         iv_back_btn.setOnClickListener(this);
         trCallMe = (TableRow) findViewById(R.id.tr_call_me);
@@ -111,8 +113,14 @@ public class AboutActivity extends BaseSwipeBackActivity implements View.OnClick
 
             /*  check update*/
             case R.id.tr_update:
+                tvCheckUpdate.setText(getResources().getString(R.string.checkingUpdate));
+                trCheckUpdate.setClickable(false);
+                trCheckUpdate.setEnabled(false);
                 BuyApp.getVersionCode(this);
                 BuyApp.checkUpdate();
+                tvCheckUpdate.setText(getResources().getString(R.string.checkUpdate));
+                trCheckUpdate.setClickable(true);
+                trCheckUpdate.setEnabled(true);
                 break;
 
             /* develop*/
