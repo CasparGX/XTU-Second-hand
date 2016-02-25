@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/themeBgColor"
     tools:context="com.sky31.buy.second_hand.ui.fragment.MeFragment">
 
     <ScrollView

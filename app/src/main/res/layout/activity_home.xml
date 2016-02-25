@@ -21,6 +21,7 @@
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vp_home"
+            android:background="@color/themeBgColor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
