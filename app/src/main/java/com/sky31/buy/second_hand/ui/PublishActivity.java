@@ -8,7 +8,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,7 +25,6 @@ import android.widget.Toast;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.sky31.buy.second_hand.R;
-import com.sky31.buy.second_hand.context.BuyApp;
 import com.sky31.buy.second_hand.context.values.Constants;
 import com.sky31.buy.second_hand.model.ClassifyInfo;
 import com.sky31.buy.second_hand.ui.activity.SwipeBackActivity2;
@@ -36,19 +38,25 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import me.imid.swipebacklayout.lib.SwipeBackLayout;
 
 public class PublishActivity extends SwipeBackActivity2 implements View.OnClickListener {
     /*TAG*/
     private String TAG = PublishActivity.class.getName();
-
     /*网络参数*/
     RequestParams params = new RequestParams();
     boolean isOnUpLoad = false;
 
-    private static int RESULT_LOAD_IMAGE = 1;
+    private static final int REQUEST_CODE_CAPTURE_CAMEIA = 2;
+    private static final int RESULT_LOAD_IMAGE = 1;
+    private static String SAVED_IMAGE_DIR_PATH = null;
+    private String capturePath = null;
+    private File tempfile;
 
     /*diaLog*/
     //private AlertDialog.Builder builderLoading;
@@ -112,6 +120,14 @@ public class PublishActivity extends SwipeBackActivity2 implements View.OnClickL
         tvHeaderTitle = (TextView) findViewById(R.id.tv_header_title);
         setTvHeaderTitle(); //修改header标题
 
+        //ImageMenu
+        View.OnCreateContextMenuListener addImageMenuListener = new View.OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                menu.add(0, 0, 0, "Album");
+                menu.add(0, 1, 0, "Camera");
+            }
+        };
         /*图片file*/
         ivFile1 = (ImageView) findViewById(R.id.iv_file1);
         ivFile2 = (ImageView) findViewById(R.id.iv_file2);
@@ -121,6 +137,10 @@ public class PublishActivity extends SwipeBackActivity2 implements View.OnClickL
         ivFile1.setOnClickListener(this);
         ivFile2.setOnClickListener(this);
         ivFile3.setOnClickListener(this);
+        ivFile1.setOnCreateContextMenuListener(addImageMenuListener);
+        ivFile2.setOnCreateContextMenuListener(addImageMenuListener);
+        ivFile3.setOnCreateContextMenuListener(addImageMenuListener);
+
 
         /*EditText*/
         etGoodsDec = (EditText) findViewById(R.id.et_goods_dec);
@@ -265,54 +285,127 @@ public class PublishActivity extends SwipeBackActivity2 implements View.OnClickL
     /*添加图片文件*/
     private void addImageFile(int imgFlag) {
         this.imgFlag = imgFlag;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd HH:mm:ss ");
+        Date curDate = new Date(System.currentTimeMillis());//获取当前时间
+        String timeStr = formatter.format(curDate);
+        SAVED_IMAGE_DIR_PATH = Environment.getExternalStorageDirectory()
+                + "/" + getResources().getString(R.string.app_name_en) + "_pic"
+                + "/" + timeStr;
+        openContextMenu(ivFile1);
+    }
+
+    private void getImageFromAlbum() {
         Intent i = new Intent(
-                Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, RESULT_LOAD_IMAGE);
+    }
+
+    protected void getImageFromCamera() {
+
+        File DatalDir = Environment.getExternalStorageDirectory();
+        File myDir = new File(DatalDir, "/DCIM/Camera");
+        myDir.mkdirs();
+        String mDirectoryname = DatalDir.toString() + "/DCIM/Camera";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hhmmss",
+                Locale.SIMPLIFIED_CHINESE);
+        tempfile = new File(mDirectoryname, sdf.format(new Date())
+                + ".jpg");
+        //if (tempfile.isFile())
+            //tempfile.delete();
+        Uri Imagefile = Uri.fromFile(tempfile);
+        capturePath = tempfile.toString();
+        Intent cameraIntent = new Intent(
+                android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Imagefile);
+        startActivityForResult(cameraIntent, REQUEST_CODE_CAPTURE_CAMEIA);
+
+        /*String state = Environment.getExternalStorageState();
+        if (state.equals(Environment.MEDIA_MOUNTED)) {
+            Intent getImageByCamera = new Intent("android.media.action.IMAGE_CAPTURE");
+            String out_file_path = SAVED_IMAGE_DIR_PATH;
+            File dir = new File(out_file_path);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            capturePath = SAVED_IMAGE_DIR_PATH + System.currentTimeMillis() + ".jpg";
+            getImageByCamera.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(capturePath)));
+            //getImageByCamera.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+            getImageByCamera.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
+            startActivityForResult(getImageByCamera, REQUEST_CODE_CAPTURE_CAMEIA);
+        } else {
+            Toast.makeText(getApplicationContext(), "请确认已经插入SD卡", Toast.LENGTH_LONG).show();
+        }*/
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        String picturePath = null;
+        String tmpImagePath = null;
+        Uri selectedImage;
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
-            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-
-            Cursor cursor = getContentResolver().query(selectedImage,
-                    filePathColumn, null, null, null);
-            cursor.moveToFirst();
-
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            String picturePath = cursor.getString(columnIndex);
-            cursor.close();
-
-            //图片压缩工具类
-            CompImageUtil compImage = new CompImageUtil();
-            Bitmap bitmapImage = compImage.getimage(picturePath, 1500f, 1500f, 500);
-            String tmpImagePath = getCacheDir() + "tmp" + this.imgFlag + ".jpg";
-            compImage.saveBitmapFile(bitmapImage, tmpImagePath);
-            switch (this.imgFlag) {
-                case 1:
-                    ivFile1.setImageBitmap(bitmapImage);
-                    ivFile2.setVisibility(View.VISIBLE);
-                    break;
-                case 2:
-                    ivFile2.setImageBitmap(bitmapImage);
-                    ivFile3.setVisibility(View.VISIBLE);
-                    break;
-                case 3:
-                    ivFile3.setImageBitmap(bitmapImage);
-                    break;
-            }
-            /*上传图片测试样例*/
-            File file = new File(tmpImagePath);
-            if (file.exists() && file.length() > 0) {
-                setParamsFile("file" + this.imgFlag, file);
+            selectedImage = data.getData();
+            picturePath = getImageFilePath(selectedImage);
+            tmpImagePath = CompImageAndShow(picturePath);
+            UploadImage(tmpImagePath);
+        } else if (requestCode == REQUEST_CODE_CAPTURE_CAMEIA && resultCode == RESULT_OK) {
+            Log.i("ImageRsult",requestCode+" "+resultCode+" "+data);
+            if (data!=null && data.getData()!=null) {
+                selectedImage = data.getData();
+                picturePath = getImageFilePath(selectedImage);
             } else {
-                Log.i(TAG, "文件不存在");
+                picturePath = capturePath;
             }
+            tmpImagePath = CompImageAndShow(picturePath);
+            UploadImage(tmpImagePath);
         }
 
+    }
+
+    private String getImageFilePath(Uri selectedImage) {
+        String[] filePathColumn = {MediaStore.Images.Media.DATA};
+
+        Cursor cursor = getContentResolver().query(selectedImage,
+                filePathColumn, null, null, null);
+        cursor.moveToFirst();
+
+        int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+        String picturePath = cursor.getString(columnIndex);
+        cursor.close();
+        return picturePath;
+    }
+
+    private void UploadImage(String tmpImagePath) {
+    /*上传图片测试样例*/
+        File file = new File(tmpImagePath);
+        if (file.exists() && file.length() > 0) {
+            setParamsFile("file" + this.imgFlag, file);
+        } else {
+            Log.i(TAG, "文件不存在");
+        }
+    }
+
+    @NonNull
+    private String CompImageAndShow(String picturePath) {
+        //图片压缩工具类
+        CompImageUtil compImage = new CompImageUtil();
+        Bitmap bitmapImage = compImage.getimage(picturePath, 1500f, 1500f, 500);
+        String tmpImagePath = getCacheDir() + "tmp" + this.imgFlag + ".jpg";
+        compImage.saveBitmapFile(bitmapImage, tmpImagePath);
+        switch (this.imgFlag) {
+            case 1:
+                ivFile1.setImageBitmap(bitmapImage);
+                ivFile2.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                ivFile2.setImageBitmap(bitmapImage);
+                ivFile3.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                ivFile3.setImageBitmap(bitmapImage);
+                break;
+        }
+        return tmpImagePath;
     }
 
     /* cancle upload and publish goods*/
@@ -515,6 +608,18 @@ public class PublishActivity extends SwipeBackActivity2 implements View.OnClickL
         mProgressDialog.show();
     }
 
-
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case 0:
+                getImageFromAlbum();
+                return true;
+            case 1:
+                getImageFromCamera();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
 }
 
