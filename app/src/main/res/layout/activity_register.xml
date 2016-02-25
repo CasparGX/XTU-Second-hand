@@ -26,7 +26,6 @@
             android:layout_marginTop="@dimen/table_row_margin">
 
             <TextView
-                android:gravity="right"
                 android:padding="3dip"
                 android:text="昵称:"
                 android:textColor="@color/themeColor"
@@ -48,7 +47,6 @@
             android:layout_marginTop="@dimen/table_row_margin">
 
             <TextView
-                android:gravity="right"
                 android:padding="3dip"
                 android:text="邮箱:"
                 android:textColor="@color/themeColor"
@@ -70,7 +68,6 @@
             android:layout_marginTop="@dimen/table_row_margin">
 
             <TextView
-                android:gravity="right"
                 android:padding="3dip"
                 android:text="密码:"
                 android:textColor="@color/themeColor"
@@ -93,7 +90,6 @@
             android:layout_marginTop="@dimen/table_row_margin">
 
             <TextView
-                android:gravity="right"
                 android:padding="3dip"
                 android:text="确认密码:"
                 android:textColor="@color/themeColor"
@@ -131,7 +127,6 @@
             android:layout_marginTop="@dimen/table_row_margin">
 
             <TextView
-                android:gravity="right"
                 android:padding="3dip"
                 android:text="手机号:"
                 android:textColor="@color/themeColor"
@@ -154,7 +149,6 @@
             android:layout_marginTop="@dimen/table_row_margin">
 
             <TextView
-                android:gravity="right"
                 android:padding="3dip"
                 android:text="QQ号:"
                 android:textColor="@color/themeColor"
