@@ -124,8 +124,8 @@ public class PublishActivity extends SwipeBackActivity2 implements View.OnClickL
         View.OnCreateContextMenuListener addImageMenuListener = new View.OnCreateContextMenuListener() {
             @Override
             public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-                menu.add(0, 0, 0, "Album");
-                menu.add(0, 1, 0, "Camera");
+                menu.add(0, 0, 0, getResources().getString(R.string.album));
+                menu.add(0, 1, 0, getResources().getString(R.string.camera));
             }
         };
         /*图片file*/

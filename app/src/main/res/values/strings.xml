@@ -22,6 +22,9 @@
     <string name="logOut">退出账号</string>
     <string name="clickLogin">点击登录</string>
 
+    <string name="album">相册</string>
+    <string name="camera">拍照</string>
+
     <string name="publish">发布商品</string>
     <string name="editInfo">修改信息</string>
     <string name="selling">正上架商品</string>
