@@ -3,11 +3,11 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@null"
     android:id="@+id/ll_toolbar">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/themeColor">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/iv_footer_bg"

@@ -6,8 +6,7 @@
     android:padding="0dp"
     android:divider="@drawable/home_goods_listview_shadow"
     android:dividerPadding="5dp"
-    android:backgroundTintMode="src_in"
-    android:background="@color/themeColor">
+    android:backgroundTintMode="src_in">
 
 
     <TextView
