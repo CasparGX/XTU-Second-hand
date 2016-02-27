@@ -524,6 +524,7 @@ public class PublishActivity extends SwipeBackActivity2 implements View.OnClickL
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
             super.onFailure(statusCode, headers, responseString, throwable);
             Log.i(TAG, statusCode + "\n" + responseString + " \n" + throwable);
+            HttpUtil.onFailureErrorToast(PublishActivity.this);
         }
 
         @Override

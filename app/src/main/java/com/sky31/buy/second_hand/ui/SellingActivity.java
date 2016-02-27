@@ -387,6 +387,7 @@ public class SellingActivity extends SwipeBackActivity2 implements View.OnClickL
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
             super.onFailure(statusCode, headers, responseString, throwable);
             Log.e(TAG, " onFailure" + responseString.toString());
+            HttpUtil.onFailureErrorToast(SellingActivity.this);
         }
 
         public void onFinish() {
@@ -421,6 +422,7 @@ public class SellingActivity extends SwipeBackActivity2 implements View.OnClickL
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
             super.onFailure(statusCode, headers, responseString, throwable);
             Log.e(TAG, " onFailure" + responseString.toString());
+            HttpUtil.onFailureErrorToast(SellingActivity.this);
         }
 
         @Override

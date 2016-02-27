@@ -309,6 +309,7 @@ public class HomeFragment extends Fragment {
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
             super.onFailure(statusCode, headers, responseString, throwable);
             Log.e(TAG, " onFailure" + responseString.toString());
+            HttpUtil.onFailureErrorToast(HomeFragment.this.getActivity());
         }
 
         public void onFinish() {

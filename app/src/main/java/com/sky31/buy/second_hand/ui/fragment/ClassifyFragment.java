@@ -323,6 +323,7 @@ public class ClassifyFragment extends Fragment implements View.OnClickListener {
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
             super.onFailure(statusCode, headers, responseString, throwable);
             Log.e(TAG, " onFailure" + responseString.toString());
+            HttpUtil.onFailureErrorToast(ClassifyFragment.this.getActivity());
         }
 
         public void onFinish() {
