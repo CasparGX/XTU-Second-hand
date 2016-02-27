@@ -117,7 +117,7 @@ public class AboutActivity extends BaseSwipeBackActivity implements View.OnClick
                 trCheckUpdate.setClickable(false);
                 trCheckUpdate.setEnabled(false);
                 BuyApp.getVersionCode(this);
-                BuyApp.checkUpdate();
+                BuyApp.getInstance().checkUpdate();
                 tvCheckUpdate.setText(getResources().getString(R.string.checkUpdate));
                 trCheckUpdate.setClickable(true);
                 trCheckUpdate.setEnabled(true);

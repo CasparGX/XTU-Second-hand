@@ -219,11 +219,11 @@ public class BuyApp extends Application {
     }
 
     /*update*/
-    public static void checkUpdate() {
+    public void checkUpdate() {
         HttpUtil.get(Constants.Apis.API_APP_UPDATE, null, checkUpdateHandler);
     }
 
-    static JsonHttpResponseHandler checkUpdateHandler = new JsonHttpResponseHandler() {
+    JsonHttpResponseHandler checkUpdateHandler = new JsonHttpResponseHandler() {
         @Override
         public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
             super.onSuccess(statusCode, headers, response);
@@ -267,6 +267,7 @@ public class BuyApp extends Application {
         public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
             super.onFailure(statusCode, headers, responseString, throwable);
             Log.e("GoodsApi", " onFailure" + responseString.toString());
+            HttpUtil.onFailureErrorToast(BuyApp.this);
         }
 
         public void onFinish() {

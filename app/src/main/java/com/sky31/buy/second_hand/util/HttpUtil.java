@@ -1,5 +1,8 @@
 package com.sky31.buy.second_hand.util;
 
+import android.content.Context;
+import android.widget.Toast;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.BinaryHttpResponseHandler;
@@ -13,6 +16,10 @@ public class HttpUtil {
     private static AsyncHttpClient client = new AsyncHttpClient();
     static {
         //client.setTimeout();  //设置连接超时, 默认为10s
+    }
+    
+    public static void onFailureErrorToast(Context context){
+        Toast.makeText(context,"网络异常，无法连接",Toast.LENGTH_SHORT).show();
     }
 
     public static void get(String urlString,AsyncHttpResponseHandler res)    //用一个完整url获取一个string对象
