@@ -19,4 +19,6 @@
 
     <dimen name="editview_radius">5dp</dimen>
     <dimen name="editview_width">0.8dp</dimen>
+
+    <dimen name="publish_good_image_size">140dp</dimen>
 </resources>

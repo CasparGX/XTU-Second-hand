@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -221,6 +222,27 @@ public class PublishActivity extends SwipeBackActivity2 implements View.OnClickL
         /*发布按钮*/
         btnPublish = (Button) findViewById(R.id.btn_publish);
         btnPublish.setOnClickListener(this);
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        int width = ivFile1.getWidth();
+        ViewGroup.LayoutParams params1 = ivFile1.getLayoutParams();
+        ViewGroup.LayoutParams params2 = ivFile2.getLayoutParams();
+        ViewGroup.LayoutParams params3 = ivFile3.getLayoutParams();
+        if (width<getResources().getDimension(R.dimen.publish_good_image_size)) {
+            params1.height = width;
+            params2.height = width;
+            params3.height = width;
+        } else {
+            params1.width = params1.height;
+            params2.width = params2.height;
+            params3.width = params3.height;
+        }
+        ivFile1.setLayoutParams(params1);
+        ivFile2.setLayoutParams(params2);
+        ivFile3.setLayoutParams(params3);
     }
 
     /*返回键*/

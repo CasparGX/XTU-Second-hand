@@ -48,25 +48,31 @@
             <ImageView
                 android:id="@+id/iv_file1"
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
+                android:layout_height="@dimen/publish_good_image_size"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
+                android:maxWidth="150dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/add_pic" />
 
             <ImageView
                 android:id="@+id/iv_file2"
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
+                android:layout_height="@dimen/publish_good_image_size"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
+                android:maxWidth="150dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/add_pic" />
 
             <ImageView
                 android:id="@+id/iv_file3"
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
+                android:layout_height="@dimen/publish_good_image_size"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
+                android:maxWidth="150dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/add_pic" />
         </LinearLayout>
 
@@ -125,7 +131,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:spinnerMode="dropdown"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -154,7 +160,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:spinnerMode="dropdown"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -182,7 +188,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:spinnerMode="dropdown"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -212,7 +218,7 @@
                 android:layout_weight="1"
                 android:background="@null"
                 android:spinnerMode="dropdown"
-                android:textSize="18sp"/>
+                android:textSize="18sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -289,4 +295,4 @@
 
     </TableLayout>
 
-</merge >
+</merge>
