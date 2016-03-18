@@ -41,13 +41,6 @@
                 android:text="@string/publish"
                 android:textColor="@color/white" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="点击发布按钮表示您已阅读并同意 商品发布协议" />
-
         </LinearLayout>
 
     </ScrollView>
